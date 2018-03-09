@@ -1,0 +1,97 @@
+﻿@media (min-width: 1220px) and (max-width: 1320px) {
+  body main {
+    flex-flow: row nowrap;
+  }
+  body main .main .container .dop-info {
+    display: none;
+  }
+}
+@media (min-width: 760px) and (max-width: 1220px) {
+  body main {
+    padding: 10px;
+    flex-flow: row wrap;
+  }
+  body main .main {
+    width: 600px;
+  }
+  body main .main .container .bud-images {
+    width: 450px;
+  }
+  body main .main .container .dop-info {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  main .main {
+    width: 400px;
+  }
+  main .main .container .dop-info {
+    display: none;
+  }
+  main .main .container .bud-images {
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 250px;
+  }
+  main .main .container .bud-images .more-photo a {
+    font-size: 14px;
+  }
+  main .main .container .bud-images .bud-col {
+    order: 1;
+  }
+  main .main .container .bud-images .bud-col:nth-child(even) {
+    flex: 1 0 100%;
+  }
+  main .main .container .bud-images .bud-col:nth-child(even) img {
+    width: 100%;
+  }
+  main .main .container .bud-images .bud-col:nth-child(odd) {
+    order: 2;
+    margin: 15px 0px;
+    flex: 2 0;
+    align-items: center;
+  }
+  main .main .container .bud-images .bud-col:nth-child(odd) div,
+  main .main .container .bud-images .bud-col:nth-child(odd) img {
+    margin: 10px 0px;
+    width: 20vw;
+    min-width: 120px;
+  }
+  main .main .container .bud-images .bud-col:nth-child(odd) div {
+    height: 125.4px;
+  }
+}
+@media (max-width: 650px) {
+  main {
+    padding: 10px;
+  }
+  main .main {
+    min-width: 306px;
+    width: 306px;
+  }
+  main .main .container .bud-images {
+    width: 150px;
+    min-width: 110px;
+  }
+  main .main .container .bud-images .bud-col {
+    order: 1;
+  }
+  main .main .container .bud-images .bud-col:nth-child(even) {
+    width: 100%;
+  }
+  main .main .container .bud-images .bud-col:nth-child(even) img {
+    width: 100%;
+  }
+  main .main .container .bud-images .bud-col:nth-child(odd) {
+    order: 2;
+    margin: 15px 0px;
+    flex: 2 0;
+    align-items: center;
+  }
+  main .main .container .bud-images .bud-col:nth-child(odd) img {
+    display: none;
+  }
+  main .main .container .bud-images .bud-col:nth-child(odd) div {
+    height: 125.4px;
+  }
+}

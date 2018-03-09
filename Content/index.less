@@ -1,0 +1,833 @@
+﻿@font-face {
+    font-family: Lato-Light; /* Гарнитура шрифта */
+    src: url(../fonts/Lato-Light.ttf);
+}
+
+@font-face {
+    font-family: Lato-Regular; /* Гарнитура шрифта */
+    src: url(../fonts/Lato-Regular.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+}
+
+
+
+header {
+    position: relative;
+    height: 65px;
+    width: 100vw;
+    background-color: #0080CE;
+    box-shadow: 2px 1px 2px rgba(0,0,0, 0.75);
+    z-index: 2;
+
+
+
+
+    .header {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        width: 759px;
+        height: 65px;
+        margin: auto;
+    }
+
+
+
+    .logo {
+        margin-top: 15px;
+        height: 31px;
+    }
+
+    .obertka-mobile {
+        width: 151px;
+        height: 54px;
+        position: relative;
+
+        .image-phone {
+            float: left;
+            margin-top: 18px;
+        }
+
+        .number-phone {
+            float: left;
+            margin-left: 3px;
+            margin-top: 28px;
+            font-family: Lato-Regular;
+            font-size: 14px;
+            color: #E89900;
+        }
+    }
+
+    .enter-user {
+        width: 190px;
+        height: 26px;
+        margin-top: 23px;
+        display: flex;
+        justify-content: space-between;
+
+
+        .button-header {
+            font-family: Lato-Regular;
+            font-size: 12px;
+            color: white;
+            width: 82.5px;
+            height: 23px;
+            background-color: #166FB2;
+            border: 1px solid white;
+            border-radius: 11px;
+        }
+    }
+}
+
+.logo-text {
+    display: inline-block;
+    font-family: Lato-Regular;
+    font-size: 24px;
+    color: #E89900;
+}
+
+.logo-text:last-child {
+    color: #00F8F2;
+}
+
+.image1 {
+    position: relative;
+    bottom: 0px;
+    width:100vw;
+    margin-top: -5px;
+
+    #img1 {
+        min-width: 1280px;
+        width: 100vw;
+    }
+
+    span {
+        display: block;
+        position: absolute;
+        top: 14.7239263804%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: max-content;
+        font-family: Lato-Regular;
+        font-size: 21.75px;
+        color: white;
+        text-align: center;
+        margin: auto;
+    }
+
+    .sign_up {
+        position: absolute;
+        top: 51.8404907975%;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-image: url(../images/obl_enter.png);
+        width: 453.041px;
+        height: 81.739px;
+        margin: auto;
+
+
+        input[type="text"] {
+            padding: 6px;
+            color: gray;
+            border-radius: 6px;
+            border: 0px;
+            font-family: Lato-Light;
+            font-size: 15.03px;
+        }
+
+        .usrFirstName {
+            position: absolute;
+            left: 23px;
+            top: 14px;
+            width: 115.181px;
+            height: 28.84px;
+        }
+
+        .usrSecondName {
+            position: absolute;
+            top: 14px;
+            left: 143px;
+            width: 164.708px;
+            height: 29.375px;
+        }
+
+        .button-enter {
+            font-family: Lato-Light;
+            font-size: 9.79px;
+            position: absolute;
+            top: 14px;
+            left: 328px;
+            width: 105.284px;
+            height: 29.375px;
+            background-color: #0A9D0A;
+            color: white;
+            border-radius: 11px;
+            border: 1px solid white;
+        }
+
+        span {
+            font-family: Lato-Regular;
+            font-size: 10.22px;
+            color: white;
+            position: absolute;
+            left: 0;
+            top: 53px;
+        }
+    }
+}
+
+.sign_up {
+    position: absolute;
+    top: 169px;
+    left: 424px;
+    background-image: url(../images/obl_enter.png);
+    width: 453.041px;
+    height: 81.739px;
+
+
+    input[type="text"] {
+        padding: 6px;
+        color: gray;
+        border-radius: 6px;
+        border: 0px;
+        font-family: Lato-Light;
+        font-size: 15.03px;
+    }
+
+    .usrFirstName {
+        position: absolute;
+        left: 23px;
+        top: 14px;
+        width: 115.181px;
+        height: 28.84px;
+    }
+
+    .usrSecondName {
+        position: absolute;
+        top: 14px;
+        left: 143px;
+        width: 164.708px;
+        height: 29.375px;
+    }
+
+    .button-enter {
+        font-family: Lato-Light;
+        font-size: 9.79px;
+        position: absolute;
+        top: 14px;
+        left: 328px;
+        width: 105.284px;
+        height: 29.375px;
+        background-color: #0A9D0A;
+        color: white;
+        border-radius: 11px;
+        border: 1px solid white;
+    }
+
+    span {
+        font-family: Lato-Regular;
+        font-size: 10.22px;
+        color: white;
+        position: absolute;
+        left: 101px;
+        top: 53px;
+    }
+}
+
+.image2 {
+    position: relative;
+    width: 100vw;
+    height: 100%;
+
+    #img2 {
+        //height: 578px;
+        width: 100vw;
+        min-width: 1280px;
+    }
+
+    .noactive {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        min-width: 1280px;
+        opacity: 0.65;
+    }
+
+    .img2Logo {
+        height: 47px;
+        position: relative;
+
+        #img2LogoText {
+            display: inline-block;
+            position: absolute;
+            top: 8px;
+            left: 66px;
+            font-size: 22.99px;
+        }
+    }
+
+    .obertka-img2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        width:758.999px;
+        height: max-content;
+
+        .img2Posit {
+            float: left;
+            width: 424.965px;
+            height: 436.792px;
+            background-image: url(../images/fordiv.png);
+            border-radius: 6px;
+            border: 0px;
+            padding: 17px 20px;
+
+
+
+            .img2Content {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 320px;
+                margin-top: 20px;
+
+                .items {
+                    height: max-content;
+
+                    img {
+                        float: left;
+                    }
+
+                    .img2Posit-header {
+                        font-family: Lato-Regular;
+                        font-size: 26.82px;
+                        color: #D59916;
+                        margin-left: 66px;
+                    }
+
+                    .img2Posit-discription {
+                        font-family: Lato-Regular;
+                        font-size: 10.22px;
+                        color: black;
+                        margin-left: 66px;
+                        margin-top: 5px;
+                    }
+                }
+            }
+        }
+
+        .img2Fact {
+            float: left;
+            width: 310.11px;
+            height: 436.792px;
+            background-image: url(../images/fordiv.png);
+            border-radius: 6px;
+            border: 0px;
+            padding: 17px 20px;
+            margin-left: 15px;
+
+
+
+
+            .img2Content {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 320px;
+                margin-top: 20px;
+
+
+                hr {
+                    display: block;
+                    height: 1px;
+                    background-color: black;
+                    width: 100%;
+                }
+
+
+
+
+                .items {
+                    height: 75px;
+
+                    img {
+                        float: right;
+                    }
+
+                    .img2Fact-header {
+                        font-family: Lato-Regular;
+                        font-size: 22.99px;
+                        color: #3ABAA5;
+                    }
+
+                    .img2Fact-discription {
+                        font-family: Lato-Light;
+                        font-size: 12.77px;
+                        margin-top: 5px;
+                        margin-left: 25px;
+                    }
+                }
+            }
+
+
+            .logo-text {
+                color: #E89900;
+            }
+        }
+    }
+}
+
+.sign_up2 {
+    margin-top: -4px;
+    width: 100vw;
+    height: 91.956px;
+    background-color: #166FB2;
+    padding: 10px;
+
+    .sign_up {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        background: none;
+        margin: auto;
+    }
+}
+
+.image3 {
+    position: relative;
+    padding: 0px;
+    margin-top: -1px;
+    width: 100%;
+    height: 100%;
+
+    #img1 {
+        width: 100vw;
+        min-width: 1280px;
+    }
+
+    .obertka-formula {
+        position: absolute;
+        left: 0;
+        top: 0px;
+        right:0;
+        bottom:0;
+        margin:auto;
+        width: 759px;
+        height: 218px;
+        font-family: Lato-Regular;
+        font-size: 20.82px;
+        color: white;
+
+        .header {
+            height: 53px;
+            margin: auto;
+            width: max-content;
+        }
+
+        .signs {
+            position: absolute;
+            top: 109px;
+            left: 167px;
+            width: 434px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 2;
+        }
+
+        .formula1 {
+            position: relative;
+            float: left;
+            background-color: #F6A843;
+            width: 25%; //191.426px;
+            height: 218.396px;
+            padding: 20px;
+
+            #img3_1 {
+                position: absolute;
+                left: 23px;
+                top: 85px;
+            }
+
+            #img3_2 {
+                position: absolute;
+                left: 85px;
+                top: 121px;
+            }
+        }
+
+        .formula2 {
+            position: relative;
+            float: left;
+            background-color: #E66DF4;
+            width: 25%; //   190.15px;
+            height: 218.396px;
+            padding: 20px;
+
+
+            #img3_3 {
+                position: absolute;
+                left: 48px;
+                top: 90px;
+            }
+        }
+
+        .formula3 {
+            position: relative;
+            float: left;
+            background-color: #26C644;
+            width: 25%; //   197.807px;
+            height: 218.396px;
+            padding: 20px;
+
+            #img3_4 {
+                position: absolute;
+                left: 49px;
+                top: 93px;
+            }
+        }
+
+        .formula4 {
+            position: relative;
+            float: left;
+            background-color: #82ACF6;
+            width: 25%; //186.321px;
+            height: 218.396px;
+            padding: 20px;
+
+            #img3_5 {
+                position: absolute;
+                left: 46px;
+                top: 90px;
+            }
+        }
+    }
+}
+
+.quest {
+    margin-top: -4px;
+    font-family: Lato-Regular;
+    font-size: 26.85px;
+    height: 109.169px;
+    width: 100vw;
+    text-overflow: ellipsis;
+    line-height: 109.169px;
+    text-align: center;
+    background-color: #0C4B81;
+    color: white;
+    white-space: nowrap;
+}
+
+.image4 {
+    position: relative;
+    width: 100vw;
+    //padding-bottom: 42px;
+    font-family: Lato-Regular;
+    font-size: 22.99px;
+
+    .content {
+        position: absolute;
+        width: 759px;
+        height: max-content;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        margin-top:5%;
+    }
+
+    #img4 {
+        //height: 802.062px;
+        min-width: 1280px;
+        width: 100vw;
+    }
+
+    .noactive {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        min-width: 1280px;
+        opacity: 0.65;
+    }
+
+
+
+    .img1 {
+        float: left;
+        height: 202px;
+
+        img {
+            margin-left: 61px;
+        }
+    }
+
+    .arrow {
+        float: left;
+        margin-left: 95px;
+        margin-top: 64px;
+        transform: rotate(-90deg);
+    }
+
+    .arrow2 {
+        float: right;
+        margin-top: 22px;
+        margin-right: 225px;
+    }
+
+    .arrow3 {
+        float: right;
+        margin-top: 64px;
+        margin-right: 50px;
+        transform: rotate(90deg);
+    }
+
+    .img2 {
+        float: left;
+        margin-left: 26px;
+
+        img {
+            margin-left: 54px;
+        }
+    }
+
+    .img3 {
+        clear: right;
+        float: right;
+        margin-right: 100px;
+
+        img {
+            margin-left: 61px;
+        }
+    }
+
+    .img4 {
+        float: right;
+
+        img {
+            margin-left: 61px;
+        }
+    }
+
+    .sign_up{
+        position:absolute;
+        bottom: 0;
+        top: 0;
+        left:0;
+        right:0;
+        margin:auto;
+        margin-top:84.4333748443%;
+    }
+}
+
+.image5 {
+    background-color: #D0D0D0;
+    width: 100vw;
+    height: 284.809px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+    .container {
+        margin:auto;
+        width: 759px;
+
+        .items {
+            width: 378px;
+            height: max-content;
+            float:left;
+
+            .header {
+                font-family: Lato-Regular;
+                font-size: 22px;
+            }
+
+            .content {
+                font-family: Lato-Regular;
+                font-size: 15.88px;
+                height: 50px;
+            }
+
+            .img {
+                margin-right: 17px;
+                float: left;
+                height: 100px;
+            }
+        }
+    }
+}
+
+.image6 {
+    font-family: Lato-Regular;
+    font-size: 26px;
+    padding-top: 24px;
+    text-align: center;
+    height: 250.325px;
+    width: 100vw;
+    background-color: #315368;
+    color: #FF9C00;
+
+    div {
+        margin: auto;
+        margin-top: 24px;
+        width: 759px;
+        height: 131px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+    }
+}
+
+footer {
+    position: relative;
+    background-color: #004A83;
+    min-height: 133px;
+    height: max-content;
+    width:100vw;
+
+
+    .conteiner {
+        margin: auto;
+        margin-bottom:20px;
+        width: 759px;
+        height: max-content;
+        display: flex;
+        flex-flow: row wrap;
+        white-space: nowrap;
+        justify-content: space-between;
+    }
+
+    .logo {
+        margin-top: 19px;
+        margin-right: 15px;
+
+
+        .logo-text {
+            font-family: Lato-Regular;
+            font-size: 21.7px;
+            color: #E89900;
+        }
+
+        .logo-text:last-child {
+            color: #00F8F2;
+        }
+
+        #copyright {
+            margin-top: 47px;
+            font-family: Lato-Regular;
+            font-size: 15px;
+        }
+    }
+
+    .map {
+        font-family: Lato-Regular;
+        font-size: 12px;
+        height: 133px;
+        width: 100px;
+        margin: auto;
+
+
+
+        a {
+            text-decoration: none;
+            color: white;
+
+            &:visited {
+                color: white;
+            }
+
+            &:active {
+                color: white;
+            }
+        }
+
+        ul {
+            margin: 0px;
+            margin-top: 27px;
+            padding: 0px;
+
+            li {
+                list-style-type: none;
+                margin-bottom: 9px;
+
+                &:first-child {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+
+    .feedback {
+        font-family: Lato-Regular;
+        font-size: 15px;
+        color: white;
+        margin-top: 27px;
+
+        span {
+            font-size: 10px;
+        }
+    }
+
+    #number-feedback {
+        margin-top: 12px;
+        font-family: Lato-Light;
+        font-size: 8.54px;
+        padding: 4px;
+        border-radius: 6px;
+        width: 106.619px;
+        height: 20px;
+    }
+
+    #button-feedback {
+        margin-top: 12px;
+        margin-left: 7px;
+        font-family: Lato-Regular;
+        font-size: 7px;
+        color: white;
+        width: 68.152px;
+        height: 20px;
+        background-color: #009D00;
+        border: 1px solid white;
+        border-radius: 9.5px;
+    }
+
+    img {
+        margin-top: 9px;
+        margin-right: 12px;
+    }
+
+    .mobileImg {
+        margin-top: 0px;
+    }
+
+    .year {
+        font-family: Lato-Regular;
+        font-size: 12px;
+        margin-top: 100px;
+    }
+}
+
+@media (max-width:760px){
+    .image5 {
+        height: 500px;
+        .container{
+            width:400px;
+        }
+        
+    }
+
+}

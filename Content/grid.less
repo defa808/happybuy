@@ -1,0 +1,47 @@
+﻿
+/*Grid*/
+
+
+.row{
+    height:max-content;
+    width:100%;
+}
+@breakpoints: 3000px, 1600px, 1400px, 600px;
+@container-widths: 800px, 796px, 450px, 200px;
+@prefixes: lg, md, sm, xsm;
+@column-count: 12;
+/*Создаем селекторы колонок*/
+.generate-class(@j, @i: 1) when (@i =< @column-count) {
+    //Получаем элемент списка
+    @prefix: extract(@prefixes, @j);
+
+    //Название и наполнение селектора
+    .col-@{prefix}-@{i} {
+        width: @i * (100% / @column-count);
+        float: left;
+        margin: 15px 0px;
+        
+    }
+    //Рекурсивный вызов
+    .generate-class(@j, @i + 1);
+}
+
+/*Генератор сетки*/
+
+.make-grid(@j: 1) when (@j =< length(@prefixes)) {
+    // Вызываем генератор селекторов колонок
+
+    @width: extract(@breakpoints, @j);
+
+    @media(max-width: @width) {
+        .generate-class(@j);
+    }
+    //Рекурсивный вызов
+    .make-grid(@j + 1);
+}
+
+//Вызываем генератор сетки
+.make-grid();
+
+
+
