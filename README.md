@@ -1,5 +1,5 @@
 # happybuy
-Web-show for improving in php and MySQL on MVC pattern
+Web-site for improving in php and MySQL on MVC pattern
 
 1. First of all run your server.
 2. Then import database for App_Data to your server. (Database was created in MySQL)
