@@ -31,15 +31,6 @@ function initModel()
     return $items;
 }
 
-function initUsers()
-{
-    $pdo = connectDB();
-    $query = $pdo->query("SELECT * FROM users");
-    $query->setFetchMode(PDO::FETCH_CLASS, "User");
-    $users = $query->fetchAll();
-    return $users;
-}
-
 function initUsersOnlyLogin()
 {
     $pdo = connectDB();
@@ -52,7 +43,6 @@ function initUsersOnlyLogin()
 function AddUser($user)
 {
     $pdo = connectDB();
-
     $query = $pdo->prepare("INSERT INTO users(login, email, password) VALUES (:login, :email, :password)");
     $query->bindParam(':login', htmlentities($user['login']));
     $query->bindParam(':email', htmlentities($user['email']));
@@ -61,6 +51,22 @@ function AddUser($user)
 }
 
 
+function signInUser($user)
+{
+    $pdo = connectDB();
+
+//    if it is work, sql injection will be possible login=' OR 1=1 -- ;password='
+//    return $pdo->query("SELECT * FROM users WHERE login='{$user['login']}' AND password='{$user['password']}'")->fetch();
+
+    $query = $pdo->prepare("SELECT * FROM users WHERE login=? AND password=?");
+    $login = htmlentities($user['login']);
+    $password = htmlentities($user['password']);
+    $query->bindParam(1, $login);
+    $query->bindParam(2, $password);
+    $query->execute();
+
+    return $query->fetch();
+}
 /**
  * Created by PhpStorm.
  * User: alexg

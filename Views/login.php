@@ -7,13 +7,14 @@
  */
 session_start();
 include "../Controllers/MainController.php";
-$_users = initUsers();
 
 $data = $_POST;
 $errors = array();
+
 if (isset($data['do_signup'])) {
     header('Refresh: 0; URL=signup.php');
 }
+
 if (isset($data['do_signin'])) {
 
     if (trim($data['login']) == '') {
@@ -24,21 +25,14 @@ if (isset($data['do_signin'])) {
         $errors[] = "Input password";
     }
 
-    $key = array_search($data['login'], array_column($_users, "login"));
+    $user = signInUser($data);
 
-    if ($key === false) {
-        $errors[] = "Wrong login";
-    } else {
-        if ((int)$data['password'] != (int)$_users[$key]->password) {
-            var_dump($_users);
-            $errors[] = "Wrong password";
-        }
-
+    if($user == null){
+        $errors[] = "Wrong login or password";
     }
 
-
     if (empty($errors)) {
-        $_SESSION["currentUser"] = $data;
+        $_SESSION["currentUser"] = $user;
         header('Refresh: 0; URL=main.php');
     } else {
         echo "<p style='color:red' >" . array_shift($errors) . "</p>";
