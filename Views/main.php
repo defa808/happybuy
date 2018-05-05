@@ -132,9 +132,11 @@ $items = initModel();
 
         <div class="row">
             <?php
-            for ($i = 0; $i < 8; $i++) {
-                $items[0]->ToHtml();
+
+            foreach ($items as $item){
+                $item->ToHtml();
             }
+
             ?>
         </div>
 

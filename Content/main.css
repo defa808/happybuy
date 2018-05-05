@@ -291,8 +291,8 @@ main .main .clear-search {
 }
 main .main .content-item {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  width: 202px;
-  height: 284px;
+  width: 222px;
+  height: 330px;
   padding-bottom: 9px;
   position: relative;
 }
@@ -321,70 +321,79 @@ main .main .content-item .readmore a:active {
 }
 main .main .content-item .readmore .fa-star {
   font-size: 15px;
-  displa: block;
+  display: block;
   float: right;
   margin-right: 12px;
 }
 main .main .content-item .image-for-content {
-  width: 202.279px;
-  height: 151.709px;
+  display: block;
+  height: 50%;
+  width: 100%;
   font-family: Lato-Regular;
   font-size: 8px;
 }
-main .main .content-item .count-photo {
+main .main .content-item .content {
+  padding: 10px;
+  widht: max-content;
+}
+main .main .content-item .content .count-photo {
   font-family: Lato-Regular;
   font-size: 10px;
-  padding-top: 5px;
-  padding-left: 9px;
 }
-main .main .content-item .count-photo a {
+main .main .content-item .content .count-photo a {
   text-decoration: none;
   color: black;
 }
-main .main .content-item .count-photo a:visited {
+main .main .content-item .content .count-photo a:visited {
   color: black;
 }
-main .main .content-item .count-photo a:active {
+main .main .content-item .content .count-photo a:active {
   color: black;
 }
-main .main .content-item .count-room {
+main .main .content-item .content .count-room {
   font-family: Lato-Regular;
   font-size: 11px;
   width: 25%;
   height: 35px;
+  margin-top: 6px;
   margin-left: 9px;
-  padding-top: 6px;
   float: left;
+  white-space: nowrap;
 }
-main .main .content-item .content-location {
+main .main .content-item .content .content-location {
   font-family: Lato-Regular;
   font-size: 12px;
   float: right;
   height: 35px;
-  padding-right: 12px;
   padding-top: 6px;
 }
-main .main .content-item .apartment-item {
+main .main .content-item .content .option {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+main .main .content-item .content .option .apartment-item {
   font-family: Lato-Regular;
   font-size: 12px;
-  float: left;
   height: 23px;
-  width: 40%;
+  width: max-content;
+  min-width: 100px;
   padding-left: 9px;
   padding-top: 10px;
 }
-main .main .content-item .apartment-item-value {
+main .main .content-item .content .option .apartment-item-value {
   font-family: Lato-Regular;
   font-size: 13px;
-  float: right;
   padding-top: 10px;
   padding-right: 9px;
-  width: 115px;
+  width: max-content;
 }
-main .main .content-item .count-for-one-meter {
+main .main .content-item .content .option .count-for-one-meter {
   padding-top: 12px;
 }
-main .main .content-item .btn-buy {
+main .main .content-item .content .option .btn-buy {
   font-family: Lato-Regular;
   font-size: 12px;
   background-color: #0CAD36;
@@ -393,7 +402,6 @@ main .main .content-item .btn-buy {
   border: 0px;
   border-radius: 2px;
   float: right;
-  margin-right: 12px;
 }
 main .main .content-item:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);

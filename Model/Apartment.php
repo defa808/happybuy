@@ -78,31 +78,42 @@ class Apartment extends ORM implements IEntityDatabase, IToHtml
     {
         ?>
         <div class="col-xsm-12 col-sm-6 col-md-4 col-lg-3">
-            <div class=" content-item">
-                <form method="GET" class="form_favourite" action="buyhome.php">
-                    <input type="hidden" value="<?= $this->Id ?>" name="Id">
-                    <div class="readmore"><a href="">Подробніше</a><a class="favourite"/><i
-                                class="far fa-star"></i></a></div>
-                    <div class="image-for-content"><img src="<?= $this->mainImage ?>"/></div>
+            <form class="content-item" method="GET" class="form_favourite" action="buyhome.php">
+                <input type="hidden" value="<?= $this->Id ?>" name="Id">
+                <div class="readmore"><a href="">Подробніше</a><a class="favourite"/><i
+                            class="far fa-star"></i></a></div>
+                <img src="<?= $this->mainImage ?>" class="image-for-content"/>
+                <div class="content">
                     <div class="count-photo"><a href="#"><?= $this->countImage ?> фото</a></div>
-                    <div class="count-room">
-                        <strong><?= $this->room != null ? $this->room->getText() : "Undefined" ?></strong></div>
-                    <div class="content-location">
-                        <?= $this->areaLocation != null ? $this->areaLocation->getText() : "Undefined" ?> район<br/>
-                        <?= $this->metro != null ? $this->metro->getText() : "Undefined" ?> станція
+                    <div class="option">
+                        <div class="count-room">
+                            <strong><?= $this->room != null ? $this->room->getText() : "Undefined" ?></strong></div>
+                        <div class="content-location">
+                            <?= $this->areaLocation != null ? $this->areaLocation->getText() : "Undefined" ?>
+                            район<br/>
+                            <?= $this->metro != null ? $this->metro->getText() : "Undefined" ?> станція
+                        </div>
                     </div>
-                    <div class="apartment-item">Площа</div>
-                    <div class="apartment-item-value"><b><?= $this->areaGeneral ?> / <?= $this->areaKitchen ?>
-                            / <?= $this->areaLiving ?></b></div>
-                    <div class="apartment-item">Поверх</div>
-                    <div class="apartment-item-value"><?= $this->floor ?>/<?= $this->floorGeneral ?>
+                    <div class="option">
+                        <div class="apartment-item">Площа</div>
+                        <div class="apartment-item-value"><strong>
+                                <?= $this->areaGeneral ?> /
+                                <?= $this->areaKitchen ?> /
+                                <?= $this->areaLiving ?></strong></div>
                     </div>
-                    <div class="count-for-one-meter apartment-item ">За 1 кв.м.</div>
-                    <input class="btn-buy" type="submit" value="<?= $this->price ?> грн"/>
-            </div>
-            </form>
-
+                    <div class="option">
+                        <div class="apartment-item">Поверх</div>
+                        <div class="apartment-item-value"><?= $this->floor ?>/<?= $this->floorGeneral ?>
+                        </div>
+                    </div>
+                    <div class="option">
+                        <div class="count-for-one-meter apartment-item ">За 1 кв.м.</div>
+                        <input class="btn-buy" type="submit" value="<?= $this->price ?> грн"/>
+                    </div>
+                </div>
         </div>
+        </form>
+
         <?php
     }
 
