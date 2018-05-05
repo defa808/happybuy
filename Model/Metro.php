@@ -25,12 +25,15 @@ class Metro extends ORM implements IEntityDatabase
         if (property_exists($this, $property)) {
             return $this->$property;
         }
+        return false;
+
     }
 
     public function __set($property, $value)
     {
         if (property_exists($this, $property))
             return $this->$property = $value;
+        return false;
     }
 
     public static function NameInDatabase()

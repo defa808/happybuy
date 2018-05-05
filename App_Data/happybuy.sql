@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `apartment`
+-- Структура таблицы `apartments`
 --
 
 CREATE TABLE `apartment` (
@@ -44,7 +44,7 @@ CREATE TABLE `apartment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Дамп данных таблицы `apartment`
+-- Дамп данных таблицы `apartments`
 --
 
 INSERT INTO `apartment` (`Id`, `mainImage`, `countImage`, `countRoom`, `areaLocation_Id`, `metro_Id`, `areaGeneral`, `areaKitchen`, `areaLiving`, `floor`, `floorGeneral`, `price`) VALUES

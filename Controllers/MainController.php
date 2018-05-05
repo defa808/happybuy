@@ -28,8 +28,12 @@ function initModel()
 //    $items = $query->fetchAll();
 
     $items = Apartment::takeAll();
-    foreach ($items as $item) {
-        $item->include(new Room)->include(new Metro)->include(new AreaLocation);
+    try {
+        foreach ($items as $item) {
+            $item->include(new Room)->include(new Metro)->include(new AreaLocation);
+        }
+    }catch(Exception $e){
+        echo $e->getMessage();
     }
     return $items;
 }
