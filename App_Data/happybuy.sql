@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 11 2018 г., 15:52
+-- Время создания: Май 05 2018 г., 17:14
 -- Версия сервера: 10.1.30-MariaDB
 -- Версия PHP: 7.2.1
 
@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 -- Структура таблицы `apartments`
 --
 
-CREATE TABLE `apartment` (
+CREATE TABLE `apartments` (
   `Id` int(11) NOT NULL,
   `mainImage` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `countImage` int(20) NOT NULL,
-  `countRoom` int(10) NOT NULL,
+  `room_Id` int(10) NOT NULL,
   `areaLocation_Id` int(11) NOT NULL,
   `metro_Id` int(11) NOT NULL,
   `areaGeneral` int(11) NOT NULL,
@@ -47,25 +47,37 @@ CREATE TABLE `apartment` (
 -- Дамп данных таблицы `apartments`
 --
 
-INSERT INTO `apartment` (`Id`, `mainImage`, `countImage`, `countRoom`, `areaLocation_Id`, `metro_Id`, `areaGeneral`, `areaKitchen`, `areaLiving`, `floor`, `floorGeneral`, `price`) VALUES
-(1, 'imageforcontent.png', 10, 1, 6, 6, 10, 5, 1, 1, 5, 5000);
+INSERT INTO `apartments` (`Id`, `mainImage`, `countImage`, `room_Id`, `areaLocation_Id`, `metro_Id`, `areaGeneral`, `areaKitchen`, `areaLiving`, `floor`, `floorGeneral`, `price`) VALUES
+(1, 'imageforcontent.png', 10, 3, 6, 6, 10, 5, 1, 1, 5, 5000),
+(33, 'url', 12, 1, 1, 1, 1, 12, 12, 12, 12, 1232);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `arealocation`
+-- Структура таблицы `apartment_room`
 --
 
-CREATE TABLE `arealocation` (
+CREATE TABLE `apartment_room` (
+  `room_Id` int(11) NOT NULL,
+  `apartment_Id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `arealocations`
+--
+
+CREATE TABLE `arealocations` (
   `Id` int(11) NOT NULL,
   `Text` varchar(200) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Дамп данных таблицы `arealocation`
+-- Дамп данных таблицы `arealocations`
 --
 
-INSERT INTO `arealocation` (`Id`, `Text`) VALUES
+INSERT INTO `arealocations` (`Id`, `Text`) VALUES
 (1, 'Голосіївський'),
 (2, 'Оболонський'),
 (3, 'Печерський'),
@@ -115,6 +127,25 @@ INSERT INTO `metro` (`Id`, `Text`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `rooms`
+--
+
+CREATE TABLE `rooms` (
+  `Id` int(11) NOT NULL,
+  `Text` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `rooms`
+--
+
+INSERT INTO `rooms` (`Id`, `Text`) VALUES
+(3, '1 комната'),
+(4, '2 комнаты');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `users`
 --
 
@@ -138,19 +169,26 @@ INSERT INTO `users` (`Id`, `login`, `email`, `password`) VALUES
 --
 
 --
--- Индексы таблицы `apartment`
+-- Индексы таблицы `apartments`
 --
-ALTER TABLE `apartment`
+ALTER TABLE `apartments`
   ADD PRIMARY KEY (`Id`),
   ADD UNIQUE KEY `Id` (`Id`),
-  ADD KEY `countRoom` (`countRoom`),
+  ADD KEY `countRoom` (`room_Id`),
   ADD KEY `metro_Id` (`metro_Id`),
   ADD KEY `areaLocation_Id` (`areaLocation_Id`);
 
 --
--- Индексы таблицы `arealocation`
+-- Индексы таблицы `apartment_room`
 --
-ALTER TABLE `arealocation`
+ALTER TABLE `apartment_room`
+  ADD KEY `apartment_Id` (`apartment_Id`),
+  ADD KEY `room_Id` (`room_Id`);
+
+--
+-- Индексы таблицы `arealocations`
+--
+ALTER TABLE `arealocations`
   ADD PRIMARY KEY (`Id`),
   ADD UNIQUE KEY `Id` (`Id`);
 
@@ -160,6 +198,12 @@ ALTER TABLE `arealocation`
 ALTER TABLE `metro`
   ADD PRIMARY KEY (`Id`),
   ADD UNIQUE KEY `Id` (`Id`);
+
+--
+-- Индексы таблицы `rooms`
+--
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Индексы таблицы `users`
@@ -173,15 +217,15 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT для таблицы `apartment`
+-- AUTO_INCREMENT для таблицы `apartments`
 --
-ALTER TABLE `apartment`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `apartments`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT для таблицы `arealocation`
+-- AUTO_INCREMENT для таблицы `arealocations`
 --
-ALTER TABLE `arealocation`
+ALTER TABLE `arealocations`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
@@ -189,6 +233,12 @@ ALTER TABLE `arealocation`
 --
 ALTER TABLE `metro`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT для таблицы `rooms`
+--
+ALTER TABLE `rooms`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
@@ -201,11 +251,18 @@ ALTER TABLE `users`
 --
 
 --
--- Ограничения внешнего ключа таблицы `apartment`
+-- Ограничения внешнего ключа таблицы `apartments`
 --
-ALTER TABLE `apartment`
-  ADD CONSTRAINT `apartment_ibfk_1` FOREIGN KEY (`areaLocation_Id`) REFERENCES `arealocation` (`Id`),
-  ADD CONSTRAINT `apartment_ibfk_2` FOREIGN KEY (`metro_Id`) REFERENCES `metro` (`Id`);
+ALTER TABLE `apartments`
+  ADD CONSTRAINT `apartments_ibfk_1` FOREIGN KEY (`areaLocation_Id`) REFERENCES `arealocations` (`Id`),
+  ADD CONSTRAINT `apartments_ibfk_2` FOREIGN KEY (`metro_Id`) REFERENCES `metro` (`Id`);
+
+--
+-- Ограничения внешнего ключа таблицы `apartment_room`
+--
+ALTER TABLE `apartment_room`
+  ADD CONSTRAINT `apartment_room_ibfk_1` FOREIGN KEY (`apartment_Id`) REFERENCES `apartments` (`Id`),
+  ADD CONSTRAINT `apartment_room_ibfk_2` FOREIGN KEY (`room_Id`) REFERENCES `rooms` (`Id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
