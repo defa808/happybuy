@@ -1,7 +1,7 @@
 <?php
-include "Offer.php";
+include "Apartment.php";
 
-class Appartment extends Offer{
+class apartment2 extends Apartment{
     public $arrayImage;
     public $arrayRoomArea;
 

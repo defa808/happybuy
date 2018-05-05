@@ -1,6 +1,11 @@
 <?php
-include '../Model/Offer.php';
+include '../Model/Apartment.php';
 include '../Model/User.php';
+include_once 'SQL.php';
+include_once '../Model/SQLBuilder/SQLBuilder.php';
+include_once '../Model/Room.php';
+include_once '../Model/Metro.php';
+include_once '../Model/AreaLocation.php';
 
 function connectDB()
 {
@@ -11,23 +16,21 @@ function connectDB()
     $charset = 'utf8';
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-    $opt = [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false,
-    ];
-    $pdo = new PDO($dsn, $user, $pass, $opt);
+    $pdo = new PDO($dsn, $user, $pass);
     return $pdo;
 }
 
 function initModel()
 {
+//    $pdo = connectDB();
+//    $query = $pdo->query('SELECT *, arealocation.Text as areaLocationText, metro.Text as metroText FROM ((apartments INNER JOIN metro on apartments.metro_Id = metro.Id) INNER Join arealocation on arealocation.id = areaLocation_Id)');
+//    $query->setFetchMode(PDO::FETCH_CLASS, "Apartment");
+//    $items = $query->fetchAll();
 
-    $pdo = connectDB();
-    $query = $pdo->query('SELECT *, arealocation.Text as areaLocation, metro.Text as metro FROM ((apartment INNER JOIN metro on apartment.metro_Id = metro.Id) INNER Join arealocation on arealocation.id = areaLocation_Id)');
-    $query->setFetchMode(PDO::FETCH_CLASS, "Offer");
-
-    $items = $query->fetchAll();
+    $items = Apartment::takeAll();
+    foreach ($items as $item) {
+        $item->include(new Room)->include(new Metro)->include(new AreaLocation);
+    }
     return $items;
 }
 
@@ -35,37 +38,30 @@ function initUsersOnlyLogin()
 {
     $pdo = connectDB();
     $query = $pdo->query("SELECT login FROM users");
-    $query->setFetchMode(PDO::FETCH_CLASS, "User");
+//    $query->setFetchMode(PDO::FETCH_CLASS, "User");
     $users = $query->fetchAll();
     return $users;
 }
 
 function AddUser($user)
 {
-    $pdo = connectDB();
-    $query = $pdo->prepare("INSERT INTO users(login, email, password) VALUES (:login, :email, :password)");
-    $query->bindParam(':login', htmlentities($user['login']));
-    $query->bindParam(':email', htmlentities($user['email']));
-    $query->bindParam(':password', htmlentities($user['password']));
-    $query->execute();
+    $sqlBuilder = new SQLBuilder();
+    $sqlBuilder->table("users");
+    $sqlBuilder->insert(array("login" => $user['login'], "email" => $user['email'], "password" => $user["password"]));
 }
 
 
 function signInUser($user)
 {
-    $pdo = connectDB();
-
 //    if it is work, sql injection will be possible login=' OR 1=1 -- ;password='
+//    $pdo = connectDB();
 //    return $pdo->query("SELECT * FROM users WHERE login='{$user['login']}' AND password='{$user['password']}'")->fetch();
 
-    $query = $pdo->prepare("SELECT * FROM users WHERE login=? AND password=?");
     $login = htmlentities($user['login']);
     $password = htmlentities($user['password']);
-    $query->bindParam(1, $login);
-    $query->bindParam(2, $password);
-    $query->execute();
-
-    return $query->fetch();
+    $sqlBuilder = new SQLBuilder();
+    $res = $sqlBuilder->table("users")->where("login","=",$login)->where("password","=",$password)->get();
+    return $res;
 }
 /**
  * Created by PhpStorm.

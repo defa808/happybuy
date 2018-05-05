@@ -290,7 +290,7 @@ main .main .clear-search {
   padding-top: 1px;
 }
 main .main .content-item {
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   width: 202px;
   height: 284px;
   padding-bottom: 9px;
@@ -395,6 +395,9 @@ main .main .content-item .btn-buy {
   float: right;
   margin-right: 12px;
 }
+main .main .content-item:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
 main .main .content-item:hover .readmore {
   display: block;
   animation: show_menu 1s;
@@ -465,6 +468,9 @@ main .new-houses .building .more-info a:visited {
 }
 main .new-houses .building .more-info a:active {
   color: #57B5CE;
+}
+main .new-houses .building:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 main .new-houses .building:hover .discription-build {
   animation: open-description-building 1s ease;

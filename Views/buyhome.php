@@ -19,13 +19,13 @@
 <body>
 <?php include_once("Shared/header.php");
 include_once("../Controllers/MainController.php");
-
 $data = $_GET;
 $items = initModel();
 $item;
 for ($i = 0; $i < count($items); $i++) {
-    if ($items[$i]->Id == $data["Id"])
+    if ($items[$i]->Id == $data["Id"]){
         $item = $items[$i];
+    }
 }
 ?>
 

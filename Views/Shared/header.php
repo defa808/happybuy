@@ -20,7 +20,24 @@ if(isset($data["exit"])){
 
 
 ?>
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HappyBuy Продажа квартир</title>
+    <meta charset="utf-8"/>
+    <script src="../Scripts/MainAnimation.js"></script>
+    <link rel="stylesheet" href="../Content/main.css">
+    <link rel="stylesheet" href="../fonts/font-awesome/css/font-awesome.min.css">
+    <link href="../Content/media.css" rel="stylesheet"/>
+    <link href="../Content/grid.css" rel="stylesheet"/>
+    <meta name="description"
+          content="Квартира дешево в Києві. Найновітніший район з дитячим майданчиком. Теплий будинок за новітнішими технологіями. "/>
+    <meta name="keywords"
+          content="Квартири Київ, Квартири подобово, Київ квартири подобово, Квартира посуточно,Киев квартира посуточно, Квартира киев купить,Киев кварира снять ,Квартира Киев,Квартира в киеве,Квартира аренда киев,Купить квартиру киев,Снять квартиру киев,Однокомнатная квартира,Однокомнатная квартира киев,Квартира поусточно киев,Квартира в киеве купить,Олх квартира киев,Квартира без посредников киев,Квартира долгосрочно киев,Аренда квартир киев,Сландо киев,Киев квартира на сутки"/>
+    <script src="../Scripts/MainLogic.js"></script>
+    <script src="../Scripts/fontawesome-all.js"></script>
+</head>
+<body>
 <header>
     <div class="wrap_logo">
         <div class="logo">
@@ -30,7 +47,7 @@ if(isset($data["exit"])){
     </div>
 
     <div class="main_menu">
-        <div class="li active"><a href="main.html">Головна</a></div>
+        <div class="li active"><a href="main.php">Головна</a></div>
         <div class="li"><a href="#">Пошук</a></div>
         <div class="li"><a href="#">Обрані <img src="../images/star.png"/></a></div>
     </div>

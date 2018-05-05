@@ -12,7 +12,7 @@ session_start();
 $_users = initUsersOnlyLogin();
 $data = $_POST;
 
-if(isset($data["do_signin"]))
+if (isset($data["do_signin"]))
     header('Refresh: 0; URL=login.php');
 
 if (isset($data['do_signup'])) {
@@ -48,7 +48,9 @@ if (isset($data['do_signup'])) {
     if (array_search($data['login'], $_users) == true)
         $errors[] = "The same login is exist";
 
-    if (htmlentities($data["login"]) || htmlentities($data["email"]) || htmlentities($data["password"]) || htmlentities($data["password2"])) {
+
+    if (strcmp($data['login'], htmlentities($data["login"])) != 0 || strcmp($data['email'], htmlentities($data["email"])) != 0
+        || strcmp($data['password'], htmlentities($data["password"])) != 0) {
         $errors[] = 'Attention! Updated your data';
     }
 

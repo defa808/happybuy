@@ -357,7 +357,7 @@ main {
     }
 
     .content-item {
-      box-shadow: 1px 1px 1px rgba(0,0,0, 0.25);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
       width: 202px;
       height: 284px;
       position: relative;
@@ -484,6 +484,9 @@ main {
     }
 
     .content-item:hover {
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+
       .readmore {
         display: block;
         animation: show_menu 1s;
@@ -575,6 +578,8 @@ main {
 
 
       &:hover {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
         .discription-build {
           animation: open-description-building 1s ease;
           animation-fill-mode:forwards;
