@@ -11,10 +11,11 @@ namespace Controllers;
 
 use core\DataLib\SQLBuilder;
 use Model;
+use PDO;
 
 class MainController
 {
-    function connectDB()
+    static function connectDB()
     {
         $host = '127.0.0.1';
         $db = 'happybuy';
@@ -27,7 +28,7 @@ class MainController
         return $pdo;
     }
 
-    function initModel()
+    static function initModel()
     {
 //    $pdo = connectDB();
 //    $query = $pdo->query('SELECT *, arealocation.Text as areaLocationText, metro.Text as metroText FROM ((apartments INNER JOIN metro on apartments.metro_Id = metro.Id) INNER Join arealocation on arealocation.id = areaLocation_Id)');
@@ -47,7 +48,7 @@ class MainController
         return $items;
     }
 
-    function initUsersOnlyLogin()
+    static function initUsersOnlyLogin()
     {
         $pdo = connectDB();
         $query = $pdo->query("SELECT login FROM users");
@@ -56,7 +57,7 @@ class MainController
         return $users;
     }
 
-    function AddUser($user)
+    static function AddUser($user)
     {
         $sqlBuilder = new SQLBuilder();
         $sqlBuilder->table("users");
@@ -64,7 +65,7 @@ class MainController
     }
 
 
-    function signInUser($user)
+    static function signInUser($user)
     {
 //    if it is work, sql injection will be possible login=' OR 1=1 -- ;password='
 //    $pdo = connectDB();

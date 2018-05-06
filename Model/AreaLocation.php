@@ -7,7 +7,10 @@
  */
 namespace Model;
 
-class AreaLocation implements IEntityDatabase {
+
+use core\DataLib\ORM;
+
+class AreaLocation extends ORM {
     protected $Id;
     protected $Text;
 
@@ -21,12 +24,16 @@ class AreaLocation implements IEntityDatabase {
         if (property_exists($this, $property)) {
             return $this->$property;
         }
+        return null;
+
     }
 
     public function __set($property, $value)
     {
         if (property_exists($this, $property))
             return $this->$property = $value;
+        return null;
+
     }
 
     static function NameInDatabase()

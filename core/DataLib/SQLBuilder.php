@@ -9,6 +9,8 @@
 namespace core\DataLib;
 
 
+use PDO;
+
 class SQLBuilder implements CRUD
 {
 
@@ -307,6 +309,7 @@ class SQLBuilder implements CRUD
         $stmt = $this->dbh->prepare($this->sql);
         if ($this->className !== null)
             $stmt->setFetchMode(PDO::FETCH_CLASS, $this->className);
+
         $stmt->execute($this->bindValues);
         return $stmt;
     }

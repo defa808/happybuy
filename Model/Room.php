@@ -25,14 +25,14 @@ class Room extends ORM implements IEntityDatabase
         if (property_exists($this, $property)) {
             return $this->$property;
         }
-        return false;
+        return null;
     }
 
     public function __set($property, $value)
     {
         if (property_exists($this, $property))
             return $this->$property = $value;
-        return false;
+        return null;
     }
 
     static function NameInDatabase()

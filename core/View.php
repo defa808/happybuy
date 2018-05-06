@@ -16,9 +16,15 @@ class View
 
     public function render($title, $vars = [])
     {
-        ob_start();
-        require 'Views/' . $this->path . '.php';
-        $content = ob_get_clean();
-        require 'Views/Shared/' . $this->layout . '.php';
+        extract($vars);
+        if ($this->layout != null) {
+            ob_start();
+            require 'Views/' . $this->path . '.php';
+            $content = ob_get_clean();
+            require 'Views/Shared/' . $this->layout . '.php';
+        }
+        else{
+            require 'Views/'.$this->path.'.php';
+        }
     }
 }

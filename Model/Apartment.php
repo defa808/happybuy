@@ -3,8 +3,10 @@
 namespace Model;
 
 use core\DataLib\ORM;
+use core\DataLib\SQLBuilder;
+use Exception;
 
-class Apartment extends ORM implements IEntityDatabase, IToHtml
+class Apartment extends ORM implements IToHtml
 {
     protected $Id;
     protected $mainImage;
@@ -45,17 +47,19 @@ class Apartment extends ORM implements IEntityDatabase, IToHtml
     public function include($object)
     {
 
-        if (!($object instanceof IEntityDatabase))
-            throw new Exception(get_class($object) . " don't implements IEntutyDatabase");
+        if (!($object instanceof ORM))
+            throw new Exception(get_class($object) . " don't extends ORM");
 
         $db = new SQLBuilder();
-        $table = $object->NameInDatabase();
+        $table = $object::NameInDatabase();
         $db->table($table);
         $db->className(get_class($object));
-        $nameField = lcfirst(get_class($object));
+        $nameClass = join('', array_slice(explode('\\', get_class($object)), -1));
+        $nameField = lcfirst($nameClass);
         $nameFieldId = $nameField . "_Id";
         $field = $this->__get($nameFieldId);
-        $this->__set($nameField, $db->where($field)->get());
+        $db->where($field);
+        $this->__set($nameField, $db->get());
 
         return $this;
     }
@@ -65,14 +69,14 @@ class Apartment extends ORM implements IEntityDatabase, IToHtml
         if (property_exists($this, $property)) {
             return $this->$property;
         }
-        return false;
+        return null;
     }
 
     public function __set($property, $value)
     {
         if (property_exists($this, $property))
             return $this->$property = $value;
-        return false;
+        return null;
     }
 
     public function ToHtml()

@@ -5,11 +5,10 @@
  * Date: 25.02.2018
  * Time: 23:46
  */
-session_start();
-include "../Controllers/MainController.php";
 
-$home = new HomeController();
-$home->Index(array("Id" => "1"));
+
+session_start();
+include_once "../Controllers/MainController.php";
 
 $data = $_POST;
 $errors = array();
@@ -28,7 +27,7 @@ if (isset($data['do_signin'])) {
         $errors[] = "Input password";
     }
 
-    $user = signInUser($data);
+    $user = \Controllers\MainController::signInUser($data);
 
     if($user == null){
         $errors[] = "Wrong login or password";
