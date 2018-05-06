@@ -5,11 +5,10 @@
  * Date: 25.02.2018
  * Time: 16:40
  */
-session_start();
 
-if ($_SESSION["currentUser"] == null) {
-    header('Refresh: 1; URL=login.php');
-}
+//if ($_SESSION["currentUser"] == null) {
+//    header('Refresh: 1; URL=login.php');
+//}
 $currentUser = $_SESSION["currentUser"];
 $data = $_POST;
 
@@ -23,25 +22,25 @@ if(isset($data["exit"])){
 <!DOCTYPE html>
 <html>
 <head>
-    <title>HappyBuy Продажа квартир</title>
+    <title><?=$title ?></title>
     <meta charset="utf-8"/>
-    <script src="../Scripts/MainAnimation.js"></script>
-    <link rel="stylesheet" href="../Content/main.css">
-    <link rel="stylesheet" href="../fonts/font-awesome/css/font-awesome.min.css">
-    <link href="../Content/media.css" rel="stylesheet"/>
-    <link href="../Content/grid.css" rel="stylesheet"/>
+    <script src="Scripts/MainAnimation.js"></script>
+    <link rel="stylesheet" href="Content/main.css">
+    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
+    <link href="Content/media.css" rel="stylesheet"/>
+    <link href="Content/grid.css" rel="stylesheet"/>
     <meta name="description"
           content="Квартира дешево в Києві. Найновітніший район з дитячим майданчиком. Теплий будинок за новітнішими технологіями. "/>
     <meta name="keywords"
           content="Квартири Київ, Квартири подобово, Київ квартири подобово, Квартира посуточно,Киев квартира посуточно, Квартира киев купить,Киев кварира снять ,Квартира Киев,Квартира в киеве,Квартира аренда киев,Купить квартиру киев,Снять квартиру киев,Однокомнатная квартира,Однокомнатная квартира киев,Квартира поусточно киев,Квартира в киеве купить,Олх квартира киев,Квартира без посредников киев,Квартира долгосрочно киев,Аренда квартир киев,Сландо киев,Киев квартира на сутки"/>
-    <script src="../Scripts/MainLogic.js"></script>
-    <script src="../Scripts/fontawesome-all.js"></script>
+    <script src="Scripts/MainLogic.js"></script>
+    <script src="Scripts/fontawesome-all.js"></script>
 </head>
 <body>
 <header>
     <div class="wrap_logo">
         <div class="logo">
-            <img src="../images/home.png"/>
+            <img src="images/home.png"/>
             <span class="logo-text">Happy</span><span class="logo-text">Buy</span>
         </div>
     </div>
@@ -49,11 +48,11 @@ if(isset($data["exit"])){
     <div class="main_menu">
         <div class="li active"><a href="main.php">Головна</a></div>
         <div class="li"><a href="#">Пошук</a></div>
-        <div class="li"><a href="#">Обрані <img src="../images/star.png"/></a></div>
+        <div class="li"><a href="#">Обрані <img src="images/star.png"/></a></div>
     </div>
 
     <div class="obertka-mobile">
-        <div class="image-phone"><img src="../images/mobile.png"/></div>
+        <div class="image-phone"><img src="images/mobile.png"/></div>
         <div class="number-phone"> 8 (866) 565-54-54</div>
     </div>
 
@@ -100,3 +99,53 @@ if(isset($data["exit"])){
         </div>
     </div>
 </div>
+
+<?php echo $content; ?>
+
+<footer>
+    <div class="logo">
+        <img src="images/home.png"/>
+        <span class="logo-text">Happy</span><span class="logo-text">Buy</span>
+        <div id="copyright"> © Copyright 2017 <br/>Усі права захищені</div>
+    </div>
+
+    <div class="map">
+        <ul>
+            <li><a href="#">Головна</a></li>
+            <li><a href="#">Пошук</a></li>
+            <li><a href="#">Обрані</a></li>
+        </ul>
+
+        <ul>
+            <li><a href="#">Про нас</a></li>
+            <li><a href="#">Застосування</a></li>
+            <li><a href="#">Наш розвиток</a></li>
+            <li><a href="#">Гарантії</a></li>
+        </ul>
+
+        <ul>
+            <li><a href="#">Подарункові сертифікати</a></li>
+            <li><a href="#">Умови використання сайта</a></li>
+            <li><a href="#">Проблеми з замовленням</a></li>
+            <li><a href="#">Питання та відповіді</a></li>
+        </ul>
+    </div>
+
+    <div class="mobile-version">
+        Мобільна версія <img class="mobileImg" src="images/telephone.png"/>
+    </div>
+
+    <div class="feedback">
+        Зворотній зв'язок <span>8 (866) 565-54-54</span>
+        <form>
+            <input id="number-feedback" type="text" name="number" placeholder="Номер телефону*:"/>
+            <input id="button-feedback" type="button" name="button-feedback" value="Перезвонити"/>
+        </form>
+        <img src="images/facebook.png"/>
+        <img src="images/vk.png"/>
+    </div>
+    <div class="year">Створено в 2017<br/>Гавриляк Олександр</div>
+</footer>
+
+</body>
+</html>

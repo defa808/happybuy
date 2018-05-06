@@ -8,6 +8,9 @@
 session_start();
 include "../Controllers/MainController.php";
 
+$home = new HomeController();
+$home->Index(array("Id" => "1"));
+
 $data = $_POST;
 $errors = array();
 
@@ -33,13 +36,14 @@ if (isset($data['do_signin'])) {
 
     if (empty($errors)) {
         $_SESSION["currentUser"] = $user;
-        header('Refresh: 0; URL=main.php');
+        header('Refresh: 0; URL=index.php');
     } else {
         echo "<p style='color:red' >" . array_shift($errors) . "</p>";
     }
 
 }
 ?>
+
 <h1>Войдите</h1>
 <form action="login.php" method="POST">
     <p>

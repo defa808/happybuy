@@ -1,4 +1,8 @@
 <?php
+
+namespace Model;
+
+
 interface IToHTML
 {
     public function ToHtml();

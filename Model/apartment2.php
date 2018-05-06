@@ -1,5 +1,6 @@
 <?php
-include "Apartment.php";
+
+namespace Model;
 
 class apartment2 extends Apartment{
     public $arrayImage;

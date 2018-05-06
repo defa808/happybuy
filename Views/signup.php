@@ -59,7 +59,7 @@ if (isset($data['do_signup'])) {
         try {
             AddUser($data);
             $_SESSION["currentUser"] = $data;
-            header('Refresh: 0; URL=main.php');
+            header('Refresh: 0; URL=index.php');
 
         } catch (PDOException $e) {
             echo "<p style='color:red' >Something go wrong. Call support yong hacker.</p>";

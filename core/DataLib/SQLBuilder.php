@@ -5,7 +5,9 @@
  * Date: 01.04.2018
  * Time: 15:16
  */
-include_once 'CRUD.php';
+
+namespace core\DataLib;
+
 
 class SQLBuilder implements CRUD
 {

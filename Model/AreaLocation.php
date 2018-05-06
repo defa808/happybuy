@@ -5,6 +5,8 @@
  * Date: 05.05.2018
  * Time: 17:13
  */
+namespace Model;
+
 class AreaLocation implements IEntityDatabase {
     protected $Id;
     protected $Text;

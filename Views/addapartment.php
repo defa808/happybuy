@@ -8,7 +8,7 @@
  * Time: 23:54
  */
 
-include_once "Shared/header.php";
+include_once "Shared/default.php";
 ?>
 <link rel="stylesheet" href="../Content/bootstrap.min.css">
 <link rel="stylesheet" href="../Content/main.css">
@@ -79,5 +79,4 @@ include_once "Shared/header.php";
     </form>
 
 </main>
-<?php
-include_once "Shared/footer.php";
+

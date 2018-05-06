@@ -7,8 +7,10 @@
  * Time: 16:43
  */
 
-include_once "IEntityDatabase.php";
-include_once "SQLBuilder/ORM.php";
+
+namespace Model;
+use core\DataLib\ORM;
+
 
 class Metro extends ORM implements IEntityDatabase
 {

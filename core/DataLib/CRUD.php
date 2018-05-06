@@ -5,6 +5,8 @@
  * Date: 01.04.2018
  * Time: 17:50
  */
+namespace core\DataLib;
+
 
 interface CRUD
 {

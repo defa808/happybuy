@@ -6,6 +6,9 @@
  * Time: 1:24
  */
 
+namespace Model;
+
+
 class User
 {
     public $login;

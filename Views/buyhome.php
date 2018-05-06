@@ -17,7 +17,7 @@
     <link href="../Content/media-for-bud.css" rel="stylesheet"/>
 </head>
 <body>
-<?php include_once("Shared/header.php");
+<?php include_once("Shared/default.php");
 include_once("../Controllers/MainController.php");
 $data = $_GET;
 $items = initModel();
@@ -32,7 +32,7 @@ for ($i = 0; $i < count($items); $i++) {
 <main>
 
     <div class="options">
-        <div class="all-home"><a href="main.php"> <img src="../images/bud_arrow-left.png"/> Всі квартири </a></div>
+        <div class="all-home"><a href="Home/index.php"> <img src="../images/bud_arrow-left.png"/> Всі квартири </a></div>
 
         <div class="container">
             <div class="items">
@@ -107,9 +107,3 @@ for ($i = 0; $i < count($items); $i++) {
 
     </div>
 </main>
-
-<?php include_once("Shared/footer.php") ?>
-
-
-</body>
-</html>

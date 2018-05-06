@@ -1,13 +1,11 @@
 ﻿<?php
-include_once("Shared/header.php");
-include '../Controllers/MainController.php';
-
-$items = initModel();
+use Controllers\MainController;
+//$items = initModel();
 
 ?>
 
-<link href="../Content/media.css" rel="stylesheet"/>
-<link href="../Content/grid.css" rel="stylesheet"/>
+<link href="Content/media.css" rel="stylesheet"/>
+<link href="Content/grid.css" rel="stylesheet"/>
 
 
 <main>
@@ -146,7 +144,7 @@ $items = initModel();
     <div class="new-houses">
         <span>Найновітніші житлові комплекси Києва</span>
         <div class="building">
-            <img src="../images/bud1.png"/>
+            <img src="../../images/bud1.png"/>
             <div class="discription-build">ЖК «Сучасник» <br/>р-н Солом’янський,<br/> вул. Борщагівська 7</div>
             <div class="down-building">
                 <div class="count-building">від 16000 грн</div>
@@ -154,7 +152,7 @@ $items = initModel();
             </div>
         </div>
         <div class="building">
-            <img src="../images/bud2.png"/>
+            <img src="../../images/bud2.png"/>
             <div class="discription-build">ЖК «Зірка» <br/>р-н Солом’янський,<br/> вул. Борщагівська 7</div>
             <div class="down-building">
                 <div class="count-building">від 16000 грн</div>
@@ -167,12 +165,3 @@ $items = initModel();
         </div>
     </div>
 </main>
-
-<?php
-include_once("Shared/footer.php");
-?>
-
-
-</body>
-
-</html>

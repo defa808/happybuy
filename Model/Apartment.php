@@ -1,7 +1,8 @@
 <?php
-include 'IToHtml.php';
-include_once "SQLBuilder/ORM.php";
-include_once "IEntityDatabase.php";
+
+namespace Model;
+
+use core\DataLib\ORM;
 
 class Apartment extends ORM implements IEntityDatabase, IToHtml
 {

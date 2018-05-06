@@ -1,5 +1,6 @@
 <?php
-include_once('SQLBuilder.php');
+
+namespace core\DataLib;
 
 class ORM
 {

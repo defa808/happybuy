@@ -5,9 +5,10 @@
  * Date: 05.05.2018
  * Time: 16:14
  */
-include_once "IEntityDatabase.php";
-include_once "SQLBuilder/ORM.php";
 
+namespace Model;
+
+use core\DataLib\ORM;
 
 class Room extends ORM implements IEntityDatabase
 {
