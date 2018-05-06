@@ -27,7 +27,6 @@ class HomeController extends Controller
         ];
         if (isset($param))
             $_GET = array_merge($_GET, $param);
-
         $this->view->render('Головна сторінка', $vars);
 //        $this->View("buyhome.php");
     }

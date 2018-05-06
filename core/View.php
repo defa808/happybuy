@@ -27,4 +27,18 @@ class View
             require 'Views/'.$this->path.'.php';
         }
     }
+
+    public static function errorCode($code){
+        http_response_code($code);
+        $path = 'Views/Errors/'.$code.'.php';
+        if (file_exists($path)) {
+            require $path;
+        }
+        exit;
+    }
+
+    public function redirect($url) {
+        header('location: '.$url);
+        exit;
+    }
 }

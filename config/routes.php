@@ -14,5 +14,11 @@ return [
     'appartment' => [
         'controller' => 'Home',
         'action' => 'ShowAppartment'
+    ],
+    'signup' => [
+        'controller' => 'Account',
+        'action' => 'signup'
     ]
+
+
 ];
