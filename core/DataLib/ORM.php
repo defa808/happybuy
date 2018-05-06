@@ -2,13 +2,13 @@
 
 namespace core\DataLib;
 
-class ORM
+abstract class ORM
 {
     static protected function setup()
     {
         $db = new SQLBuilder();
 
-        $table = strtolower(get_called_class() . "s");
+        $table = get_called_class()::NameInDatabase();
         $db->table($table);
         $db->className(get_called_class());
         return $db;
@@ -23,6 +23,7 @@ class ORM
 
     public static function takeAll(){
         $db = self::setup();
+
         $res = $db->getAll();
         return $res;
     }
@@ -68,5 +69,7 @@ class ORM
         }
         return $db->update($myArrayValue, $id);
     }
+
+    abstract static function NameInDatabase();
 
 }

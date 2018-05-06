@@ -11,6 +11,7 @@ namespace Controllers;
 
 use core\DataLib\SQLBuilder;
 use Model;
+use PDO;
 
 class MainController
 {

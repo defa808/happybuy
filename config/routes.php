@@ -4,7 +4,7 @@ return [
 
     '' => [
         'controller' => 'Home',
-        'action' => 'Index'
+        'action' => 'Advertising'
     ],
 
     'main' => [

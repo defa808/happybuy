@@ -7,8 +7,8 @@
  * Time: 16:43
  */
 
-
 namespace Model;
+
 use core\DataLib\ORM;
 
 
@@ -27,7 +27,7 @@ class Metro extends ORM implements IEntityDatabase
         if (property_exists($this, $property)) {
             return $this->$property;
         }
-        return false;
+        return null;
 
     }
 
@@ -35,7 +35,7 @@ class Metro extends ORM implements IEntityDatabase
     {
         if (property_exists($this, $property))
             return $this->$property = $value;
-        return false;
+        return null;
     }
 
     public static function NameInDatabase()
