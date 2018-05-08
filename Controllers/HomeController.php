@@ -26,8 +26,6 @@ class HomeController extends Controller
             'items' => $items
         ];
         $this->view->render('Головна сторінка', $vars);
-    }
-
     public function AdvertisingAction()
     {
         if (isset($_POST['exit'])) {

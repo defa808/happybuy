@@ -23,7 +23,6 @@ abstract class ORM
 
     public static function takeAll(){
         $db = self::setup();
-
         $res = $db->getAll();
         return $res;
     }
@@ -42,7 +41,6 @@ abstract class ORM
 
     public static function create($currentObj)
     {
-
         if (!is_object($currentObj))
             return false;
         $db = self::setup();
