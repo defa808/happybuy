@@ -18,30 +18,40 @@ use Model\Room;
 
 class HomeController extends Controller
 {
-    public function IndexAction($param = null)
+    public function IndexAction()
     {
         $items = $this->initModel();
 
         $vars = [
             'items' => $items
         ];
-        if (isset($param))
-            $_GET = array_merge($_GET, $param);
+
         $this->view->render('Головна сторінка', $vars);
-//        $this->View("buyhome.php");
     }
 
-    public function AdvertisingAction($param = null){
+    public function AdvertisingAction($param = null)
+    {
         $this->view->layout = null;
         $this->view->render("Ласкаво просимо");
     }
 
-    private function View($nameFile)
+    public function ShowApartmentAction()
     {
-        $pathFile = "Views/" . $nameFile;
-//        $info = include $pathFile;
-//        return $info;
-        header('Refresh: 0; URL=' . $pathFile);
+        if (isset($_GET['Id'])) {
+            $Id = $_GET['Id'];
+            $apartment = Apartment::findId($Id);
+            $vars = [
+                'apartment' => $apartment
+            ];
+            $this->view->render('Ваш вибір квартири', $vars);
+        } else {
+            $vars =[
+                'message' => "Something go wrong"
+            ];
+            var_dump($this->route);
+            $this->view->render('Ваш вибір квартири', $vars);
+        }
+
 
     }
 
@@ -55,8 +65,6 @@ class HomeController extends Controller
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-
-
         return $items;
     }
 

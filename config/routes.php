@@ -11,9 +11,9 @@ return [
         'controller' => 'Home',
         'action' => 'Index'
     ],
-    'appartment' => [
+    'apartment\?.*' => [
         'controller' => 'Home',
-        'action' => 'ShowAppartment'
+        'action' => 'ShowApartment'
     ],
     'signup' => [
         'controller' => 'Account',

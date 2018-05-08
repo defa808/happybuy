@@ -83,7 +83,7 @@ class Apartment extends ORM implements IToHtml
     {
         ?>
         <div class="col-xsm-12 col-sm-6 col-md-4 col-lg-3">
-            <form class="content-item" method="GET" class="form_favourite" action="buyhome.php">
+            <form class="content-item" method="GET" class="form_favourite" action="apartment">
                 <input type="hidden" value="<?= $this->Id ?>" name="Id">
                 <div class="readmore"><a href="">Подробніше</a><a class="favourite"/><i
                             class="far fa-star"></i></a></div>
