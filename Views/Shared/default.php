@@ -9,15 +9,7 @@
 //if ($_SESSION["currentUser"] == null) {
 //    header('Refresh: 1; URL=login.php');
 //}
-$currentUser = $_SESSION["currentUser"];
-$data = $_POST;
-
-if(isset($data["exit"])){
-    $_SESSION["currentUser"] = null;
-    header('Refresh:1; URL=login.php');
-}
-
-
+$user = $_SESSION["authorize"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,7 +38,7 @@ if(isset($data["exit"])){
     </div>
 
     <div class="main_menu">
-        <div class="li active"><a href="main.php">Головна</a></div>
+        <div class="li active"><a href="main">Головна</a></div>
         <div class="li"><a href="#">Пошук</a></div>
         <div class="li"><a href="#">Обрані <img src="images/star.png"/></a></div>
     </div>
@@ -57,8 +49,8 @@ if(isset($data["exit"])){
     </div>
 
     <div class="welcome">
-        <form method="POST">
-            <span>Ласкаво просимо,</span><span><?= $currentUser['login'] ?></span>
+        <form method="POST" action="/">
+            <span>Ласкаво просимо,</span><span><?= $user['login'] ?></span>
             <button name="exit" class="btn-exit">Вихід</button>
         </form>
     </div>

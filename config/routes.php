@@ -1,4 +1,5 @@
 <?php
+
 namespace config;
 return [
 
@@ -23,7 +24,5 @@ return [
         'controller' => 'Account',
         'action' => 'login'
     ]
-
-
 
 ];

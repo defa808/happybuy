@@ -14,11 +14,12 @@ class Controller
 {
     public $route;
     public $view;
+    public $acl;
 
     public function __construct($route)
     {
         $this->route = $route;
-        if(!$this->checkAcl()){
+        if (!$this->checkAcl()) {
             View::errorCode(403);
         }
         $this->view = new View($route);
@@ -30,10 +31,10 @@ class Controller
         if ($this->isAcl('all')) {
             return true;
         }
-        if (isset($_SESSION['authorize']['id']) and $this->isAcl('authorize')) {
+        if (isset($_SESSION['authorize']["Id"]) and $this->isAcl('authorize')) {
             return true;
         }
-        if (!isset($_SESSION['authorize']['id']) and $this->isAcl('guest')) {
+        if (!isset($_SESSION['authorize']["Id"]) and $this->isAcl('guest')) {
             return true;
         }
         if (isset($_SESSION['admin']) and $this->isAcl('admin')) {

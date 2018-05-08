@@ -11,7 +11,8 @@ return [
         'Advertising'
     ],
     'authorize' => [
-
+        'Index',
+        'ShowApartment'
     ],
     'guest' => [
     ],

@@ -20,17 +20,19 @@ class HomeController extends Controller
 {
     public function IndexAction()
     {
-        $items = $this->initModel();
 
+        $items = $this->initModel();
         $vars = [
             'items' => $items
         ];
-
         $this->view->render('Головна сторінка', $vars);
     }
 
-    public function AdvertisingAction($param = null)
+    public function AdvertisingAction()
     {
+        if (isset($_POST['exit'])) {
+            $this->LogOut();
+        }
         $this->view->layout = null;
         $this->view->render("Ласкаво просимо");
     }
@@ -45,7 +47,7 @@ class HomeController extends Controller
             ];
             $this->view->render('Ваш вибір квартири', $vars);
         } else {
-            $vars =[
+            $vars = [
                 'message' => "Something go wrong"
             ];
             var_dump($this->route);
@@ -53,6 +55,11 @@ class HomeController extends Controller
         }
 
 
+    }
+
+    private function LogOut()
+    {
+        $_SESSION['authorize'] = null;
     }
 
     private function initModel()

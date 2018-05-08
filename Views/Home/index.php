@@ -1,10 +1,4 @@
-﻿<?php
-use Controllers\MainController;
-//$items = initModel();
-
-?>
-
-<link href="Content/media.css" rel="stylesheet"/>
+﻿<link href="Content/media.css" rel="stylesheet"/>
 <link href="Content/grid.css" rel="stylesheet"/>
 
 

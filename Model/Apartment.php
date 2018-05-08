@@ -51,7 +51,7 @@ class Apartment extends ORM implements IToHtml
             throw new Exception(get_class($object) . " don't extends ORM");
 
         $db = new SQLBuilder();
-        $table = $object::NameInDatabase();
+        $table = $object::getNameInDatabase();
         $db->table($table);
         $db->className(get_class($object));
         $nameClass = join('', array_slice(explode('\\', get_class($object)), -1));

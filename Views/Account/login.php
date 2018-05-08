@@ -1,17 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: alexg
- * Date: 25.02.2018
- * Time: 23:46
- */
-
-
-
-?>
-
 <h1>Войдите</h1>
-<form action="checkLogin" method="POST">
+<form action="login" method="POST">
     <p>
         <strong>Ваш логин:</strong>
         <input type="text" name="login" value="<?= $data['login'] ?? ""; ?>">

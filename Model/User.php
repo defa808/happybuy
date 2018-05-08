@@ -9,15 +9,27 @@
 namespace Model;
 
 use core\DataLib\ORM;
+use core\DataLib\SQLBuilder;
 
 class User extends ORM
 {
+    public $Id;
     public $login;
     public $email;
     public $password;
 
-    public function __construct()
+    public static function findByLogin($login)
     {
+        $db = new SQLBuilder();
+        $table = self::getNameInDatabase();
+        $db->table($table);
+        $db->className(User::class);
+        $user = $db->where('login', '=', $login)->get();
+
+        if ($user) {
+            return $user;
+        }
+        return false;
 
     }
 
@@ -39,6 +51,6 @@ class User extends ORM
 
     static function getNameInDatabase()
     {
-       return 'users';
+        return 'users';
     }
 }
