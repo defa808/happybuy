@@ -10,7 +10,7 @@ namespace Model;
 
 use core\DataLib\ORM;
 
-class Room extends ORM implements IEntityDatabase
+class Room extends ORM
 {
     protected $Id;
     protected $Text;
@@ -35,7 +35,7 @@ class Room extends ORM implements IEntityDatabase
         return null;
     }
 
-    static function NameInDatabase()
+    static function getNameInDatabase()
     {
         return "rooms";
     }

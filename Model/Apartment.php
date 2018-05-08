@@ -122,7 +122,7 @@ class Apartment extends ORM implements IToHtml
         <?php
     }
 
-    static function NameInDatabase()
+    static function getNameInDatabase()
     {
         return "apartments";
     }

@@ -36,7 +36,7 @@ class AreaLocation extends ORM {
 
     }
 
-    static function NameInDatabase()
+    static function getNameInDatabase()
     {
         return "arealocations";
     }

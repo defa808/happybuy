@@ -5,11 +5,8 @@
  * Date: 25.02.2018
  * Time: 23:48
  */
-include "../Controllers/MainController.php";
 
-session_start();
-
-$_users = initUsersOnlyLogin();
+//$_users = initUsersOnlyLogin();
 $data = $_POST;
 
 if (isset($data["do_signin"]))
@@ -73,7 +70,7 @@ if (isset($data['do_signup'])) {
 }
 ?>
 <h2>Регистрация</h2>
-<form action="signup.php" method="POST">
+<form action="checkRegistration" method="POST">
     <p>
         <strong>Ваш логин:</strong>
         <input type="text" name="login" value="<?= $data['login'] ?? ""; ?>">

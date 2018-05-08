@@ -15,10 +15,15 @@ return [
         'controller' => 'Home',
         'action' => 'ShowApartment'
     ],
-    'signup' => [
+    'registration' => [
         'controller' => 'Account',
-        'action' => 'signup'
+        'action' => 'registration'
+    ],
+    'login' => [
+        'controller' => 'Account',
+        'action' => 'login'
     ]
+
 
 
 ];

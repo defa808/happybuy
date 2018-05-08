@@ -8,8 +8,9 @@
 
 namespace Model;
 
+use core\DataLib\ORM;
 
-class User
+class User extends ORM
 {
     public $login;
     public $email;
@@ -36,4 +37,8 @@ class User
 
     }
 
+    static function getNameInDatabase()
+    {
+       return 'users';
+    }
 }

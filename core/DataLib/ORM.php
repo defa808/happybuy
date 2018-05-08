@@ -8,7 +8,7 @@ abstract class ORM
     {
         $db = new SQLBuilder();
 
-        $table = get_called_class()::NameInDatabase();
+        $table = get_called_class()::getNameInDatabase();
         $db->table($table);
         $db->className(get_called_class());
         return $db;
@@ -70,6 +70,6 @@ abstract class ORM
         return $db->update($myArrayValue, $id);
     }
 
-    abstract static function NameInDatabase();
+    abstract static function getNameInDatabase();
 
 }

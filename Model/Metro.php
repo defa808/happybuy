@@ -12,7 +12,7 @@ namespace Model;
 use core\DataLib\ORM;
 
 
-class Metro extends ORM implements IEntityDatabase
+class Metro extends ORM
 {
     protected $Id;
     protected $Text;
@@ -38,7 +38,7 @@ class Metro extends ORM implements IEntityDatabase
         return null;
     }
 
-    public static function NameInDatabase()
+    public static function getNameInDatabase()
     {
         return "Metro";
     }

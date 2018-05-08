@@ -24,8 +24,8 @@
                 <div class="number-phone">  8 (866) 565-54-54 </div>
             </div>
             <div class="enter-user">
-                <input class="button-header" type="button" name="button-feedback" value="Вхід" onclick="window.location.href='../signup.php'" />
-                <input class="button-header" type="button" name="button-feedback" value="Реєстрація" />
+                <input class="button-header" type="button" name="button-feedback" value="Вхід" onclick="window.location.href='login'" />
+                <input class="button-header" type="button" name="button-feedback" value="Реєстрація" onclick="window.location.href='registration'" />
             </div>
         </div>
     </header>
