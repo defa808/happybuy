@@ -18,14 +18,17 @@ class View
     {
         extract($vars);
         if ($this->layout != null) {
-            ob_start();
-            require 'Views/' . $this->path . '.php';
-            $content = ob_get_clean();
-            require 'Views/Shared/' . $this->layout . '.php';
-        }
-        else{
+            $path = 'Views/' . $this->path . '.php';
+            if (file_exists($path)) {
+                ob_start();
+                require $path;
+                $content = ob_get_clean();
+                require 'Views/Shared/' . $this->layout . '.php';
+            }
+        }else{
             require 'Views/'.$this->path.'.php';
         }
+
     }
 
     public static function errorCode($code){

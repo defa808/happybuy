@@ -23,6 +23,10 @@ return [
     'login' => [
         'controller' => 'Account',
         'action' => 'login'
+    ],
+    'account/confirm/{token:\w+}' => [
+        'controller' => 'Account',
+        'action' => 'confirm',
     ]
 
 ];

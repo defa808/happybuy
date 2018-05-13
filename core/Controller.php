@@ -10,11 +10,12 @@ namespace core;
 
 use core\View;
 
-class Controller
+abstract class Controller
 {
     public $route;
     public $view;
     public $acl;
+    public $model;
 
     public function __construct($route)
     {
@@ -23,6 +24,7 @@ class Controller
             View::errorCode(403);
         }
         $this->view = new View($route);
+        $this->model = $this->loadModel($route['controller']);
     }
 
     public function checkAcl()
@@ -46,6 +48,15 @@ class Controller
     public function isAcl($key)
     {
         return in_array($this->route['action'], $this->acl[$key]);
+    }
+
+    public function loadModel($name)
+    {
+        $path = 'Model\\'.ucfirst($name);
+        if(class_exists($path)){
+            return new $path;
+        }
+
     }
 
 }

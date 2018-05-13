@@ -15,7 +15,8 @@ return [
     ],
     'guest' => [
         'login',
-        'registration'
+        'registration',
+        'confirm'
     ],
     'admin' => [
 

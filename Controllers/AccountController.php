@@ -4,7 +4,7 @@ namespace Controllers;
 
 use core\Controller;
 use core\DataLib\SQLBuilder;
-use Model\User;
+use Model\Account;
 use PDOException;
 
 class AccountController extends Controller
@@ -19,6 +19,7 @@ class AccountController extends Controller
         $this->view->layout = null;
         $this->view->render("Вхід", $vars);
     }
+
     private function checkLogIn($data)
     {
         $errors = array();
@@ -49,6 +50,7 @@ class AccountController extends Controller
         }
 
     }
+
     private function signInUser($user)
     {
 //    if it is work, sql injection will be possible login=' OR 1=1 -- ;password='
@@ -64,75 +66,43 @@ class AccountController extends Controller
 
     public function registrationAction()
     {
-        $data = $_POST;
-        $this->checkRegistration($data);
-        $this->view->layout = null;
-        $this->view->render("Регістрація");
-    }
-    private function checkRegistration($data)
-    {
+        $vars = [];
+        if (!empty($_POST)) {
+            $data = $_POST;
 
-        if (isset($data['do_signup'])) {
             $errors = array();
-
-            $data['login'] = strip_tags($_POST['login']);
-            $data['email'] = strip_tags($_POST['email']);
-            $data['password'] = strip_tags($_POST['password']);
-            $data['password2'] = strip_tags($_POST['password2']);
-
-
-            if (trim($data['login']) == '') {
-                $errors[] = "Input login";
-            }
-            if (trim($data['email']) == '') {
-                $errors[] = "Input email";
-            }
-            if (trim($data['login']) == '') {
-                $errors[] = "Input login";
-            }
-            if (trim($data['password']) == '') {
-                $errors[] = "Input password";
-            }
-            if (trim($data['password2']) == '') {
-                $errors[] = "Input password again";
-            }
-
-            if ($data['password'] != $data['password2']) {
-                $errors[] = "Passwords are not the same";
-            }
-
-            if (User::findByLogin($data['login']))
-                $errors[] = "The same login is exist";
-
-
-            if (strcmp($data['login'], htmlentities($data["login"])) != 0 || strcmp($data['email'], htmlentities($data["email"])) != 0
-                || strcmp($data['password'], htmlentities($data["password"])) != 0) {
-                $errors[] = 'Attention! Updated your data';
-            }
-
-
-            if (empty($errors)) {
+            if ($this->model->validate(['login', 'email', 'password', 'password2'], $data, $errors)) {
                 try {
-                    $user = new User();
-                    $user->login = $data['login'];
-                    $user->password = $data['password'];
-                    $user->email = $data['email'];
-                    User::create($user);
-                    $user = User::findByLogin($data['login']);
+
+                    $this->model->register($data);
+                    $user = Account::findByLogin($data['login']);
                     $_SESSION["authorize"] = (array)$user;
                     header('Refresh: 0; URL=main');
 
                 } catch (PDOException $e) {
                     echo "<p style='color:red' >Something go wrong. Call your young hacker.</p>";
+                    exit();
                 }
-
-
-            } else {
-                echo "<p style='color:red' >" . array_shift($errors) . "</p>";
             }
-
+            $vars = ['data' => $data, 'errors' => $errors];
         }
-
+        $this->view->layout = null;
+        $this->view->render("Регістрація", $vars);
 
     }
+
+    public function confirmAction(){
+        if(!$this->model->checkTokenExists($this->route['token'])){
+           $this->view->errorCode(403);
+        }
+        $this->model->activate($this->route['token']);
+        $this->view->render('Регистрация успешна');
+    }
+
+
+
+
+
+
+
 }

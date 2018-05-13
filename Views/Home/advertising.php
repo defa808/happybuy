@@ -5,9 +5,10 @@
     <title>HappyBuy - Київ</title>
     <meta charset="utf-8" />
     <script src="../../Scripts/MainAnimation.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../Content/index.css">
-    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+    <link rel="stylesheet" href="/Content/index.css">
+    <link rel="stylesheet" href="/Content/media-for-bud.min.css">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
 
 
 </head>
