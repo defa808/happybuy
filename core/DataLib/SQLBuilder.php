@@ -78,9 +78,7 @@ class SQLBuilder implements CRUD
 
     public function exec()
     {
-        //assimble query
-        $this->sql .= $this->where;
-        $this->getSQL = $this->sql;
+        $this->buildQuery();
         $stmt = $this->dbh->prepare($this->sql);
         $stmt->execute($this->bindValues);
         return $stmt->rowCount();
@@ -291,7 +289,7 @@ class SQLBuilder implements CRUD
     {
         $this->buildQuery();
         $stmt = $this->executeQuery();
-        if($stmt->rowCount() > 0)
+        if ($stmt->rowCount() > 0)
             return $stmt->fetch();
         return false;
     }

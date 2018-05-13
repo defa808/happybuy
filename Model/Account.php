@@ -18,7 +18,6 @@ class Account extends ORM
     public $email;
     public $password;
     public $token;
-    public $status;
 
     public function register($data)
     {
@@ -28,7 +27,6 @@ class Account extends ORM
         $user->password = password_hash($data['password'], PASSWORD_BCRYPT);
         $user->email = $data['email'];
         $user->token = $token;
-        $user->status = 0;
 
         Account::create($user);
 
@@ -114,7 +112,7 @@ class Account extends ORM
         $db->className(Account::class);
         $userId = $db->select("id")->where('token', '=', $token)->get();
 
-        if (isset($userId))
+        if ($userId != false)
             return true;
         return false;
     }

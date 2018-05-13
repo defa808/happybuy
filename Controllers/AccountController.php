@@ -46,22 +46,18 @@ class AccountController extends Controller
             } else {
                 echo "<p style='color:red' >" . array_shift($errors) . "</p>";
             }
-
         }
-
     }
 
     private function signInUser($user)
     {
-//    if it is work, sql injection will be possible login=' OR 1=1 -- ;password='
-//    $pdo = connectDB();
-//    return $pdo->query("SELECT * FROM users WHERE login='{$user['login']}' AND password='{$user['password']}'")->fetch();
-
         $login = htmlentities($user['login']);
         $password = htmlentities($user['password']);
         $sqlBuilder = new SQLBuilder();
-        $res = $sqlBuilder->table("users")->className("User")->where("login", "=", $login)->where("password", "=", $password)->get();
-        return $res;
+        $hash = $sqlBuilder->table(Account::getNameInDatabase())->select("password")->where("login", "=", $login)->get();
+        if (password_verify($password, array_shift($hash))) {
+            return (array)Account::findByLogin($login);
+        }
     }
 
     public function registrationAction()
@@ -91,18 +87,15 @@ class AccountController extends Controller
 
     }
 
-    public function confirmAction(){
-        if(!$this->model->checkTokenExists($this->route['token'])){
-           $this->view->errorCode(403);
+    public function confirmAction()
+    {
+        if (!$this->model->checkTokenExists($this->route['token'])) {
+            $this->view->redirect('/');
         }
+
         $this->model->activate($this->route['token']);
-        $this->view->render('Регистрация успешна');
+        $this->view->render('Email подтвержден');
     }
-
-
-
-
-
 
 
 }

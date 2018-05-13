@@ -11,6 +11,7 @@ return [
 
     ],
     'authorize' => [
+        'confirm'
 
     ],
     'guest' => [
