@@ -55,7 +55,7 @@ class AccountController extends Controller
         $password = htmlentities($user['password']);
         $sqlBuilder = new SQLBuilder();
         $hash = $sqlBuilder->table(Account::getNameInDatabase())->select("password")->where("login", "=", $login)->get();
-        if (password_verify($password, array_shift($hash))) {
+        if ($hash && password_verify($password, array_shift($hash))) {
             return (array)Account::findByLogin($login);
         }
     }
@@ -95,6 +95,12 @@ class AccountController extends Controller
 
         $this->model->activate($this->route['token']);
         $this->view->render('Email подтвержден');
+    }
+
+    public function logOutAction()
+    {
+        unset($_SESSION['authorize']);
+        $this->view->redirect("login");
     }
 
 

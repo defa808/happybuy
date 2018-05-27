@@ -28,9 +28,6 @@ class HomeController extends Controller
     }
     public function AdvertisingAction()
     {
-        if (isset($_POST['exit'])) {
-            $this->LogOut();
-        }
         $this->view->layout = null;
         $this->view->render("Ласкаво просимо");
     }
@@ -48,17 +45,13 @@ class HomeController extends Controller
             $vars = [
                 'message' => "Something go wrong"
             ];
-            var_dump($this->route);
             $this->view->render('Ваш вибір квартири', $vars);
         }
 
 
     }
 
-    private function LogOut()
-    {
-        $_SESSION['authorize'] = null;
-    }
+
 
     private function initModel()
     {

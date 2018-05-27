@@ -123,7 +123,13 @@ class Account extends ORM
         $table = self::getNameInDatabase();
         $db->table($table);
         $db->className(Account::class);
-        $db->update(array("status" => 1, "token" => ""))->where("token", "=", $token)->exec();
+//        $user = $db->update(array("status" => 1, "token" => ""))->where("token", "=", $token)->exec();
+        $user = $db->where("token", "=", $token)->get();
+        $user->status = 1;
+        $user->token = "";
+        Account::update($user);
+
+
     }
 
 

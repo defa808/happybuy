@@ -6,9 +6,6 @@
  * Time: 16:40
  */
 
-//if ($_SESSION["currentUser"] == null) {
-//    header('Refresh: 1; URL=login.php');
-//}
 $user = $_SESSION["authorize"];
 ?>
 <!DOCTYPE html>
@@ -49,7 +46,7 @@ $user = $_SESSION["authorize"];
     </div>
 
     <div class="welcome">
-        <form method="POST" action="/">
+        <form method="POST" action="/logout">
             <span>Ласкаво просимо,</span><span><?= $user['login'] ?></span>
             <button name="exit" class="btn-exit">Вихід</button>
         </form>

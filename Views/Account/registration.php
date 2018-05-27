@@ -28,36 +28,9 @@
         <small id="password2Help" class="form-text text-muted"><?= $errors['password2'] ?? "" ?></small>
     </div>
 
-
-<!--    <p>-->
-<!--        <strong>Ваш логин:</strong>-->
-<!--        <input type="text" name="login" value="--><?//= $data['login'] ?? ""; ?><!--">-->
-<!--        <br/><small style="color:red;">--><?//= $errors['login'] ?? "" ?><!--</small>-->
-<!--    </p>-->
-<!--    <p>-->
-<!--        <strong>Ваш email</strong>-->
-<!--        <input type="email" name="email" value="--><?//= $data['email'] ?? ""; ?><!--">-->
-<!--        <br/><small style="color:red;">--><?//= $errors['email'] ?? "" ?><!--</small>-->
-<!---->
-<!---->
-<!--    </p>-->
-<!--    <p>-->
-<!--        <strong>Ваш пароль:</strong>-->
-<!--        <input type="password" name="password">-->
-<!--        <br/><small style="color:red;">--><?//= $errors['password'] ?? "" ?><!--</small>-->
-<!---->
-<!---->
-<!--    </p>-->
-<!--    <p>-->
-<!--        <strong>Повторите пароль:</strong>-->
-<!--        <input type="password" name="password2">-->
-<!--        <br/><small style="color:red;">--><?//= $errors['password2'] ?? "" ?><!--</small>-->
-<!---->
-<!---->
-<!--    </p>-->
     <p>
-        <button name="do_signin">Войти</button>
-        <button type="submit" name="do_signup">Зарегестрироваться</button>
+        <button type="submit" name="do_signup">Зарегестрироваться</button><br/>
+        <a href="login">Аккаунт уже существует? Войти</a>
     </p>
 
 </form>

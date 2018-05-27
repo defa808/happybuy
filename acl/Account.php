@@ -11,7 +11,8 @@ return [
 
     ],
     'authorize' => [
-        'confirm'
+        'confirm',
+        'logOut'
 
     ],
     'guest' => [
@@ -20,7 +21,7 @@ return [
         'confirm'
     ],
     'admin' => [
-
+        'logOut'
     ],
 
 ];

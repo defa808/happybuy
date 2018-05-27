@@ -27,6 +27,10 @@ return [
     'account/confirm/{token:\w+}' => [
         'controller' => 'Account',
         'action' => 'confirm',
+    ],
+    'logout' => [
+        'controller' => 'Account',
+        'action' => 'logOut'
     ]
 
 ];
