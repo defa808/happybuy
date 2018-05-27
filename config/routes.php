@@ -31,6 +31,15 @@ return [
     'logout' => [
         'controller' => 'Account',
         'action' => 'logOut'
+    ],
+    'account/recovery' => [
+        'controller' => 'Account',
+        'action' => 'recovery',
+    ],
+    'account/reset/{token:\w+}' =>[
+        'controller' => 'Account',
+        'action' => 'reset',
     ]
+
 
 ];

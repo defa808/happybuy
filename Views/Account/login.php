@@ -15,7 +15,7 @@
         <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
     </div>
 
-    <button type="submit" name="do_signin">Войти</button>
+    <button type="submit" name="do_signin">Войти</button> <a href="account/recovery">Забыли пароль? </a>
     <br/>
     <a href="registration">Зарегистрироваться</a>
 

@@ -97,6 +97,44 @@ class AccountController extends Controller
         $this->view->render('Email подтвержден');
     }
 
+    // Восстановление пароля
+    public function recoveryAction() {
+        if (!empty($_POST)) {
+            if (!$this->model->checkEmailExists($_POST['email'])) {
+                $this->view->message('error', 'Пользователь не найден');
+            }
+            else{
+                $this->model = Account::findByEmail($_POST['email']);
+
+                if(!$this->model->checkStatus())
+                    $this->view->message('error', 'Пользователь не подтвердил почту');
+                else {
+                    $this->model->recovery();
+                    $this->view->message('success', 'Запрос на восстановление пароля отправлен на E-mail');
+                }
+            }
+        }
+        $this->view->layout = null;
+        $this->view->render('Восстановление пароля');
+    }
+
+    public function resetAction() {
+        if (!$this->model->checkTokenExists($this->route['token'])) {
+            $this->view->redirect('account/login');
+        }
+        else {
+            $this->model = Account::findByToken($this->route['token']);
+            $password = $this->model->reset($this->route['token']);
+            $vars = [
+                'password' => $password,
+            ];
+            $this->view->layout = null;
+            $this->view->render('Пароль сброшен', $vars);
+        }
+    }
+
+
+    //выход
     public function logOutAction()
     {
         unset($_SESSION['authorize']);

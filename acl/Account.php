@@ -18,7 +18,9 @@ return [
     'guest' => [
         'login',
         'registration',
-        'confirm'
+        'confirm',
+        'recovery',
+        'reset'
     ],
     'admin' => [
         'logOut'

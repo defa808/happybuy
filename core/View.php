@@ -40,6 +40,10 @@ class View
         exit;
     }
 
+    public function message($status, $message) {
+        exit(json_encode(['status' => $status, 'message' => $message]));
+    }
+
     public function redirect($url) {
         header('location: '.$url);
         exit;
