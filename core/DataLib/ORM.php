@@ -21,6 +21,15 @@ abstract class ORM
         return $res;
     }
 
+    public static function takeAllCount(){
+        $db = new SQLBuilder();
+        $table = get_called_class()::getNameInDatabase();
+
+        $res = $db->query("SELECT count(*)")->table($table)->exec();
+
+        return $res;
+    }
+
     public static function takeAll(){
         $db = self::setup();
         $res = $db->getAll();

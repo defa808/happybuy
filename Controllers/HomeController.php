@@ -11,6 +11,8 @@ namespace Controllers;
 
 use core\Controller;
 use Exception;
+use lib\Pagination;
+use Model\Account;
 use Model\Apartment;
 use Model\AreaLocation;
 use Model\Metro;
@@ -20,8 +22,12 @@ class HomeController extends Controller
 {
     public function IndexAction()
     {
+        $this->route['action'] = "main";
+        $pagination = new Pagination($this->route, Apartment::takeAllCount());
         $items = $this->initModel();
+
         $vars = [
+            'pagination' => $pagination->get(),
             'items' => $items
         ];
         $this->view->render('Головна сторінка', $vars);
@@ -48,14 +54,14 @@ class HomeController extends Controller
             $this->view->render('Ваш вибір квартири', $vars);
         }
 
-
     }
 
 
 
     private function initModel()
     {
-        $items = Apartment::takeAll();
+       $items =  Apartment::getList($this->route);
+
         try {
             foreach ($items as $item) {
                 $item->include(new Room())->include(new Metro())->include(new AreaLocation());

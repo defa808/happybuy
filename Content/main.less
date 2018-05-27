@@ -286,6 +286,7 @@ main {
 
   .main {
     width: 70.20644217%;
+    min-width: 300px;
     height: max-content;
     min-height: 600px;
     margin-right: 37px;
@@ -721,30 +722,29 @@ footer {
   }
 }
 
-//генерация сетки
-@breakpoints: 768px, 992px, 1200px;
-@container-width: 750px, 970px, 1170px;
-@prefixes: sm, md, lg;
-@col-count: 4;
-@i: 3;
-.loopingI(@i) when (@i > 0) {
-  .loopingI(@i - 1);
 
-  @media (min-width: extract(@breakpoints, @i)) {
-    .container {
-      width: extract(@container-width, @i);
-      @j: 1;
+.center {
+  text-align: center;
+}
 
-      .loopingJ(@j) when (@j < @col-count) {
-        .loopingJ(@j + 1);
+.pagination {
+  display: inline-block;
+  list-style-type: none;
+  .page-item {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
 
-        @pref: extract(@prefixes, @i);
-
-        .col-@{pref}-@{j} {
-          width: (100%/@col-count)*@j;
-          float: left;
-        }
-      }
+    &.active {
+      background-color: #4CAF50;
+      color: white;
+      border: 1px solid #4CAF50;
     }
+    &:hover:not(.active) {background-color: #ddd;}
   }
 }
+

@@ -46,16 +46,11 @@ class SQLBuilder implements CRUD
 
     public function query($query, $args = [])
     {
-        $this->resetQuery();
         $query = trim($query);
         $this->getSQL = $query;
         $this->bindValues = $args;
 
-        $stmt = $this->dbh->prepare($query);
-        $stmt->execute($this->bindValues);
-        $this->rowCount = $stmt->rowCount();
         return $this;
-
     }
 
     private function resetQuery()
@@ -499,6 +494,11 @@ class SQLBuilder implements CRUD
             }
         }
 
+        return $this;
+    }
+
+    public function limit($start, $end){
+        $this->limit = " LIMIT ". $start . ",". $end;
         return $this;
     }
 

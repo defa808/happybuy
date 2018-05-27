@@ -12,6 +12,10 @@ return [
         'controller' => 'Home',
         'action' => 'Index'
     ],
+    'main/{page:\d+}' => [
+        'controller' => 'Home',
+        'action' => 'Index'
+    ],
     'apartment\?.*' => [
         'controller' => 'Home',
         'action' => 'ShowApartment'

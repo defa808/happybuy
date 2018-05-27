@@ -1,5 +1,5 @@
-﻿<link href="Content/media.css" rel="stylesheet"/>
-<link href="Content/grid.css" rel="stylesheet"/>
+﻿<link href="../Content/media.css" rel="stylesheet"/>
+<!--<link href="../Content/grid.css" rel="stylesheet"/>-->
 
 
 <main>
@@ -124,15 +124,16 @@
 
         <div class="row">
             <?php
-
-            foreach ($items as $item){
+            foreach ($items as $item) {
                 $item->ToHtml();
             }
 
             ?>
+
+            <div class="center">
+                <?php echo $pagination; ?>
+            </div>
         </div>
-
-
     </div>
 
     <div class="new-houses">
@@ -158,4 +159,6 @@
 
         </div>
     </div>
+
 </main>
+

@@ -79,6 +79,15 @@ class Apartment extends ORM implements IToHtml
         return null;
     }
 
+    public static function getList($route) {
+        $db = new SQLBuilder();
+
+        $max = 8;
+        $start = (($route['page'] ?? 1) - 1) * $max;
+
+        return $db->table("apartments")->className(get_called_class())->orderBy("Id","DESC")->limit($start, $max)->getAll();
+    }
+
     public function ToHtml()
     {
         ?>

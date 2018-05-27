@@ -243,6 +243,7 @@ main .sort .items label {
 }
 main .main {
   width: 70.20644217%;
+  min-width: 300px;
   height: max-content;
   min-height: 600px;
   margin-right: 37px;
@@ -609,4 +610,28 @@ footer .year {
   font-family: Lato-Regular;
   font-size: 10px;
   margin-top: 100px;
+}
+.center {
+  text-align: center;
+}
+.pagination {
+  display: inline-block;
+  list-style-type: none;
+}
+.pagination .page-item {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+.pagination .page-item.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+.pagination .page-item:hover:not(.active) {
+  background-color: #ddd;
 }

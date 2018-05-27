@@ -1,0 +1,10 @@
+form {
+  position: absolute;
+  min-width: 350px;
+  width: 50vw;
+  height: 500px;
+  margin: 0 auto;
+}
+form .text-muted {
+  color: red!important;
+}
