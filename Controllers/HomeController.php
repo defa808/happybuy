@@ -23,12 +23,17 @@ class HomeController extends Controller
     public function IndexAction()
     {
         $this->route['action'] = "main";
+
         $pagination = new Pagination($this->route, Apartment::takeAllCount());
         $items = $this->initModel();
+        $districts = AreaLocation::takeAll();
+        $rooms = Room::takeAll();
 
         $vars = [
             'pagination' => $pagination->get(),
-            'items' => $items
+            'items' => $items,
+            'districts' => $districts,
+            'rooms' =>$rooms
         ];
         $this->view->render('Головна сторінка', $vars);
     }

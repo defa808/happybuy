@@ -5,12 +5,14 @@
  * Date: 05.05.2018
  * Time: 17:13
  */
+
 namespace Model;
 
 
 use core\DataLib\ORM;
 
-class AreaLocation extends ORM {
+class AreaLocation extends ORM implements IToHTML
+{
     protected $Id;
     protected $Text;
 
@@ -36,8 +38,21 @@ class AreaLocation extends ORM {
 
     }
 
+
     static function getNameInDatabase()
     {
         return "arealocations";
+    }
+
+    public function ToHtml()
+    {
+        ?>
+        <div class="items">
+            <input class="checked-items" type="checkbox" name="district"
+                   value="<?= $this->Id ?>">
+
+            <label for="checkbox"><?= $this->GetText() ?></label>
+        </div>
+        <?php
     }
 }

@@ -10,7 +10,7 @@ namespace Model;
 
 use core\DataLib\ORM;
 
-class Room extends ORM
+class Room extends ORM implements IToHTML
 {
     protected $Id;
     protected $Text;
@@ -38,5 +38,16 @@ class Room extends ORM
     static function getNameInDatabase()
     {
         return "rooms";
+    }
+
+    public function ToHtml()
+    {
+        ?>
+        <div class="items">
+                <input class="checked-items" type="checkbox" name="rooms" value="<?=$this->Id?>">
+
+                <label for="checkbox"><?=$this->getText()?></label>
+            </div>
+    <?php
     }
 }
