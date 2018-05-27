@@ -404,6 +404,9 @@ main .main .content-item .content .option .btn-buy {
   border-radius: 2px;
   float: right;
 }
+main .main .content-item form:hover {
+  cursor: pointer;
+}
 main .main .content-item:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }

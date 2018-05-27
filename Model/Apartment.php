@@ -79,52 +79,56 @@ class Apartment extends ORM implements IToHtml
         return null;
     }
 
-    public static function getList($route) {
+    public static function getList($route)
+    {
         $db = new SQLBuilder();
 
         $max = 8;
         $start = (($route['page'] ?? 1) - 1) * $max;
 
-        return $db->table("apartments")->className(get_called_class())->orderBy("Id","DESC")->limit($start, $max)->getAll();
+        return $db->table("apartments")->className(get_called_class())->orderBy("Id", "DESC")->limit($start, $max)->getAll();
     }
 
     public function ToHtml()
     {
         ?>
         <div class="col-xsm-12 col-sm-6 col-md-4 col-lg-3">
-            <form class="content-item" method="GET" class="form_favourite" action="apartment">
-                <input type="hidden" value="<?= $this->Id ?>" name="Id">
+            <div class="content-item">
                 <div class="readmore"><a href="">Подробніше</a><a class="favourite"/><i
                             class="far fa-star"></i></a></div>
-                <img src="<?= $this->mainImage ?>" class="image-for-content"/>
-                <div class="content">
-                    <div class="count-photo"><a href="#"><?= $this->countImage ?> фото</a></div>
-                    <div class="option">
-                        <div class="count-room">
-                            <strong><?= $this->room != null ? $this->room->getText() : "Undefined" ?></strong></div>
-                        <div class="content-location">
-                            <?= $this->areaLocation != null ? $this->areaLocation->getText() : "Undefined" ?>
-                            район<br/>
-                            <?= $this->metro != null ? $this->metro->getText() : "Undefined" ?> станція
+                <form method="GET" class="form_favourite" action="/apartment" onclick="submit()">
+                    <input type="hidden" value="<?= $this->Id ?>" name="Id">
+
+                    <img src="<?= $this->mainImage ?>" class="image-for-content"/>
+                    <div class="content">
+                        <div class="count-photo"><a href="#"><?= $this->countImage ?> фото</a></div>
+                        <div class="option">
+                            <div class="count-room">
+                                <strong><?= $this->room != null ? $this->room->getText() : "Undefined" ?></strong></div>
+                            <div class="content-location">
+                                <?= $this->areaLocation != null ? $this->areaLocation->getText() : "Undefined" ?>
+                                район<br/>
+                                <?= $this->metro != null ? $this->metro->getText() : "Undefined" ?> станція
+                            </div>
+                        </div>
+                        <div class="option">
+                            <div class="apartment-item">Площа</div>
+                            <div class="apartment-item-value"><strong>
+                                    <?= $this->areaGeneral ?> /
+                                    <?= $this->areaKitchen ?> /
+                                    <?= $this->areaLiving ?></strong></div>
+                        </div>
+                        <div class="option">
+                            <div class="apartment-item">Поверх</div>
+                            <div class="apartment-item-value"><?= $this->floor ?>/<?= $this->floorGeneral ?>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <div class="count-for-one-meter apartment-item ">За 1 кв.м.</div>
+                            <input class="btn-buy" type="submit" value="<?= $this->price ?> грн"/>
                         </div>
                     </div>
-                    <div class="option">
-                        <div class="apartment-item">Площа</div>
-                        <div class="apartment-item-value"><strong>
-                                <?= $this->areaGeneral ?> /
-                                <?= $this->areaKitchen ?> /
-                                <?= $this->areaLiving ?></strong></div>
-                    </div>
-                    <div class="option">
-                        <div class="apartment-item">Поверх</div>
-                        <div class="apartment-item-value"><?= $this->floor ?>/<?= $this->floorGeneral ?>
-                        </div>
-                    </div>
-                    <div class="option">
-                        <div class="count-for-one-meter apartment-item ">За 1 кв.м.</div>
-                        <input class="btn-buy" type="submit" value="<?= $this->price ?> грн"/>
-                    </div>
-                </div>
+            </div>
         </div>
         </form>
 
