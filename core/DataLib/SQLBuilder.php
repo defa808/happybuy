@@ -91,7 +91,11 @@ class SQLBuilder implements CRUD
         $this->className = $className;
         return $this;
     }
-
+    public function setWhere($stringWhere , $bindValues){
+        $this->where = " WHERE " .$stringWhere;
+        $this->bindValues = $bindValues;
+        return $this;
+    }
     public function where()
     {
         $this->firstOrAddWhereWithAnd();
@@ -181,7 +185,6 @@ class SQLBuilder implements CRUD
         $this->firsOrAddWhereWithOr();
         $this->isOrWhere = true;
         // call_user_method_array ( 'where_orWhere' , $this ,  func_get_args() );
-
         $num_args = func_num_args();
         $args = func_get_args();
         if ($num_args == 1) {
@@ -497,8 +500,9 @@ class SQLBuilder implements CRUD
         return $this;
     }
 
-    public function limit($start, $end){
-        $this->limit = " LIMIT ". $start . ",". $end;
+    public function limit($start, $end)
+    {
+        $this->limit = " LIMIT " . $start . "," . $end;
         return $this;
     }
 

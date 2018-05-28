@@ -64,6 +64,17 @@ class Apartment extends ORM implements IToHtml
         return $this;
     }
 
+    public static function includeAll($items){
+        try {
+            foreach ($items as $item) {
+                $item->include(new Room())->include(new Metro())->include(new AreaLocation());
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        return $items;
+    }
+
     public function __get($property)
     {
         if (property_exists($this, $property)) {
@@ -87,17 +98,6 @@ class Apartment extends ORM implements IToHtml
         $start = (($route['page'] ?? 1) - 1) * $max;
 
         return $db->table("apartments")->className(get_called_class())->orderBy("Id", "DESC")->limit($start, $max)->getAll();
-    }
-
-    public static function includeAll($items){
-        try {
-            foreach ($items as $item) {
-                $item->include(new Room())->include(new Metro())->include(new AreaLocation());
-            }
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-        return $items;
     }
 
     public function ToHtml()

@@ -43,7 +43,7 @@ class Pagination {
         if (!$text) {
             $text = $page;
         }
-        return '<a class="page-item"  href="/'.$this->route['action'].'/'.$page.'" >'.$text.'</a>';
+        return '<a class="page-item"  href="/'.$this->route['action'].'/'.$page.'?'.$_SERVER['QUERY_STRING'].'">'.$text.'</a>';
     }
     private function limits() {
         $left = $this->current_page - round($this->max / 2);

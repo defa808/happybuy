@@ -69,33 +69,51 @@ class HomeController extends Controller
         }
     }
 
-    //TODO: add pagination!
     public function LoadApartmentAction()
     {
-        $this->route['action'] = "main";
+        $this->route['action'] = "load";
 
         $db = new SQLBuilder();
         $sqlApartments = $db->table(Apartment::getNameInDatabase())->className(Apartment::class);
 
-        $params = $this->proper_parse_str($_SERVER['QUERY_STRING']);
-        foreach ($params as $key => $values) {
-            if (is_array($values)) {
-                foreach ($values as $value) {
-                    $sqlApartments->orWhere($key, "=", $value);
-                }
-            } else {
-                $sqlApartments->where($key, "=", $values);
-            }
+        $this->buildWhere($stringWhere,$bindValues);
 
-        }
-        $newItems = $sqlApartments->getAll();
+        $max = 8;
+        $start = (($route['page'] ?? 1) - 1) * $max;
+
+        $newItems= $sqlApartments->table(Apartment::getNameInDatabase())->className(Apartment::class)->
+        setWhere($stringWhere, $bindValues)->orderBy("Id", "DESC")->limit($start, $max)->getAll();
         Apartment::includeAll($newItems);
-        $pagination = new Pagination($this->route, count($newItems));
+
+        $pagination = new Pagination($this->route, Apartment::takeAllCount());
         foreach ($newItems as $newItem) {
             $newItem->ToHtml();
         }
-        echo '<div class="center">'.$pagination->get().'</div>';
+        echo '<div class="center">' . $pagination->get() . '</div>';
     }
 
+    private function buildWhere(&$stringWhere, &$buildValues){
+        $stringWhere = "";
+        $buildValues = array();
+        $params = $this->proper_parse_str($_SERVER['QUERY_STRING']);
+        $stringWhere .= "(";
 
+        foreach ($params as $key => $values) {
+            if (is_array($values)) {
+                $stringWhere .= $key . "=?";
+                $buildValues[] = array_shift($values);
+                foreach ($values as $value) {
+                    $stringWhere .= " OR " . $key . "=?  ";
+                    $buildValues[] = $value;
+                }
+            } else {
+                $stringWhere .= $key . "=?";
+                $buildValues[] = $values;
+            }
+            if(next($params)) {
+                $stringWhere .= ") AND (";
+            }
+        }
+        $stringWhere .= ")";
+    }
 }

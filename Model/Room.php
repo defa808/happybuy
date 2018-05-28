@@ -44,7 +44,7 @@ class Room extends ORM implements IToHTML
     {
         ?>
         <div class="items">
-                <input class="checked-items" type="checkbox" name="rooms" value="<?=$this->Id?>">
+                <input class="checked-items" type="checkbox" name="room_Id" value="<?=$this->Id?>">
 
                 <label for="checkbox"><?=$this->getText()?></label>
             </div>

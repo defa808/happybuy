@@ -16,7 +16,11 @@ return [
         'controller' => 'Home',
         'action' => 'Index'
     ],
-    'main\?.*' => [
+    'load/{page:\d+}\?.*' => [
+        'controller' => 'Home',
+        'action' => 'LoadApartment'
+    ],
+    'load\?.*' => [
         'controller' => 'Home',
         'action' => 'LoadApartment'
     ],

@@ -616,6 +616,8 @@ footer .year {
 }
 .center {
   text-align: center;
+  float: left;
+  width: 100%;
 }
 .pagination {
   display: inline-block;
