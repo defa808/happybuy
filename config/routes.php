@@ -16,6 +16,10 @@ return [
         'controller' => 'Home',
         'action' => 'Index'
     ],
+    'main\?.*' => [
+        'controller' => 'Home',
+        'action' => 'LoadApartment'
+    ],
     'apartment\?.*' => [
         'controller' => 'Home',
         'action' => 'ShowApartment'

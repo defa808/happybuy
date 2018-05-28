@@ -10,6 +10,7 @@
 namespace Controllers;
 
 use core\Controller;
+use core\DataLib\SQLBuilder;
 use Exception;
 use lib\Pagination;
 use Model\Account;
@@ -23,9 +24,8 @@ class HomeController extends Controller
     public function IndexAction()
     {
         $this->route['action'] = "main";
-
         $pagination = new Pagination($this->route, Apartment::takeAllCount());
-        $items = $this->initModel();
+        $items = $this->initModelForOnePage();
         $districts = AreaLocation::takeAll();
         $rooms = Room::takeAll();
 
@@ -33,10 +33,19 @@ class HomeController extends Controller
             'pagination' => $pagination->get(),
             'items' => $items,
             'districts' => $districts,
-            'rooms' =>$rooms
+            'rooms' => $rooms
         ];
         $this->view->render('Головна сторінка', $vars);
     }
+
+    private function initModelForOnePage()
+    {
+        $items = Apartment::getList($this->route);
+        Apartment::includeAll($items);
+
+        return $items;
+    }
+
     public function AdvertisingAction()
     {
         $this->view->layout = null;
@@ -58,23 +67,35 @@ class HomeController extends Controller
             ];
             $this->view->render('Ваш вибір квартири', $vars);
         }
-
     }
 
-
-
-    private function initModel()
+    //TODO: add pagination!
+    public function LoadApartmentAction()
     {
-       $items =  Apartment::getList($this->route);
+        $this->route['action'] = "main";
 
-        try {
-            foreach ($items as $item) {
-                $item->include(new Room())->include(new Metro())->include(new AreaLocation());
+        $db = new SQLBuilder();
+        $sqlApartments = $db->table(Apartment::getNameInDatabase())->className(Apartment::class);
+
+        $params = $this->proper_parse_str($_SERVER['QUERY_STRING']);
+        foreach ($params as $key => $values) {
+            if (is_array($values)) {
+                foreach ($values as $value) {
+                    $sqlApartments->orWhere($key, "=", $value);
+                }
+            } else {
+                $sqlApartments->where($key, "=", $values);
             }
-        } catch (Exception $e) {
-            echo $e->getMessage();
+
         }
-        return $items;
+        $newItems = $sqlApartments->getAll();
+        Apartment::includeAll($newItems);
+        $pagination = new Pagination($this->route, count($newItems));
+        foreach ($newItems as $newItem) {
+            $newItem->ToHtml();
+        }
+        echo '<div class="center">'.$pagination->get().'</div>';
     }
+
 
 }

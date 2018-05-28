@@ -89,6 +89,17 @@ class Apartment extends ORM implements IToHtml
         return $db->table("apartments")->className(get_called_class())->orderBy("Id", "DESC")->limit($start, $max)->getAll();
     }
 
+    public static function includeAll($items){
+        try {
+            foreach ($items as $item) {
+                $item->include(new Room())->include(new Metro())->include(new AreaLocation());
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        return $items;
+    }
+
     public function ToHtml()
     {
         ?>
@@ -128,9 +139,9 @@ class Apartment extends ORM implements IToHtml
                             <input class="btn-buy" type="submit" value="<?= $this->price ?> грн"/>
                         </div>
                     </div>
+                </form>
             </div>
         </div>
-        </form>
 
         <?php
     }

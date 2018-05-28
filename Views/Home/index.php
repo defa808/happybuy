@@ -1,19 +1,19 @@
 ﻿<link href="../Content/media.css" rel="stylesheet"/>
-<!--<link href="../Content/grid.css" rel="stylesheet"/>-->
 
 
 <main>
     <div class="sort">
-        <div class="location">
+        <div class="location" >
             <div class="title">
                 <div class="title-head">Розташування</div>
                 <div class="icon-arrow"></div>
             </div>
-            <?php
-            foreach ($districts as $district) {
-                $district->ToHtml();
-            } ?>
-
+            <form id="locationForm">
+                <?php
+                foreach ($districts as $district) {
+                    $district->ToHtml();
+                } ?>
+            </form>
         </div>
 
         <div class="count-place">
@@ -42,7 +42,7 @@
         </div>
         <hr/>
 
-        <div class="row">
+        <div class="row" id="apartments">
             <?php
             foreach ($items as $item) {
                 $item->ToHtml();
@@ -81,4 +81,17 @@
     </div>
 
 </main>
+<script>
 
+    function loadByLocation() {
+        $.ajax({
+            type: 'GET',
+            url: '/main',
+            data: $("#locationForm").serialize(),
+            success: function (data, textstatus) {
+                console.log(data);
+                $("#apartments").html("").append(data);
+            }
+        });
+    }
+</script>

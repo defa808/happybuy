@@ -12,7 +12,8 @@ return [
     ],
     'authorize' => [
         'Index',
-        'ShowApartment'
+        'ShowApartment',
+        'LoadApartment'
     ],
     'guest' => [
     ],
