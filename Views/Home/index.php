@@ -3,31 +3,30 @@
 
 <main>
     <div class="sort">
-        <form id="filterForm" >
+        <form id="filterForm">
 
-        <div class="location">
-            <div class="title">
-                <div class="title-head">Розташування</div>
-                <div class="icon-arrow"></div>
-            </div>
+            <div class="location">
+                <div class="title">
+                    <div class="title-head">Розташування</div>
+                    <div class="icon-arrow"></div>
+                </div>
                 <?php
                 foreach ($districts as $district) {
                     $district->ToHtml();
                 } ?>
-        </div>
-
-        <div class="count-place">
-            <div class="title">
-                <div class="title-head">Кількість спальних місць</div>
-                <div class="icon-arrow"></div>
             </div>
+
+            <div class="count-place">
+                <div class="title">
+                    <div class="title-head">Кількість спальних місць</div>
+                    <div class="icon-arrow"></div>
+                </div>
                 <?php
                 foreach ($rooms as $room) {
                     $room->ToHtml();
                 } ?>
 
-        </div>
-        <input type="button"  onclick="loadAll()" value="Пошук за параметрами"/>
+            </div>
         </form>
 
     </div>
@@ -84,9 +83,8 @@
 
 </main>
 <script>
-    function loadAll(){
+    function loadAll() {
         var dataForm = $("#filterForm").serialize();
-        console.log(dataForm);
         $.ajax({
             type: 'GET',
             url: '/load',
@@ -96,51 +94,6 @@
             }
         });
     }
-    function loadByLocation() {
-        var dataForm = $("#locationForm").serialize();
-        if (setOneOrMoreParameters(dataForm)) {
-            $.ajax({
-                type: 'GET',
-                url: '/load',
-                data: dataForm,
-                success: function (data, textstatus) {
-                    $("#apartments").html("").append(data);
-                }
-            });
-        }
-        else{
-            $.ajax({
-                type: 'GET',
-                url: '/main',
-            });
-        }
-    }
 
-    function loadByRoom() {
-        var dataForm = $("#roomForm").serialize();
-
-        if (setOneOrMoreParameters(dataForm)) {
-            $.ajax({
-                type: 'GET',
-                url: '/load',
-                data: dataForm,
-                success: function (data, textstatus) {
-                    $("#apartments").html("").append(data);
-                }
-            });
-        }
-        else{
-            $.ajax({
-                type: 'GET',
-                url: '/main/1',
-            });
-        }
-    }
-
-    function setOneOrMoreParameters(dataForm) {
-        var data = dataForm;
-        return !(data = "");
-
-    }
 
 </script>

@@ -82,14 +82,12 @@ class HomeController extends Controller
         $start = (($route['page'] ?? 1) - 1) * $max;
 
         $newItems= $sqlApartments->table(Apartment::getNameInDatabase())->className(Apartment::class)->
-        setWhere($stringWhere, $bindValues)->orderBy("Id", "DESC")->limit($start, $max)->getAll();
+        setWhere($stringWhere, $bindValues)->getAll();
         Apartment::includeAll($newItems);
 
-        $pagination = new Pagination($this->route, Apartment::takeAllCount());
         foreach ($newItems as $newItem) {
             $newItem->ToHtml();
         }
-        echo '<div class="center">' . $pagination->get() . '</div>';
     }
 
     private function buildWhere(&$stringWhere, &$buildValues){

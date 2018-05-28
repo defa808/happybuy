@@ -16,10 +16,6 @@ return [
         'controller' => 'Home',
         'action' => 'Index'
     ],
-    'load/{page:\d+}\?.*' => [
-        'controller' => 'Home',
-        'action' => 'LoadApartment'
-    ],
     'load\?.*' => [
         'controller' => 'Home',
         'action' => 'LoadApartment'
