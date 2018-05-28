@@ -23,6 +23,7 @@ class HomeController extends Controller
 {
     public function IndexAction()
     {
+        $_SESSION["favourite"] = null;
         $this->route['action'] = "main";
         $pagination = new Pagination($this->route, Apartment::takeAllCount());
         $items = $this->initModelForOnePage();
@@ -41,7 +42,7 @@ class HomeController extends Controller
     private function initModelForOnePage()
     {
         $items = Apartment::getList($this->route);
-        Apartment::includeAll($items);
+        Apartment::includeAllRelations($items);
 
         return $items;
     }
@@ -75,22 +76,20 @@ class HomeController extends Controller
 
         $db = new SQLBuilder();
         $sqlApartments = $db->table(Apartment::getNameInDatabase())->className(Apartment::class);
+        $this->buildWhere($stringWhere, $bindValues);
 
-        $this->buildWhere($stringWhere,$bindValues);
-
-        $max = 8;
-        $start = (($route['page'] ?? 1) - 1) * $max;
-
-        $newItems= $sqlApartments->table(Apartment::getNameInDatabase())->className(Apartment::class)->
+        $newItems = $sqlApartments->table(Apartment::getNameInDatabase())->className(Apartment::class)->
         setWhere($stringWhere, $bindValues)->getAll();
-        Apartment::includeAll($newItems);
+
+        Apartment::includeAllRelations($newItems);
 
         foreach ($newItems as $newItem) {
             $newItem->ToHtml();
         }
     }
 
-    private function buildWhere(&$stringWhere, &$buildValues){
+    private function buildWhere(&$stringWhere, &$buildValues)
+    {
         $stringWhere = "";
         $buildValues = array();
         $params = $this->proper_parse_str($_SERVER['QUERY_STRING']);
@@ -108,10 +107,38 @@ class HomeController extends Controller
                 $stringWhere .= $key . "=?";
                 $buildValues[] = $values;
             }
-            if(next($params)) {
+            if (next($params)) {
                 $stringWhere .= ") AND (";
             }
         }
         $stringWhere .= ")";
     }
+
+    public function AddFavouriteAction()
+    {
+        $id = $_GET["Id"];
+        $favourite = (array)$_SESSION["favourite"] ?? array();
+        if (!in_array($id, $favourite)) {
+            $favourite[] = $id;
+        } else {
+            $key = array_search($id, $favourite);
+            unset($favourite[$key]);
+        }
+        $_SESSION["favourite"] = $favourite;
+    }
+
+    public function ShowFavouriteAction(){
+
+        $favouritesId =(array)$_SESSION["favourite"];
+        $favouriteApartments = array();
+        foreach ($favouritesId as $id) {
+            $favouriteApartments[] = Apartment::findId($id);
+        }
+        Apartment::includeAllRelations($favouriteApartments);
+        $vars = [
+          'apartments' => $favouriteApartments
+        ];
+        $this->view->render("Обрані квартири", $vars);
+    }
+
 }

@@ -44,10 +44,17 @@ return [
         'controller' => 'Account',
         'action' => 'recovery',
     ],
-    'account/reset/{token:\w+}' =>[
+    'account/reset/{token:\w+}' => [
         'controller' => 'Account',
         'action' => 'reset',
-    ]
-
+    ],
+    'addFavourite\?.*' => [
+        'controller' => 'Home',
+        'action' => 'AddFavourite'
+    ],
+    'favourite' => [
+        'controller' => 'Home',
+        'action' => 'ShowFavourite'
+    ],
 
 ];

@@ -13,7 +13,9 @@ return [
     'authorize' => [
         'Index',
         'ShowApartment',
-        'LoadApartment'
+        'LoadApartment',
+        'AddFavourite',
+        'ShowFavourite'
     ],
     'guest' => [
     ],

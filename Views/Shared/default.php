@@ -36,9 +36,9 @@ $user = $_SESSION["authorize"];
     </div>
 
     <div class="main_menu">
-        <div class="li active"><a href="main">Головна</a></div>
+        <div class="li"><a href="/main">Головна</a></div>
         <div class="li"><a href="#">Пошук</a></div>
-        <div class="li"><a href="#">Обрані <img src="/images/star.png"/></a></div>
+        <div class="li"><a href="/favourite">Обрані <img src="/images/star.png"/></a></div>
     </div>
 
     <div class="obertka-mobile">

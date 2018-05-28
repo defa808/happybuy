@@ -64,7 +64,8 @@ class Apartment extends ORM implements IToHtml
         return $this;
     }
 
-    public static function includeAll($items){
+    public static function includeAllRelations($items)
+    {
         try {
             foreach ($items as $item) {
                 $item->include(new Room())->include(new Metro())->include(new AreaLocation());
@@ -105,8 +106,14 @@ class Apartment extends ORM implements IToHtml
         ?>
         <div class="col-xsm-12 col-sm-6 col-md-4 col-lg-3">
             <div class="content-item">
-                <div class="readmore"><a href="">Подробніше</a><a class="favourite"/><i
-                            class="far fa-star"></i></a></div>
+                <div class="readmore">
+                    <a href="#">Подробніше</a>
+                    <span onclick="addFavourite(<?= $this->Id ?>)">
+                        <a class="favourite">
+                            <i class="far fa-star"></i>
+                        </a>
+                    </span>
+                </div>
                 <form method="GET" class="form_favourite" action="/apartment" onclick="submit()">
                     <input type="hidden" value="<?= $this->Id ?>" name="Id">
 

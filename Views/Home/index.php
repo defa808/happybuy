@@ -85,15 +85,27 @@
 <script>
     function loadAll() {
         var dataForm = $("#filterForm").serialize();
-        $.ajax({
-            type: 'GET',
-            url: '/load',
-            data: dataForm,
-            success: function (data, textstatus) {
-                $("#apartments").html("").append(data);
-            }
-        });
+        if (dataForm === "") {
+            $(location).attr('href', '/main')
+        }
+        else {
+            $.ajax({
+                type: 'GET',
+                url: '/load',
+                data: dataForm,
+                success: function (data, textstatus) {
+                    $("#apartments").html("").append(data);
+                }
+            });
+        }
     }
 
+    function addFavourite(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/addFavourite',
+            data: "Id="+id,
+        });
+    }
 
 </script>

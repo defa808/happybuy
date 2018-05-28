@@ -640,3 +640,9 @@ footer .year {
 .pagination .page-item:hover:not(.active) {
   background-color: #ddd;
 }
+.favouriteMain {
+  padding-left: 21.2560386473%;
+}
+.favouriteMain .main {
+  width: 100%;
+}
