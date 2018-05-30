@@ -240,6 +240,7 @@ main .sort .items {
 main .sort .items label {
   display: inline-block;
   text-align: center;
+  cursor: pointer;
 }
 main .main {
   width: 70.20644217%;
