@@ -302,40 +302,55 @@ main {
 
     .searching-panel {
       position: relative;
-      height: 37px;
-      padding-top: 14px;
+      padding:10px;
+
+      #clearFixed{
+        clear:both;
+      }
+
     }
 
     .choosed {
       float: left;
       background-color: #33CDDD;
-      width: 75px;
-      height: 15px;
-      border-radius: 7.5px;
+      width: max-content;
+      height: 25px;
+      border-radius: 20px;
       font-family: Lato-Regular;
-      font-size: 10px;
+      font-size: 12px;
       color: black;
       padding: 2px 5px 4px 10px;
+      line-height: 20px;
+      cursor: default;
+      margin-right: 15px;
+      margin-bottom: 5px;
+
+
 
       .close {
-        background-image: url(../images/close.png);
-        width: 11px;
-        height: 11px;
+        margin-left: 10px;
+        font-family: Lato-Regular;
+        font-size: 20px;
+        line-height: 25px;
+        color: white;
         float: right;
+        cursor: pointer;
       }
     }
 
     .clear-search {
       float: left;
-      width: 55px;
-      height: 15px;
+      width: max-content;
+      padding: 0px 10px;
+      height: 25px;
+      line-height: 25px;
       font-family: Lato-Regular;
-      font-size: 10px;
-      border-radius: 7.5px;
+      font-size: 12px;
+      border-radius: 25px;
       text-align: center;
       border: 1px solid #D89D35;
-      margin-left: 9px;
-      padding-top: 1px;
+      cursor: pointer;
+
     }
 
     .content-item {

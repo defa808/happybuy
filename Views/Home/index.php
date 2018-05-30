@@ -33,15 +33,10 @@
 
     <div class="main">
         <h1>Квартири</h1>
-        <div class="searching-panel">
-            <div class="choosed">1 кімната <a href="#">
-                    <div class="close"></div>
-                </a></div>
-            <a href="#">
-                <div class="clear-search">Скинути</div>
-            </a>
+        <div class="searching-panel" id="choosedPanel">
+            <div style="clear:both;"></div>
         </div>
-        <hr/>
+        <br/>
 
         <div class="row" id="apartments">
             <?php
@@ -95,6 +90,7 @@
                 data: dataForm,
                 success: function (data, textstatus) {
                     $("#apartments").html("").append(data);
+
                 }
             });
         }
@@ -104,8 +100,57 @@
         $.ajax({
             type: 'GET',
             url: '/addFavourite',
-            data: "Id="+id,
+            data: "Id=" + id,
         });
+    }
+
+    checkBoxHandler();
+
+    function checkBoxHandler() {
+        var checkBoxes = $(".checked-items").toArray();
+        $('#filterForm :checkbox').change(function () {
+            if (this.checked) {
+                showParams(this.id, $("#" + this.id + "value")[0].innerHTML);
+            } else {
+                removeParams(this.id);
+            }
+            loadAll();
+        });
+    }
+
+
+
+    function showParams(typeParamId, textParam) {
+        var buttonSearching = document.createElement("div");
+        buttonSearching.innerHTML = textParam + '<a onclick="removeParams(\''+typeParamId+'\')"><i class="far fa-times-circle close"></i></a>';
+        buttonSearching.className = "choosed";
+        buttonSearching.id = "params" + typeParamId;
+
+        var cancelBtn = document.createElement("a");
+        cancelBtn.innerHTML = '<div class="clear-search">Скинути</div>';
+        cancelBtn.id = "cancelBtnParams";
+        cancelBtn.setAttribute("href", "/main");
+
+        var divImportant = document.createElement("div");
+        divImportant.id = "clearFixed";
+
+        if ($('#cancelBtnParams')) {
+            $("#cancelBtnParams").remove();
+            $("#clearFixed").remove();
+        }
+
+        $("#choosedPanel").append(buttonSearching);
+        $("#choosedPanel").append(cancelBtn);
+        $("#choosedPanel").append(divImportant);
+    }
+
+    function removeParams(typeParamId) {
+        var param = $("#params" + typeParamId)[0];
+        console.log($("#"+typeParamId));
+        $("#"+typeParamId)[0].checked = false;
+        param.remove();
+
+        loadAll();
     }
 
 </script>

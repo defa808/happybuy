@@ -47,9 +47,10 @@ class AreaLocation extends ORM implements IToHTML
     public function ToHtml()
     {
         ?>
-        <div class="items">
-            <input class="checked-items" onclick="loadAll()" type="checkbox" name="areaLocation_Id" value="<?= $this->Id ?>">
-            <label for="checkbox"><?= $this->GetText() ?> район</label>
+        <div class="items" >
+            <input class="checked-items"  type="checkbox" name="areaLocation_Id"
+                   id="<?= "area".$this->Id ?>" value="<?= $this->Id ?>">
+            <label for="<?= "area".$this->Id ?>" id="<?= "area".$this->Id."value"?>" ><?= $this->GetText() ?> район</label>
         </div>
         <?php
     }
