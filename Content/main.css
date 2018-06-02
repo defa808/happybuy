@@ -188,6 +188,16 @@ main .leftPanel {
   width: 202px;
   margin-right: 37px;
 }
+main .leftPanel .item a {
+  text-decoration: none;
+  color: black;
+}
+main .leftPanel .item a:visited {
+  color: black;
+}
+main .leftPanel .item a:active {
+  color: black;
+}
 main .leftPanel .checked-items {
   width: 19px;
   height: 19px;

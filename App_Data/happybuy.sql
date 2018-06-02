@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 05 2018 г., 17:14
--- Версия сервера: 10.1.30-MariaDB
--- Версия PHP: 7.2.1
+-- Время создания: Июн 02 2018 г., 14:39
+-- Версия сервера: 10.1.31-MariaDB
+-- Версия PHP: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -48,8 +48,16 @@ CREATE TABLE `apartments` (
 --
 
 INSERT INTO `apartments` (`Id`, `mainImage`, `countImage`, `room_Id`, `areaLocation_Id`, `metro_Id`, `areaGeneral`, `areaKitchen`, `areaLiving`, `floor`, `floorGeneral`, `price`) VALUES
-(1, 'imageforcontent.png', 10, 3, 6, 6, 10, 5, 1, 1, 5, 5000),
-(33, 'url', 12, 1, 1, 1, 1, 12, 12, 12, 12, 1232);
+(1, 'apartment.jpg', 10, 3, 6, 6, 10, 5, 1, 1, 5, 5000),
+(33, 'imageforcontent.png\r\n', 12, 4, 1, 1, 1, 12, 12, 12, 12, 1232),
+(34, 'imageforcontent.png\r\n', 10, 4, 4, 14, 1, 12, 12, 12, 12, 1232),
+(35, 'imageforcontent.png\r\n', 10, 5, 3, 12, 1, 12, 12, 12, 12, 1232),
+(36, 'apartment.jpg', 10, 3, 6, 6, 10, 5, 1, 1, 5, 5000),
+(37, 'apartment.jpg', 10, 3, 3, 6, 10, 5, 1, 1, 5, 5000),
+(38, 'imageforcontent.png\r\n', 10, 3, 7, 9, 10, 5, 1, 1, 5, 1000),
+(39, 'apartment.jpg', 10, 3, 7, 4, 10, 5, 1, 1, 5, 1000),
+(40, 'imageforcontent.png\r\n', 1, 5, 1, 16, 50, 5, 20, 10, 12, 20000),
+(41, 'imageforcontent.png\r\n', 1, 5, 1, 16, 100, 5, 20, 10, 12, 1000);
 
 -- --------------------------------------------------------
 
@@ -127,6 +135,25 @@ INSERT INTO `metro` (`Id`, `Text`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `role_users`
+--
+
+CREATE TABLE `role_users` (
+  `Id` int(11) NOT NULL,
+  `Value` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `role_users`
+--
+
+INSERT INTO `role_users` (`Id`, `Value`) VALUES
+(1, 'User'),
+(2, 'Admin');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `rooms`
 --
 
@@ -140,8 +167,11 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`Id`, `Text`) VALUES
-(3, '1 комната'),
-(4, '2 комнаты');
+(3, '1 кімната'),
+(4, '2 кімнати'),
+(5, '3 кімнати'),
+(6, '4 кімнати'),
+(7, '5 кімнат');
 
 -- --------------------------------------------------------
 
@@ -153,16 +183,19 @@ CREATE TABLE `users` (
   `Id` int(11) NOT NULL,
   `login` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(15) COLLATE utf8_unicode_ci NOT NULL
+  `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `status` bit(1) NOT NULL DEFAULT b'0',
+  `token` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `roleUser_Id` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`Id`, `login`, `email`, `password`) VALUES
-(1, 'admin', 'admin@admin', 'admin'),
-(2, 'alex', 'alex@123', '123');
+INSERT INTO `users` (`Id`, `login`, `email`, `password`, `status`, `token`, `roleUser_Id`) VALUES
+(33, 'de', 'def@aditus.info', '$2y$10$WYYxM1DPFbqs315EGpL2g.AXc0Tjgz69saxMrZ13V9sWBbT.L8ore', b'1', '', 2),
+(37, 'user', 'def@aditus.info', '$2y$10$WYYxM1DPFbqs315EGpL2g.AXc0Tjgz69saxMrZ13V9sWBbT.L8ore', b'1', '', 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -200,6 +233,12 @@ ALTER TABLE `metro`
   ADD UNIQUE KEY `Id` (`Id`);
 
 --
+-- Индексы таблицы `role_users`
+--
+ALTER TABLE `role_users`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Индексы таблицы `rooms`
 --
 ALTER TABLE `rooms`
@@ -220,7 +259,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `apartments`
 --
 ALTER TABLE `apartments`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT для таблицы `arealocations`
@@ -235,16 +274,22 @@ ALTER TABLE `metro`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
+-- AUTO_INCREMENT для таблицы `role_users`
+--
+ALTER TABLE `role_users`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT для таблицы `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -255,7 +300,8 @@ ALTER TABLE `users`
 --
 ALTER TABLE `apartments`
   ADD CONSTRAINT `apartments_ibfk_1` FOREIGN KEY (`areaLocation_Id`) REFERENCES `arealocations` (`Id`),
-  ADD CONSTRAINT `apartments_ibfk_2` FOREIGN KEY (`metro_Id`) REFERENCES `metro` (`Id`);
+  ADD CONSTRAINT `apartments_ibfk_2` FOREIGN KEY (`metro_Id`) REFERENCES `metro` (`Id`),
+  ADD CONSTRAINT `apartments_ibfk_3` FOREIGN KEY (`room_Id`) REFERENCES `rooms` (`Id`);
 
 --
 -- Ограничения внешнего ключа таблицы `apartment_room`
