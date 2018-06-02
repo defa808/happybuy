@@ -84,11 +84,11 @@
     justify-content: space-between;
     padding: 0px 3.8799414348%;
   }
-  main .sort {
+  main .leftPanel {
     margin-bottom: 25px;
     width: 100%;
   }
-  main .sort .count-place {
+  main .leftPanel .count-place {
     margin-top: 0px;
     margin-left: 15px;
   }
@@ -128,7 +128,7 @@
   .obertka-mobile {
     display: none;
   }
-  main .sort .count-place {
+  main .leftPanel .count-place {
     margin-left: 0px;
     margin-top: 10px;
     clear: left;

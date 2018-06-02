@@ -14,6 +14,26 @@ abstract class ORM
         return $db;
     }
 
+    public function include($object)
+    {
+
+        if (!($object instanceof ORM))
+            throw new Exception(get_class($object) . " don't extends ORM");
+
+        $db = new SQLBuilder();
+        $table = $object::getNameInDatabase();
+        $db->table($table);
+        $db->className(get_class($object));
+        $nameClass = join('', array_slice(explode('\\', get_class($object)), -1));
+        $nameField = lcfirst($nameClass);
+        $nameFieldId = $nameField . "_Id";
+        $field = $this->__get($nameFieldId);
+        $db->where($field);
+        $this->__set($nameField, $db->get());
+
+        return $this;
+    }
+
     public static function findId($id)
     {
         $db = self::setup();

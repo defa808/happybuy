@@ -19,7 +19,8 @@ class Account extends ORM
     public $password;
     public $token;
     public $status;
-
+    public $roleUser_Id;
+    public $roleUser;
 
 
     public function register($data)
@@ -31,11 +32,14 @@ class Account extends ORM
         $user->email = $data['email'];
         $user->token = $token;
         $user->status = 0;
+        $this->roleUser_Id = 1;
+
         Account::create($user);
 
         mail($data['email'], 'Register', 'Confirm: http://localhost:808/account/confirm/' . $token);
 
     }
+
 
 
     public function __get($property)
@@ -104,6 +108,7 @@ class Account extends ORM
         return false;
 
     }
+
     public static function findByEmail($email)
     {
         $db = new SQLBuilder();
@@ -118,6 +123,7 @@ class Account extends ORM
         return false;
 
     }
+
     public static function findByToken($token)
     {
         $db = new SQLBuilder();
@@ -132,7 +138,8 @@ class Account extends ORM
         return false;
     }
 
-    public function checkEmailExists($email){
+    public function checkEmailExists($email)
+    {
         $db = new SQLBuilder();
         $table = self::getNameInDatabase();
         $db->table($table);
@@ -162,7 +169,8 @@ class Account extends ORM
         return false;
     }
 
-    public function checkStatus(){
+    public function checkStatus()
+    {
         return $this->status;
     }
 
@@ -178,14 +186,16 @@ class Account extends ORM
         Account::update($user);
     }
 
-    public function recovery() {
+    public function recovery()
+    {
         $this->token = $this->createToken();
         Account::update($this);
-        mail($this->email, 'Recovery', 'Confirm: '.$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/account/reset/'.$this->token);
+        mail($this->email, 'Recovery', 'Confirm: ' . $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/account/reset/' . $this->token);
     }
 
-    public function reset($post){
-        $newPassword =   $this->createToken();
+    public function reset($post)
+    {
+        $newPassword = $this->createToken();
 
         $this->password = password_hash($newPassword, PASSWORD_BCRYPT);
         $this->token = "";

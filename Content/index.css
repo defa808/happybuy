@@ -10,17 +10,23 @@
 }
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
 }
 body {
   position: relative;
+  padding: 0px;
+  margin: 0px;
+}
+img {
+  margin: 0px;
 }
 header {
   position: relative;
-  height: 65px;
   width: 100vw;
   background-color: #0080CE;
-  box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.75);
-  z-index: 2;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 header .header {
   display: flex;
@@ -79,92 +85,44 @@ header .enter-user .button-header {
 }
 .image1 {
   position: relative;
-  bottom: 0px;
-  width: 100vw;
-  margin-top: -5px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 .image1 #img1 {
   min-width: 1280px;
   width: 100vw;
+  padding: 0px;
 }
-.image1 span {
-  display: block;
+.image1 .content {
   position: absolute;
-  top: 14.7239263804%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: max-content;
+  height: 100%;
+  top: 0px;
+  padding: 60px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.image1 .content .title {
+  display: block;
+  width: 100%;
   font-family: Lato-Regular;
   font-size: 21.75px;
   color: white;
   text-align: center;
-  margin: auto;
-}
-.image1 .sign_up {
-  position: absolute;
-  top: 51.8404907975%;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background-image: url(../images/obl_enter.png);
-  width: 453.041px;
-  height: 81.739px;
-  margin: auto;
-}
-.image1 .sign_up input[type="text"] {
-  padding: 6px;
-  color: gray;
-  border-radius: 6px;
-  border: 0px;
-  font-family: Lato-Light;
-  font-size: 15.03px;
-}
-.image1 .sign_up .usrFirstName {
-  position: absolute;
-  left: 23px;
-  top: 14px;
-  width: 115.181px;
-  height: 28.84px;
-}
-.image1 .sign_up .usrSecondName {
-  position: absolute;
-  top: 14px;
-  left: 143px;
-  width: 164.708px;
-  height: 29.375px;
-}
-.image1 .sign_up .button-enter {
-  font-family: Lato-Light;
-  font-size: 9.79px;
-  position: absolute;
-  top: 14px;
-  left: 328px;
-  width: 105.284px;
-  height: 29.375px;
-  background-color: #0A9D0A;
-  color: white;
-  border-radius: 11px;
-  border: 1px solid white;
-}
-.image1 .sign_up span {
-  font-family: Lato-Regular;
-  font-size: 10.22px;
-  color: white;
-  position: absolute;
-  left: 0;
-  top: 53px;
 }
 .sign_up {
-  position: absolute;
-  top: 169px;
-  left: 424px;
+  position: relative;
   background-image: url(../images/obl_enter.png);
-  width: 453.041px;
-  height: 81.739px;
+  max-width: 453.041px;
+  width: max-content;
+  padding: 15px;
 }
 .sign_up input[type="text"] {
   padding: 6px;
+  margin-right: 10px;
   color: gray;
   border-radius: 6px;
   border: 0px;
@@ -172,25 +130,16 @@ header .enter-user .button-header {
   font-size: 15.03px;
 }
 .sign_up .usrFirstName {
-  position: absolute;
-  left: 23px;
-  top: 14px;
   width: 115.181px;
   height: 28.84px;
 }
 .sign_up .usrSecondName {
-  position: absolute;
-  top: 14px;
-  left: 143px;
   width: 164.708px;
   height: 29.375px;
 }
 .sign_up .button-enter {
   font-family: Lato-Light;
-  font-size: 9.79px;
-  position: absolute;
-  top: 14px;
-  left: 328px;
+  font-size: 12px;
   width: 105.284px;
   height: 29.375px;
   background-color: #0A9D0A;
@@ -198,13 +147,10 @@ header .enter-user .button-header {
   border-radius: 11px;
   border: 1px solid white;
 }
-.sign_up span {
+.sign_up label {
   font-family: Lato-Regular;
   font-size: 10.22px;
   color: white;
-  position: absolute;
-  left: 101px;
-  top: 53px;
 }
 .image2 {
   position: relative;
@@ -450,21 +396,6 @@ header .enter-user .button-header {
   font-family: Lato-Regular;
   font-size: 22.99px;
 }
-.image4 .content {
-  position: absolute;
-  width: 759px;
-  height: max-content;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-  margin-top: 5%;
-}
-.image4 #img4 {
-  min-width: 1280px;
-  width: 100vw;
-}
 .image4 .noactive {
   position: absolute;
   top: 0;
@@ -473,59 +404,75 @@ header .enter-user .button-header {
   min-width: 1280px;
   opacity: 0.65;
 }
-.image4 .img1 {
-  float: left;
+.image4 #img4 {
+  min-width: 1280px;
+  width: 100vw;
+}
+.image4 .content {
+  width: max-content;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+.image4 .content .info {
+  width: max-content;
+}
+.image4 .content .info .line {
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+.image4 .content .info .line:nth-child(2n) {
+  justify-content: flex-end;
+}
+.image4 .content .info .line span {
+  font-size: 20px;
+}
+.image4 .content .info .line .img1 {
   height: 202px;
 }
-.image4 .img1 img {
+.image4 .content .info .line .img1 img {
   margin-left: 61px;
 }
-.image4 .arrow {
-  float: left;
+.image4 .content .info .line .arrow {
   margin-left: 95px;
   margin-top: 64px;
   transform: rotate(-90deg);
 }
-.image4 .arrow2 {
-  float: right;
+.image4 .content .info .line .arrow2 {
   margin-top: 22px;
-  margin-right: 225px;
+  margin-right: 100px;
 }
-.image4 .arrow3 {
-  float: right;
+.image4 .content .info .line .arrow3 {
   margin-top: 64px;
   margin-right: 50px;
   transform: rotate(90deg);
 }
-.image4 .img2 {
-  float: left;
+.image4 .content .info .line .img2 {
   margin-left: 26px;
 }
-.image4 .img2 img {
+.image4 .content .info .line .img2 img {
   margin-left: 54px;
 }
-.image4 .img3 {
+.image4 .content .info .line .img3 {
   clear: right;
   float: right;
   margin-right: 100px;
 }
-.image4 .img3 img {
+.image4 .content .info .line .img3 img {
   margin-left: 61px;
 }
-.image4 .img4 {
-  float: right;
-}
-.image4 .img4 img {
+.image4 .content .info .line .img4 img {
   margin-left: 61px;
-}
-.image4 .sign_up {
-  position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  margin-top: 84.4333748443%;
 }
 .image5 {
   background-color: #D0D0D0;

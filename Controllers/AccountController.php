@@ -5,6 +5,7 @@ namespace Controllers;
 use core\Controller;
 use core\DataLib\SQLBuilder;
 use Model\Account;
+use Model\RoleUser;
 use PDOException;
 
 class AccountController extends Controller
@@ -42,7 +43,12 @@ class AccountController extends Controller
 
             if (empty($errors)) {
                 $_SESSION['authorize'] = $user;
-                header('Refresh: 0; URL=main');
+                $userCurrent = Account::findId($user["Id"]);
+                $role = $userCurrent->include(new RoleUser())->roleUser;
+                if (strcmp($role, "Admin") == 0)
+                    $_SESSION['admin'] = $user;
+                else
+                    $_SESSION['authorize'] = $user;
             } else {
                 echo "<p style='color:red' >" . array_shift($errors) . "</p>";
             }
@@ -98,15 +104,15 @@ class AccountController extends Controller
     }
 
     // Восстановление пароля
-    public function recoveryAction() {
+    public function recoveryAction()
+    {
         if (!empty($_POST)) {
             if (!$this->model->checkEmailExists($_POST['email'])) {
                 $this->view->message('error', 'Пользователь не найден');
-            }
-            else{
+            } else {
                 $this->model = Account::findByEmail($_POST['email']);
 
-                if(!$this->model->checkStatus())
+                if (!$this->model->checkStatus())
                     $this->view->message('error', 'Пользователь не подтвердил почту');
                 else {
                     $this->model->recovery();
@@ -118,11 +124,11 @@ class AccountController extends Controller
         $this->view->render('Восстановление пароля');
     }
 
-    public function resetAction() {
+    public function resetAction()
+    {
         if (!$this->model->checkTokenExists($this->route['token'])) {
             $this->view->redirect('account/login');
-        }
-        else {
+        } else {
             $this->model = Account::findByToken($this->route['token']);
             $password = $this->model->reset($this->route['token']);
             $vars = [

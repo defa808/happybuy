@@ -56,5 +56,9 @@ return [
         'controller' => 'Home',
         'action' => 'ShowFavourite'
     ],
+    'admin'=>[
+        'controller' => 'Admin',
+        'action' => 'Index'
+    ]
 
 ];

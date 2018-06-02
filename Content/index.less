@@ -10,24 +10,27 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
 }
 
 body {
     position: relative;
+    padding: 0px;
+    margin:0px;
 }
 
+img{
+    margin:0px;
 
+}
 
 header {
     position: relative;
-    height: 65px;
     width: 100vw;
     background-color: #0080CE;
-    box-shadow: 2px 1px 2px rgba(0,0,0, 0.75);
-    z-index: 2;
-
-
-
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 
     .header {
         display: flex;
@@ -37,8 +40,6 @@ header {
         height: 65px;
         margin: auto;
     }
-
-
 
     .logo {
         margin-top: 15px;
@@ -99,103 +100,49 @@ header {
 
 .image1 {
     position: relative;
-    bottom: 0px;
-    width:100vw;
-    margin-top: -5px;
+    width:100%;
+    padding:0;
+    margin: 0;
 
     #img1 {
         min-width: 1280px;
         width: 100vw;
+        padding:0px;
     }
 
-    span {
-        display: block;
+    .content {
         position: absolute;
-        top: 14.7239263804%;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: max-content;
-        font-family: Lato-Regular;
-        font-size: 21.75px;
-        color: white;
-        text-align: center;
-        margin: auto;
-    }
+        height:100%;
+        top: 0px;
+        padding: 60px 60px;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items:center;
+        width:100%;
 
-    .sign_up {
-        position: absolute;
-        top: 51.8404907975%;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        background-image: url(../images/obl_enter.png);
-        width: 453.041px;
-        height: 81.739px;
-        margin: auto;
-
-
-        input[type="text"] {
-            padding: 6px;
-            color: gray;
-            border-radius: 6px;
-            border: 0px;
-            font-family: Lato-Light;
-            font-size: 15.03px;
-        }
-
-        .usrFirstName {
-            position: absolute;
-            left: 23px;
-            top: 14px;
-            width: 115.181px;
-            height: 28.84px;
-        }
-
-        .usrSecondName {
-            position: absolute;
-            top: 14px;
-            left: 143px;
-            width: 164.708px;
-            height: 29.375px;
-        }
-
-        .button-enter {
-            font-family: Lato-Light;
-            font-size: 9.79px;
-            position: absolute;
-            top: 14px;
-            left: 328px;
-            width: 105.284px;
-            height: 29.375px;
-            background-color: #0A9D0A;
-            color: white;
-            border-radius: 11px;
-            border: 1px solid white;
-        }
-
-        span {
+        .title {
+            display: block;
+            width: 100%;
             font-family: Lato-Regular;
-            font-size: 10.22px;
+            font-size: 21.75px;
             color: white;
-            position: absolute;
-            left: 0;
-            top: 53px;
+            text-align: center;
         }
     }
 }
 
 .sign_up {
-    position: absolute;
-    top: 169px;
-    left: 424px;
+    position:relative;
     background-image: url(../images/obl_enter.png);
-    width: 453.041px;
-    height: 81.739px;
+    max-width: 453.041px;
+    width:max-content;
+    padding: 15px;
 
 
     input[type="text"] {
         padding: 6px;
+        margin-right:10px;
         color: gray;
         border-radius: 6px;
         border: 0px;
@@ -204,27 +151,18 @@ header {
     }
 
     .usrFirstName {
-        position: absolute;
-        left: 23px;
-        top: 14px;
         width: 115.181px;
         height: 28.84px;
     }
 
     .usrSecondName {
-        position: absolute;
-        top: 14px;
-        left: 143px;
         width: 164.708px;
         height: 29.375px;
     }
 
     .button-enter {
         font-family: Lato-Light;
-        font-size: 9.79px;
-        position: absolute;
-        top: 14px;
-        left: 328px;
+        font-size:12px;
         width: 105.284px;
         height: 29.375px;
         background-color: #0A9D0A;
@@ -233,13 +171,10 @@ header {
         border: 1px solid white;
     }
 
-    span {
+    label {
         font-family: Lato-Regular;
         font-size: 10.22px;
         color: white;
-        position: absolute;
-        left: 101px;
-        top: 53px;
     }
 }
 
@@ -537,24 +472,6 @@ header {
     font-family: Lato-Regular;
     font-size: 22.99px;
 
-    .content {
-        position: absolute;
-        width: 759px;
-        height: max-content;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        margin: auto;
-        margin-top:5%;
-    }
-
-    #img4 {
-        //height: 802.062px;
-        min-width: 1280px;
-        width: 100vw;
-    }
-
     .noactive {
         position: absolute;
         top: 0;
@@ -564,72 +481,95 @@ header {
         opacity: 0.65;
     }
 
+    #img4 {
+        //height: 802.062px;
+        min-width: 1280px;
+        width: 100vw;
+    }
 
+    .content {
+        width:max-content;
+        height:100%;
+        width:100%;
+        position: absolute;
+        top:0px;
+        padding:60px;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items:center;
+        margin: 0 auto;
 
-    .img1 {
-        float: left;
-        height: 202px;
+        .info {
+            width:max-content;
 
-        img {
-            margin-left: 61px;
+            .line {
+                margin-bottom: 10px;
+                width:100%;
+                display:flex;
+                justify-content: space-between;
+                align-content: center;
+
+                &:nth-child(2n){
+                    justify-content: flex-end;
+
+                }
+
+                span{
+                    font-size:20px;
+                }
+
+                .img1 {
+                    height: 202px;
+
+                    img {
+                        margin-left: 61px;
+                    }
+                }
+
+                .arrow {
+                    margin-left: 95px;
+                    margin-top: 64px;
+                    transform: rotate(-90deg);
+                }
+
+                .arrow2 {
+                    margin-top: 22px;
+                    margin-right: 100px;
+                }
+
+                .arrow3 {
+                    margin-top: 64px;
+                    margin-right: 50px;
+                    transform: rotate(90deg);
+                }
+
+                .img2 {
+                    margin-left: 26px;
+
+                    img {
+                        margin-left: 54px;
+                    }
+                }
+
+                .img3 {
+                    clear: right;
+                    float: right;
+                    margin-right: 100px;
+
+                    img {
+                        margin-left: 61px;
+                    }
+                }
+
+                .img4 {
+
+                    img {
+                        margin-left: 61px;
+                    }
+                }
+            }
         }
-    }
-
-    .arrow {
-        float: left;
-        margin-left: 95px;
-        margin-top: 64px;
-        transform: rotate(-90deg);
-    }
-
-    .arrow2 {
-        float: right;
-        margin-top: 22px;
-        margin-right: 225px;
-    }
-
-    .arrow3 {
-        float: right;
-        margin-top: 64px;
-        margin-right: 50px;
-        transform: rotate(90deg);
-    }
-
-    .img2 {
-        float: left;
-        margin-left: 26px;
-
-        img {
-            margin-left: 54px;
-        }
-    }
-
-    .img3 {
-        clear: right;
-        float: right;
-        margin-right: 100px;
-
-        img {
-            margin-left: 61px;
-        }
-    }
-
-    .img4 {
-        float: right;
-
-        img {
-            margin-left: 61px;
-        }
-    }
-
-    .sign_up{
-        position:absolute;
-        bottom: 0;
-        top: 0;
-        left:0;
-        right:0;
-        margin:auto;
-        margin-top:84.4333748443%;
     }
 }
 
