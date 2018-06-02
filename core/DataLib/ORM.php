@@ -41,14 +41,16 @@ abstract class ORM
         return $res;
     }
 
-    public static function takeAllCount(){
+    public static function takeAllCount()
+    {
         $db = new SQLBuilder();
         $table = get_called_class()::getNameInDatabase();
         $res = $db->query("SELECT count(*)")->table($table)->exec();
         return $res;
     }
 
-    public static function takeAll(){
+    public static function takeAll()
+    {
         $db = self::setup();
         $res = $db->getAll();
         return $res;
@@ -65,7 +67,10 @@ abstract class ORM
         if (empty($keyField))
             return false;
         $db = self::setup();
-        return $db->delete($keyFieldValue);
+
+        $strCount = $db->delete(get_called_class()::getNameInDatabase(), $keyFieldValue);
+        if ($strCount > 0)
+            return true;
 
     }
 

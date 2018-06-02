@@ -286,6 +286,7 @@ class SQLBuilder implements CRUD
     public function get()
     {
         $this->buildQuery();
+        var_dump("<br/>");
         $stmt = $this->executeQuery();
         if ($stmt->rowCount() > 0)
             return $stmt->fetch();
@@ -413,9 +414,7 @@ class SQLBuilder implements CRUD
             $stmt = $this->dbh->prepare($this->sql);
             $stmt->execute($this->bindValues);
             return $stmt->rowCount();
-        }// end if there is an ID or Array
-        // $this->getSQL = "<b>Attention:</b> This Query will update all rows in the table, luckily it didn't execute yet!, use exec() method to execute the following query :<br>". $this->sql;
-        // $this->getSQL = $this->sql;
+        }
         return $this;
     }
 
