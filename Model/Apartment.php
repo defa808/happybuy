@@ -12,22 +12,17 @@ class Apartment extends ORM implements IToHtml
     protected $mainImage;
     protected $countImage;
     protected $room_Id;
-    protected $room;
+    public $room;
     protected $areaLocation_Id;
-    protected $areaLocation;
+    public $areaLocation;
     protected $metro_Id;
-    protected $metro;
+    public $metro;
     protected $areaGeneral;
     protected $areaKitchen;
     protected $areaLiving;
     protected $floor;
     protected $floorGeneral;
     protected $price;
-
-    public function __construct()
-    {
-        $this->mainImage = "../images/{$this->mainImage}";
-    }
 
     public function Apartment($urlImage, $countImage, $roomId, $areaLocationId, $metroId, $areaGeneral, $areaKitchen, $areaLiving, $floor, $floorGeneral, $price)
     {
@@ -81,6 +76,10 @@ class Apartment extends ORM implements IToHtml
         return $db->table("apartments")->className(get_called_class())->orderBy("Id", "DESC")->limit($start, $max)->getAll();
     }
 
+    public function getMainImage(){
+        return "../images/{$this->mainImage}";
+    }
+
     public function ToHtml()
     {
         ?>
@@ -97,7 +96,7 @@ class Apartment extends ORM implements IToHtml
                 <form method="GET" class="form_favourite" action="/apartment" onclick="submit()">
                     <input type="hidden" value="<?= $this->Id ?>" name="Id">
 
-                    <img src="<?= $this->mainImage ?>" class="image-for-content"/>
+                    <img src="<?= $this->getMainImage() ?>" class="image-for-content"/>
                     <div class="content">
                         <div class="count-photo"><a href="#"><?= $this->countImage ?> фото</a></div>
                         <div class="option">
@@ -129,6 +128,139 @@ class Apartment extends ORM implements IToHtml
                 </form>
             </div>
         </div>
+
+        <?php
+    }
+
+    public function GetCRUD()
+    {
+        $this->include(new Room)->include(new AreaLocation())->include(new Metro());
+        $rooms = Room::takeAll();
+        $areaLocationList = AreaLocation::takeAll();
+        $metroList = Metro::takeAll();
+        ?>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <input form="form<?= $this->Id ?>" type="text" maxlength="200" name="mainImage" class="form-control"
+                           value="<?= $this->mainImage ?>">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input form="form<?= $this->Id ?>" type="number" maxlength="20" name="countImage" class="form-control"
+                           value="<?= $this->countImage ?>">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <select class="form-control" form="form<?= $this->Id ?>" name="room_Id" >
+                        <?php foreach ($rooms as $room) { ?>
+                            <option
+                                     <?= $this->room_Id == $room->Id ? "selected = 'selected'" : '' ?>
+                                    value="<?= $room->Id ?>"><?= $room ?></option>
+                            <?php
+                        } ?>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div class="form-group" form="form<?= $this->Id ?>" name="areaLocation_Id">
+                    <select form="form<?= $this->Id ?>" class="form-control" name="areaLocation_Id">
+                        <?php foreach ($areaLocationList as $area) { ?>
+                            <option
+                                     <?= $this->areaLocation_Id == $area->Id ? "selected = 'selected'" : '' ?>
+                                    value="<?= $area->Id ?>"><?= $area ?></option>
+                            <?php
+                        } ?>
+                    </select>
+                </div>
+
+            </td>
+            <td>
+                <div class="form-group" form="form<?= $this->Id ?>" name="metro_Id">
+                    <select class="form-control" form="form<?= $this->Id ?>" name="metro_Id">
+                        <?php foreach ($metroList as $metro) { ?>
+                            <option
+                                     <?= $this->metro_Id == $metro->Id ? "selected = 'selected'" : '' ?>
+                                    value="<?= $metro->Id ?>"><?= $metro ?></option>
+                            <?php
+                        } ?>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input form="form<?= $this->Id ?>" type="number" name="areaGeneral" class="form-control"
+                           maxlength="20"
+                           value="<?= $this->areaGeneral ?>">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input form="form<?= $this->Id ?>"
+                           type="number" name="areaKitchen" class="form-control"
+                           maxlength="20"
+                           value="<?= $this->areaKitchen ?>">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input form="form<?= $this->Id ?>"
+                           type="number" name="areaLiving" class="form-control"
+                           maxlength="20"
+                           value="<?= $this->areaLiving ?>">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input form="form<?= $this->Id ?>"
+                           type="number" name="floor" class="form-control"
+                           maxlength="20"
+                           value="<?= $this->floor ?>"/>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input form="form<?= $this->Id ?>"
+                           type="number" name="floorGeneral" class="form-control"
+                           maxlength="20"
+                           value="<?= $this->floorGeneral ?>"/>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input form="form<?= $this->Id ?>"
+                           type="number" name="price" class="form-control"
+                           maxlength="20"
+                           value="<?= $this->price ?>"/>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <form id="form<?= $this->Id ?>" action="Admin/SaveApartment" method="POST"></form>
+                    <input form="form<?= $this->Id ?>"
+                           type="hidden"
+                           name="Id"
+                           value="<?= $this->Id ?>"/>
+                    <button form="form<?= $this->Id ?>"
+                            type="submit" class="btn btn-info">
+                        <i class="fa fa-save" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <form id="delete<?= $this->Id ?>" action="deleteapartment" method="POST"
+                          onsubmit="return confirm('Ви впевненні?')"></form>
+                    <input form="delete<?= $this->Id ?>"
+                           type="hidden" name="Id" value="<?= $this->Id ?>"/>
+                    <button form="delete<?= $this->Id ?>"
+                            type="submit" class="btn btn-danger">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+
 
         <?php
     }
