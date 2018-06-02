@@ -30,9 +30,7 @@ class Room extends ORM implements IToHTML
 
     public function __set($property, $value)
     {
-        if (property_exists($this, $property))
-            return $this->$property = $value;
-        return null;
+        return $this->$property = $value;
     }
 
     static function getNameInDatabase()
@@ -40,19 +38,24 @@ class Room extends ORM implements IToHTML
         return "rooms";
     }
 
+    public function __toString()
+    {
+        return (string)$this->Text;
+    }
+
     public function ToHtml()
     {
         ?>
         <div class="items">
-                <input class="checked-items"
-                       id="<?= "room". $this->Id ?>"
-                       type="checkbox"
-                       name="room_Id"
-                       value="<?=$this->Id?>">
+            <input class="checked-items"
+                   id="<?= "room" . $this->Id ?>"
+                   type="checkbox"
+                   name="room_Id"
+                   value="<?= $this->Id ?>">
 
-                <label for="<?= "room". $this->Id ?>"
-                       id="<?= "room".$this->Id?>value" ><?=$this->getText()?></label>
-            </div>
-    <?php
+            <label for="<?= "room" . $this->Id ?>"
+                   id="<?= "room" . $this->Id ?>value"><?= $this->getText() ?></label>
+        </div>
+        <?php
     }
 }

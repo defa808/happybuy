@@ -12,11 +12,8 @@ class Apartment extends ORM implements IToHtml
     protected $mainImage;
     protected $countImage;
     protected $room_Id;
-    public $room;
     protected $areaLocation_Id;
-    public $areaLocation;
     protected $metro_Id;
-    public $metro;
     protected $areaGeneral;
     protected $areaKitchen;
     protected $areaLiving;
@@ -24,19 +21,23 @@ class Apartment extends ORM implements IToHtml
     protected $floorGeneral;
     protected $price;
 
-    public function Apartment($urlImage, $countImage, $roomId, $areaLocationId, $metroId, $areaGeneral, $areaKitchen, $areaLiving, $floor, $floorGeneral, $price)
+    public function __construct()
     {
-        $this->mainImage = $urlImage;
-        $this->countImage = $countImage;
-        $this->room_Id = $roomId;
-        $this->areaLocation_Id = $areaLocationId;
-        $this->metro_Id = $metroId;
-        $this->areaGeneral = $areaGeneral;
-        $this->areaKitchen = $areaKitchen;
-        $this->areaLiving = $areaLiving;
-        $this->floor = $floor;
-        $this->floorGeneral = $floorGeneral;
-        $this->price = $price;
+    }
+
+    public function initApartment($data)
+    {
+        $this->mainImage = strip_tags($data["mainImage"]);
+        $this->countImage = strip_tags($data["countImage"]);
+        $this->room_Id = strip_tags($data["room_Id"]);
+        $this->areaLocation_Id = strip_tags($data["areaLocation_Id"]);
+        $this->metro_Id = strip_tags($data["metro_Id"]);
+        $this->areaGeneral = strip_tags($data["areaGeneral"]);
+        $this->areaKitchen = strip_tags($data["areaKitchen"]);
+        $this->areaLiving = strip_tags($data["areaLiving"]);
+        $this->floor = strip_tags($data["floor"]);
+        $this->floorGeneral = strip_tags($data["floorGeneral"]);
+        $this->price = strip_tags($data["price"]);
     }
 
     public static function includeAllRelations($items)
@@ -61,9 +62,7 @@ class Apartment extends ORM implements IToHtml
 
     public function __set($property, $value)
     {
-        if (property_exists($this, $property))
-            return $this->$property = $value;
-        return null;
+        $this->$property = $value;
     }
 
     public static function getList($route)
@@ -76,7 +75,8 @@ class Apartment extends ORM implements IToHtml
         return $db->table("apartments")->className(get_called_class())->orderBy("Id", "DESC")->limit($start, $max)->getAll();
     }
 
-    public function getMainImage(){
+    public function getMainImage()
+    {
         return "../images/{$this->mainImage}";
     }
 
@@ -134,7 +134,8 @@ class Apartment extends ORM implements IToHtml
 
     public function GetCRUD()
     {
-        $this->include(new Room)->include(new AreaLocation())->include(new Metro());
+        if (isset($this->Id))
+            $this->include(new Room)->include(new AreaLocation())->include(new Metro());
         $rooms = Room::takeAll();
         $areaLocationList = AreaLocation::takeAll();
         $metroList = Metro::takeAll();
@@ -148,16 +149,17 @@ class Apartment extends ORM implements IToHtml
             </td>
             <td>
                 <div class="form-group">
-                    <input form="form<?= $this->Id ?>" type="number" maxlength="20" name="countImage" class="form-control"
+                    <input form="form<?= $this->Id ?>" type="number" maxlength="20" name="countImage"
+                           class="form-control"
                            value="<?= $this->countImage ?>">
                 </div>
             </td>
             <td>
                 <div class="form-group">
-                    <select class="form-control" form="form<?= $this->Id ?>" name="room_Id" >
+                    <select class="form-control" form="form<?= $this->Id ?>" name="room_Id">
                         <?php foreach ($rooms as $room) { ?>
                             <option
-                                     <?= $this->room_Id == $room->Id ? "selected = 'selected'" : '' ?>
+                                <?= $this->room_Id == $room->Id ? "selected = 'selected'" : '' ?>
                                     value="<?= $room->Id ?>"><?= $room ?></option>
                             <?php
                         } ?>
@@ -169,7 +171,7 @@ class Apartment extends ORM implements IToHtml
                     <select form="form<?= $this->Id ?>" class="form-control" name="areaLocation_Id">
                         <?php foreach ($areaLocationList as $area) { ?>
                             <option
-                                     <?= $this->areaLocation_Id == $area->Id ? "selected = 'selected'" : '' ?>
+                                <?= $this->areaLocation_Id == $area->Id ? "selected = 'selected'" : '' ?>
                                     value="<?= $area->Id ?>"><?= $area ?></option>
                             <?php
                         } ?>
@@ -182,7 +184,7 @@ class Apartment extends ORM implements IToHtml
                     <select class="form-control" form="form<?= $this->Id ?>" name="metro_Id">
                         <?php foreach ($metroList as $metro) { ?>
                             <option
-                                     <?= $this->metro_Id == $metro->Id ? "selected = 'selected'" : '' ?>
+                                <?= $this->metro_Id == $metro->Id ? "selected = 'selected'" : '' ?>
                                     value="<?= $metro->Id ?>"><?= $metro ?></option>
                             <?php
                         } ?>
@@ -244,17 +246,20 @@ class Apartment extends ORM implements IToHtml
                            name="Id"
                            value="<?= $this->Id ?>"/>
                     <button form="form<?= $this->Id ?>"
-                            type="submit" class="btn btn-info">
+                            onclick="saveApartment('form<?= $this->Id ?>')"
+                            type="button"
+                            class="btn btn-info">
                         <i class="fa fa-save" aria-hidden="true"></i>
                     </button>
                 </div>
                 <div class="form-group">
-                    <form id="delete<?= $this->Id ?>" action="deleteapartment" method="POST"
-                          onsubmit="return confirm('Ви впевненні?')"></form>
+                    <form id="delete<?= $this->Id ?>" action="Admin/DeleteApartment" method="POST"></form>
                     <input form="delete<?= $this->Id ?>"
                            type="hidden" name="Id" value="<?= $this->Id ?>"/>
                     <button form="delete<?= $this->Id ?>"
-                            type="submit" class="btn btn-danger">
+                            onclick="deleteApartment('form<?= $this->Id ?>')"
+                            type="button"
+                            class="btn btn-danger">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </div>

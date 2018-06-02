@@ -33,9 +33,12 @@ class Metro extends ORM
 
     public function __set($property, $value)
     {
-        if (property_exists($this, $property))
-            return $this->$property = $value;
-        return null;
+        return $this->$property = $value;
+    }
+
+    public function __toString()
+    {
+        return (string)$this->Text;
     }
 
     public static function getNameInDatabase()

@@ -33,9 +33,7 @@ class RoleUser extends ORM
 
     public function __set($property, $value)
     {
-        if (property_exists($this, $property))
-            return $this->$property = $value;
-        return null;
+        return $this->$property = $value;
     }
 
     static function getNameInDatabase()

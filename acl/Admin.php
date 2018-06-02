@@ -17,7 +17,10 @@ return [
 
     ],
     'admin' => [
-        'Index'
+        'Index',
+        'saveApartment',
+        'deleteApartment',
+        'createApartment'
     ],
 
 ];

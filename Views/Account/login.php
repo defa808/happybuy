@@ -1,4 +1,4 @@
-<link href="Content/bootstrap.min.css" rel="stylesheet"/>
+<link href="Content/bootstrap.css" rel="stylesheet"/>
 
 
 <h1>Войдите</h1>

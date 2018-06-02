@@ -29,7 +29,7 @@ abstract class ORM
         $nameFieldId = $nameField . "_Id";
         $field = $this->__get($nameFieldId);
         $db->where($field);
-        $this->__set($nameField, $db->get());
+        $this->$nameField = $db->get();
 
         return $this;
     }

@@ -56,9 +56,24 @@ return [
         'controller' => 'Home',
         'action' => 'ShowFavourite'
     ],
-    'admin'=>[
+    'admin' => [
         'controller' => 'Admin',
         'action' => 'Index'
-    ]
+    ],
+
+    'Admin/SaveApartment' => [
+        'controller' => 'Admin',
+        'action' => 'saveApartment'
+    ],
+
+    'Admin/DeleteApartment' => [
+        'controller' => 'Admin',
+        'action' => 'deleteApartment'
+    ],
+    'Admin/CreateApartment' => [
+        'controller' => 'Admin',
+        'action' => 'createApartment'
+    ],
+
 
 ];

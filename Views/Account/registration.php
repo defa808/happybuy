@@ -1,6 +1,6 @@
 <h2>Регистрация</h2>
 <link href="Content/account.css" rel="stylesheet"/>
-<link href="Content/bootstrap.min.css" rel="stylesheet"/>
+<link href="Content/bootstrap.css" rel="stylesheet"/>
 <form action="registration" method="POST">
 
     <small class="form-text text-muted" ><?=$errors[0] ?? ""?></small>

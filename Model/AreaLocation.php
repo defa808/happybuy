@@ -32,10 +32,7 @@ class AreaLocation extends ORM implements IToHTML
 
     public function __set($property, $value)
     {
-        if (property_exists($this, $property))
-            return $this->$property = $value;
-        return null;
-
+        return $this->$property = $value;
     }
 
 
@@ -44,13 +41,19 @@ class AreaLocation extends ORM implements IToHTML
         return "arealocations";
     }
 
+    public function __toString()
+    {
+        return (string)$this->Text;
+    }
+
     public function ToHtml()
     {
         ?>
-        <div class="items" >
-            <input class="checked-items"  type="checkbox" name="areaLocation_Id"
-                   id="<?= "area".$this->Id ?>" value="<?= $this->Id ?>">
-            <label for="<?= "area".$this->Id ?>" id="<?= "area".$this->Id."value"?>" ><?= $this->GetText() ?> район</label>
+        <div class="items">
+            <input class="checked-items" type="checkbox" name="areaLocation_Id"
+                   id="<?= "area" . $this->Id ?>" value="<?= $this->Id ?>">
+            <label for="<?= "area" . $this->Id ?>" id="<?= "area" . $this->Id . "value" ?>"><?= $this->GetText() ?>
+                район</label>
         </div>
         <?php
     }
