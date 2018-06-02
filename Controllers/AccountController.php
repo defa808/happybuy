@@ -49,6 +49,7 @@ class AccountController extends Controller
                     $_SESSION['admin'] = $user;
                 else
                     $_SESSION['authorize'] = $user;
+                header('Refresh: 0; URL=main');
             } else {
                 echo "<p style='color:red' >" . array_shift($errors) . "</p>";
             }
