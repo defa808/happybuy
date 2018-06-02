@@ -44,9 +44,7 @@ abstract class ORM
     public static function takeAllCount(){
         $db = new SQLBuilder();
         $table = get_called_class()::getNameInDatabase();
-
         $res = $db->query("SELECT count(*)")->table($table)->exec();
-
         return $res;
     }
 
@@ -60,11 +58,14 @@ abstract class ORM
     {
         if (!is_object($currentObj))
             return false;
-        $id = key(get_class_vars(get_called_class()));
-        if (empty($id))
+
+        $keyField = key(get_class_vars(get_called_class()));
+        $keyFieldValue = $currentObj->$keyField;
+
+        if (empty($keyField))
             return false;
         $db = self::setup();
-        return $db->delete($id);
+        return $db->delete($keyFieldValue);
 
     }
 
@@ -73,9 +74,12 @@ abstract class ORM
         if (!is_object($currentObj))
             return false;
         $db = self::setup();
+
+        $keyField = key(get_class_vars(get_called_class()));
+
         $myArrayValue = array();
         foreach ($currentObj as $k => $v) {
-            if ($k != "Id")
+            if ($k != $keyField)
                 $myArrayValue[$k] = $v;
         }
         $db->insert($myArrayValue);
@@ -86,16 +90,19 @@ abstract class ORM
     {
         if (!is_object($currentObj))
             return false;
-        $id = key(get_class_vars(get_called_class()));
-        if (empty($id))
+
+        $keyField = key(get_class_vars(get_called_class()));
+        $keyFieldValue = $currentObj->$keyField;
+
+        if (empty($keyField))
             return false;
         $db = self::setup();
         $myArrayValue = array();
         foreach ($currentObj as $k => $v) {
-            if ($k != "Id")
+            if ($k != $keyField)
                 $myArrayValue[$k] = $v;
         }
-        return $db->update($myArrayValue, $id);
+        return $db->update($myArrayValue, $keyFieldValue);
     }
 
     abstract static function getNameInDatabase();
