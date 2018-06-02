@@ -286,7 +286,6 @@ class SQLBuilder implements CRUD
     public function get()
     {
         $this->buildQuery();
-        var_dump("<br/>");
         $stmt = $this->executeQuery();
         if ($stmt->rowCount() > 0)
             return $stmt->fetch();
