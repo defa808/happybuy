@@ -20,7 +20,11 @@ return [
         'Index',
         'saveApartment',
         'deleteApartment',
-        'createApartment'
+        'createApartment',
+        'showUsers',
+        'saveUser',
+        'deleteUser',
+        'createUser'
     ],
 
 ];

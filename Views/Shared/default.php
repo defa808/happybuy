@@ -11,7 +11,7 @@ $user = $_SESSION["authorize"];
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?=$title ?></title>
+    <title><?= $title ?></title>
     <meta charset="utf-8"/>
     <script src="/Scripts/MainAnimation.js"></script>
     <link rel="stylesheet" href="/Content/main.css">
@@ -47,8 +47,9 @@ $user = $_SESSION["authorize"];
     </div>
 
     <div class="welcome">
-        <form method="POST" action="/logout">
-            <span>Ласкаво просимо,</span><span><?= $user['login'] ?></span>
+        <span>Ласкаво просимо,</span><span><?= $user['login'] ?></span>
+        <?= isset($_SESSION["admin"]) ? "<a href='/admin'><button class='btn-exit' >Адмінка</button></a>" : "" ?>
+        <form class='logoutForm' method="POST" action="/logout">
             <button name="exit" class="btn-exit">Вихід</button>
         </form>
     </div>

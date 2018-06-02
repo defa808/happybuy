@@ -74,6 +74,24 @@ return [
         'controller' => 'Admin',
         'action' => 'createApartment'
     ],
+    'admin/users' => [
+        'controller' => 'Admin',
+        'action' => 'showUsers'
+    ],
+    'Admin/SaveUser' => [
+        'controller' => 'Admin',
+        'action' => 'saveUser'
+    ],
+
+    'Admin/DeleteUser' => [
+        'controller' => 'Admin',
+        'action' => 'deleteUser'
+    ],
+    'Admin/CreateUser' => [
+        'controller' => 'Admin',
+        'action' => 'createUser'
+    ],
+
 
 
 ];

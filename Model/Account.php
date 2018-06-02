@@ -20,7 +20,6 @@ class Account extends ORM
     public $token;
     public $status;
     public $roleUser_Id;
-    public $roleUser;
 
 
     public function register($data)
@@ -40,6 +39,16 @@ class Account extends ORM
 
     }
 
+    public function initUser($data)
+    {
+        $this->login = strip_tags($data["login"]);
+        $this->email = strip_tags($data["email"]);
+        $this->password = strip_tags($data["password"]);
+        $this->token = strip_tags($data["token"]);
+        $this->status = strip_tags($data["status"]);
+        $this->roleUser_Id = strip_tags($data["roleUser_Id"]);
+
+    }
 
 
     public function __get($property)
@@ -203,6 +212,89 @@ class Account extends ORM
         Account::update($this);
         return $newPassword;
     }
+
+    public function GetCRUD()
+    {
+        if (isset($this->Id))
+            $this->include(new RoleUser());
+        $rolesUsers = RoleUser::takeAll();
+        ?>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <input form="form<?= $this->Id ?>" type="text" maxlength="50" name="login" class="form-control"
+                           value="<?= $this->login ?>">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input form="form<?= $this->Id ?>" type="text" maxlength="100" name="email" class="form-control"
+                           value="<?= $this->email ?>">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input form="form<?= $this->Id ?>" type="text" maxlength="60" name="password" class="form-control"
+                           value="<?= $this->password ?>" readonly="readonly">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input form="form<?= $this->Id ?>" type="text" maxlength="1" name="status" class="form-control"
+                           value="<?= $this->status ?>" readonly="readonly">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input form="form<?= $this->Id ?>" type="text" maxlength="1" name="token" class="form-control"
+                           value="<?= $this->token ?>" readonly="readonly">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <select class="form-control" form="form<?= $this->Id ?>" name="roleUser_Id">
+                        <?php foreach ($rolesUsers as $rolesUser) { ?>
+                            <option
+                                <?= $this->roleUser_Id == $rolesUser->Id ? "selected = 'selected'" : '' ?>
+                                value="<?= $rolesUser->Id ?>"><?= $rolesUser ?></option>
+                            <?php
+                        } ?>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <form id="form<?= $this->Id ?>" action="Admin/SaveUser" method="POST"></form>
+                    <input form="form<?= $this->Id ?>"
+                           type="hidden"
+                           name="Id"
+                           value="<?= $this->Id ?>"/>
+                    <button form="form<?= $this->Id ?>"
+                            onclick="saveUser('form<?= $this->Id ?>')"
+                            type="button"
+                            class="btn btn-info">
+                        <i class="fa fa-save" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <form id="delete<?= $this->Id ?>" action="Admin/DeleteUser" method="POST"></form>
+                    <input form="delete<?= $this->Id ?>"
+                           type="hidden" name="Id" value="<?= $this->Id ?>"/>
+                    <button form="delete<?= $this->Id ?>"
+                            onclick="deleteUser('form<?= $this->Id ?>')"
+                            type="button"
+                            class="btn btn-danger">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+
+
+        <?php
+    }
+
+
 
     static function getNameInDatabase()
     {

@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use core\Controller;
+use Model\Account;
 use Model\Apartment;
 
 /**
@@ -27,7 +28,6 @@ class AdminController extends Controller
     {
         $data = $_POST;
         $id = strip_tags($data["Id"]);
-        var_dump($id);
         if ($id != "") {
             $apartment = Apartment::findId($id);
             if ($apartment != null) {
@@ -39,8 +39,6 @@ class AdminController extends Controller
             $apartment->initApartment($data);
             Apartment::create($apartment);
         }
-
-
     }
 
 
@@ -61,5 +59,51 @@ class AdminController extends Controller
         $apartment = new Apartment();
         $apartment->GetCRUD();
     }
+
+    public function showUsersAction(){
+        $items = Account::takeAll();
+        $vars = [
+            'items' => $items
+        ];
+        $this->view->render("Адмінка", $vars);
+    }
+
+    public function saveUserAction()
+    {
+        $data = $_POST;
+        $id = strip_tags($data["Id"]);
+        if ($id != "") {
+            $user = Account::findId($id);
+            if ($user != null) {
+                $user->initUser($data);
+                Account::update($user);
+            }
+        } else {
+            $user = new Account();
+            $user->initUser($data);
+            Account::create($user);
+        }
+    }
+
+
+    public function deleteUserAction()
+    {
+        $data = $_POST;
+        $id = strip_tags($data["Id"]);
+        if ($id != "") {
+            $user = Account::findId($id);
+            if ($user != null) {
+                Account::remove($user);
+            }
+        }
+    }
+
+    public function createUserAction()
+    {
+        $user = new Account();
+        $user->GetCRUD();
+    }
+
+
 
 }

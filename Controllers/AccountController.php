@@ -47,8 +47,7 @@ class AccountController extends Controller
                 $role = $userCurrent->include(new RoleUser())->roleUser;
                 if (strcmp($role, "Admin") == 0)
                     $_SESSION['admin'] = $user;
-                else
-                    $_SESSION['authorize'] = $user;
+
                 header('Refresh: 0; URL=main');
             } else {
                 echo "<p style='color:red' >" . array_shift($errors) . "</p>";
@@ -145,6 +144,7 @@ class AccountController extends Controller
     public function logOutAction()
     {
         unset($_SESSION['authorize']);
+        unset($_SESSION['admin']);
         $this->view->redirect("login");
     }
 

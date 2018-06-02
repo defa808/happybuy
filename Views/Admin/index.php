@@ -13,10 +13,10 @@
     <link href="../Content/bootstrap.css" rel="stylesheet">
     <div class="leftPanel">
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active">
+            <a href="/admin" class="list-group-item list-group-item-action active">
                 Квартири
             </a>
-            <a href="#" class="list-group-item list-group-item-action">Користувачі</a>
+            <a href="/admin/users" class="list-group-item list-group-item-action">Користувачі</a>
         </div>
     </div>
 
@@ -59,7 +59,7 @@
             url: '/Admin/SaveApartment',
             data: dataForm,
             success: function (data, textstatus) {
-                alert("Збережено"+data);
+                alert("Збережено запис");
 
             }
         });
