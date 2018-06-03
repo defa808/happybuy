@@ -6,6 +6,8 @@
  * Time: 23:23
  */
 ?>
+<link href="../Content/bootstrap.css" rel="stylesheet"/>
+
 <main class="favouriteMain">
 
     <div class="main">
@@ -16,7 +18,8 @@
         <div class="row" id="apartments">
             <?php
             foreach ($apartments as $f) {
-                $f->ToHtml();
+                $f->ToHtmlWithButton();
+                echo "";
             }
 
             ?>
@@ -52,13 +55,17 @@
 
 </main>
 
+<!--Script Area-->
 <script>
-    function ActiveLink() {
-        $('.favourite').addClass("active");
+    function removeFromFavourite(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/removeFavourite',
+            data: "Id=" + id,
+            success: function (data, textstatus) {
+                location.reload();
+            }
+        });
+
     }
-    ActiveLink();
-
-
-
-
 </script>

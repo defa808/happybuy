@@ -67,7 +67,6 @@ if (isset($apartment)) {
             <h1><strong>Квартири в Києві</strong></h1>
             <h2><?= $apartment->room ?></h2>
             <div class="container">
-                <div class="next-switch-room"><img src="../../images/img-next.png" alt="Previous Room"/></div>
                 <div class="bud-images">
                     <div class="bud-col smallImages">
                         <?php
@@ -93,7 +92,6 @@ if (isset($apartment)) {
                     <div><img src="../../images/bud-adobe.png" alt="png"/> Планування квартири</div>
 
                 </div>
-                <div class="next-switch-room"><img src="../../images/img-next-reverse.png" alt="Next Room"/></div>
 
             </div>
 

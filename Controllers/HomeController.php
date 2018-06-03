@@ -131,20 +131,31 @@ class HomeController extends Controller
         $_SESSION["favourite"] = $favourite;
     }
 
-    public function ShowFavouriteAction(){
+    public function RemoveFavouriteAction()
+    {
+        $data = $_GET;
+        $id = $data["Id"] ?? null;
+        if ($id != null) {
+            foreach ($_SESSION["favourite"] as $k => $v)
+                if ($v == $id)
+                    unset($_SESSION['favourite'][$k]);
+        }
+    }
 
-        $favouritesId =(array)$_SESSION["favourite"];
+    public function ShowFavouriteAction()
+    {
+
+        $favouritesId = (array)$_SESSION["favourite"];
         $favouriteApartments = array();
         foreach ($favouritesId as $id) {
             $favouriteApartments[] = Apartment::findId($id);
         }
         Apartment::includeAllRelations($favouriteApartments);
         $vars = [
-          'apartments' => $favouriteApartments
+            'apartments' => $favouriteApartments
         ];
         $this->view->render("Обрані квартири", $vars);
     }
-
 
 
 }

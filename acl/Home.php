@@ -15,7 +15,8 @@ return [
         'ShowApartment',
         'LoadApartment',
         'AddFavourite',
-        'ShowFavourite'
+        'ShowFavourite',
+        'RemoveFavourite'
     ],
     'guest' => [
     ],

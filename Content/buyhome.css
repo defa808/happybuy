@@ -94,12 +94,10 @@ main .main .container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  height: max-content;
+  justify-content: flex-start;
   align-items: center;
   align-content: center;
-}
-main .main .container .next-switch-room {
-  height: 28px;
 }
 main .main .container .bud-images {
   display: flex;
@@ -107,6 +105,7 @@ main .main .container .bud-images {
   flex-wrap: wrap;
   justify-content: space-between;
   width: max-content;
+  margin-bottom: 20px;
 }
 main .main .container .bud-images .bigImages .imagesApartment img {
   width: 300px;
@@ -162,4 +161,24 @@ main .main .container .dop-info {
 }
 main .main .container .dop-info2 {
   display: none;
+}
+@media (max-width: 1000px) {
+  main .main .container .bud-images .smallImages .imagesApartment img {
+    width: 100%;
+    height: max-content;
+  }
+  main .main .container .bud-images .bigImages .more-photo {
+    width: 264px;
+    height: 300px;
+  }
+  main .main .container .bud-images .bigImages .more-photo a {
+    font-size: 30px;
+  }
+  main .main .container .bud-images .bigImages .imagesApartment img {
+    width: 100%;
+    height: max-content;
+  }
+  main .main .container .bud-images .imagesApartment {
+    margin-bottom: 15px;
+  }
 }

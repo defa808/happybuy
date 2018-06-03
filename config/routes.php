@@ -56,6 +56,10 @@ return [
         'controller' => 'Home',
         'action' => 'ShowFavourite'
     ],
+    'removeFavourite\?.*' => [
+        'controller' => 'Home',
+        'action' => 'RemoveFavourite'
+    ],
     'admin' => [
         'controller' => 'Admin',
         'action' => 'Index'
@@ -91,6 +95,7 @@ return [
         'controller' => 'Admin',
         'action' => 'createUser'
     ],
+
 
 
 

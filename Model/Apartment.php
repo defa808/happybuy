@@ -96,7 +96,7 @@ class Apartment extends ORM implements IToHtml
                 <form method="GET" class="form_favourite" action="/apartment" onclick="submit()">
                     <input type="hidden" value="<?= $this->Id ?>" name="Id">
 
-                    <img src="<?= $this->getMainImage() ?>" class="image-for-content"/>
+                    <div class="mainImage"><img src="<?= $this->getMainImage() ?>" class="image-for-content"/></div>
                     <div class="content">
                         <div class="count-photo"><a href="#"><?= $this->countImage ?> фото</a></div>
                         <div class="option">
@@ -131,6 +131,58 @@ class Apartment extends ORM implements IToHtml
 
         <?php
     }
+
+    public function ToHtmlWithButton()
+    {
+        ?>
+        <div class="col-xsm-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="content-item">
+                <div class="readmore">
+                    <a href="#">Подробніше</a>
+                </div>
+                <form method="GET" class="form_favourite" action="/apartment" onclick="submit()">
+                    <input type="hidden" value="<?= $this->Id ?>" name="Id">
+
+                    <div class="mainImage"><img src="<?= $this->getMainImage() ?>" class="image-for-content"/></div>
+                    <div class="content">
+                        <div class="count-photo"><a href="#"><?= $this->countImage ?> фото</a></div>
+                        <div class="option">
+                            <div class="count-room">
+                                <strong><?= $this->room != null ? $this->room->getText() : "Undefined" ?></strong></div>
+                            <div class="content-location">
+                                <?= $this->areaLocation != null ? $this->areaLocation->getText() : "Undefined" ?>
+                                район<br/>
+                                <?= $this->metro != null ? $this->metro->getText() : "Undefined" ?> станція
+                            </div>
+                        </div>
+                        <div class="option">
+                            <div class="apartment-item">Площа</div>
+                            <div class="apartment-item-value"><strong>
+                                    <?= $this->areaGeneral ?> /
+                                    <?= $this->areaKitchen ?> /
+                                    <?= $this->areaLiving ?></strong></div>
+                        </div>
+                        <div class="option">
+                            <div class="apartment-item">Поверх</div>
+                            <div class="apartment-item-value"><?= $this->floor ?>/<?= $this->floorGeneral ?>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <div class="count-for-one-meter apartment-item ">За 1 кв.м.</div>
+                            <input class="btn-buy" type="submit" value="<?= $this->price ?> грн"/>
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+
+            <button type="button" class="btn btn-block btn-lg" onclick="removeFromFavourite('<?=$this->Id?>')">Видалити</button>
+        </div>
+
+        <?php
+    }
+
 
     public function GetCRUD()
     {

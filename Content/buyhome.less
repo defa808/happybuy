@@ -1,216 +1,233 @@
 ﻿@font-face {
-    font-family: Lato-Light; /* Гарнитура шрифта */
-    src: url(../fonts/Lato-Light.ttf);
+  font-family: Lato-Light; /* Гарнитура шрифта */
+  src: url(../fonts/Lato-Light.ttf);
 }
 
 @font-face {
-    font-family: Lato-Regular; /* Гарнитура шрифта */
-    src: url(../fonts/Lato-Regular.ttf);
+  font-family: Lato-Regular; /* Гарнитура шрифта */
+  src: url(../fonts/Lato-Regular.ttf);
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 h2 {
-    font-family: Lato-Light;
-    font-size: 14px;
-    margin-top:5px;
-    display:inline-block;
-    margin-bottom:10px;
+  font-family: Lato-Light;
+  font-size: 14px;
+  margin-top: 5px;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
 .all-home {
-    height:20px;
-    a {
-        text-decoration: none;
-        color: black;
+  height: 20px;
+  a {
+    text-decoration: none;
+    color: black;
 
-        &:visited {
-            color: black;
-        }
-
-        &:active {
-            color: black;
-        }
+    &:visited {
+      color: black;
     }
+
+    &:active {
+      color: black;
+    }
+  }
 }
 
-
 main {
+  height: max-content;
+  min-height: 550px;
+  width: 100%;
+  align-items: stretch;
+  justify-content: center;
+
+  .options {
+    margin-left: 20px;
+
+    img {
+      margin-bottom: -2px;
+    }
+
+    .container {
+      box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.5);
+      padding: 35px 28px;
+      width: 272px;
+      height: 363px;
+
+      .items {
+
+        .item {
+          position: relative;
+          height: 18px;
+          width: 100%;
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          margin-bottom: 15px;
+          font-family: Lato-Regular;
+          font-size: 14px;
+
+          &:last-child {
+            margin-bottom: 0px;
+          }
+        }
+      }
+
+      .bud_count {
+        font-family: Lato-Regular;
+        font-size: 14px;
+        text-align: center;
+        width: 100%;
+        margin-top: 60px;
+        margin-bottom: 10px;
+
+        span {
+          font-family: Lato-Regular;
+          font-size: 18px;
+        }
+      }
+
+      button {
+        background-color: #004A83;
+        border: 0px;
+        border-radius: 13px;
+        width: 218px;
+        height: 29.216px;
+        color: white;
+      }
+    }
+  }
+
+  .main {
     height: max-content;
-    min-height: 550px;
+    min-height: 363px;
+    margin-left: 20px;
+    margin-top: 20px;
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      height: max-content;
+      justify-content: flex-start;
+      align-items: center;
+      align-content: center;
+
+      .bud-images {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: max-content;
+        margin-bottom: 20px;
+
+        .bigImages {
+          .imagesApartment {
+            img {
+              width: 300px;
+              height: 350px;
+            }
+          }
+        }
+
+        .smallImages {
+          .imagesApartment {
+            img {
+              width: 100px;
+              height: 100px;
+            }
+          }
+        }
+
+        .bud-col {
+          margin-right: 15px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          font-family: Lato-Regular;
+          font-size: 12px;
+
+          a {
+            text-decoration: none;
+            color: #0080CE;
+
+            &:visited {
+              color: #0080CE;
+            }
+
+            &:active {
+              color: #0080CE;
+            }
+          }
+
+          &:last-child {
+            img:last-child {
+              flex-grow: 2;
+            }
+          }
+        }
+
+        .more-photo {
+          position: relative;
+          height: 75px;
+          width: 78px;
+          background-color: rgba(143, 143, 143, 0.71);
+          text-align: center;
+
+          a {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            display: inline-block;
+            width: max-content;
+            height: max-content;
+            display: inline-block;
+            margin: auto;
+            font-size: 10px;
+          }
+        }
+      }
+
+      .dop-info {
+        font-family: Lato-Light;
+        font-size: 14px;
+      }
+
+      .dop-info2 {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  main .main .container .bud-images .smallImages .imagesApartment img {
     width: 100%;
-    align-items: stretch;
-    justify-content: center;
+    height: max-content;
+  }
 
+  main .main .container .bud-images .bigImages {
 
-    .options {
-        margin-left: 20px;
-
-        img {
-            margin-bottom: -2px;
-        }
-
-        .container {
-            box-shadow: 1px 1px 1px rgba(1,1,1, 0.5);
-            padding: 35px 28px;
-            width: 272px;
-            height: 363px;
-
-
-            .items {
-
-
-                .item {
-                    position: relative;
-                    height: 18px;
-                    width: 100%;
-                    display: flex;
-                    flex-wrap: nowrap;
-                    justify-content: space-between;
-                    margin-bottom: 15px;
-                    font-family: Lato-Regular;
-                    font-size: 14px;
-
-                    &:last-child {
-                        margin-bottom: 0px;
-                    }
-                }
-            }
-
-            .bud_count {
-                font-family: Lato-Regular;
-                font-size: 14px;
-                text-align: center;
-                width: 100%;
-                margin-top: 60px;
-                margin-bottom: 10px;
-
-                span {
-                    font-family: Lato-Regular;
-                    font-size: 18px;
-                }
-            }
-
-            button {
-                background-color: #004A83;
-                border: 0px;
-                border-radius: 13px;
-                width: 218px;
-                height: 29.216px;
-                color: white;
-            }
-        }
+    .more-photo {
+      width: 264px;
+      height: 300px;
+      a {
+        font-size: 30px;
+      }
     }
 
-    .main {
-        height: max-content;
-        min-height: 363px;
-        margin-left: 20px;
-        margin-top: 20px;
-
-        .container {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            align-content: center;
-
-            .next-switch-room {
-                height: 28px;
-
-               
-            }
-
-            .bud-images {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                width: max-content;
-
-                .bigImages{
-                    .imagesApartment {
-                        img {
-                            width: 300px;
-                            height: 350px;
-                        }
-                    }
-                }
-
-                .smallImages{
-                    .imagesApartment {
-                        img {
-                            width: 100px;
-                            height: 100px;
-                        }
-                    }
-                }
-
-                .bud-col {
-                    margin-right:15px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    font-family: Lato-Regular;
-                    font-size: 12px;
-
-
-
-                    a {
-                        text-decoration: none;
-                        color: #0080CE;
-
-                        &:visited {
-                            color: #0080CE;
-                        }
-
-                        &:active {
-                            color: #0080CE;
-                        }
-                    }
-
-                    &:last-child {
-                        img:last-child {
-                            flex-grow: 2;
-                        }
-                    }
-                }
-
-                .more-photo {
-                    position:relative;
-                    height: 75px;
-                    width: 78px;
-                    background-color: rgba(143, 143, 143, 0.71);
-                    text-align: center;
-
-                    a {
-                        position:absolute;
-                        left:0;
-                        top:0;
-                        bottom:0;
-                        right:0;
-                        display:inline-block;
-                        width:max-content;
-                        height:max-content;
-                        display: inline-block;
-                        margin: auto;
-                        font-size:10px;
-                    }
-                }
-            }
-
-            .dop-info {
-                font-family: Lato-Light;
-                font-size: 14px;
-            }
-
-            .dop-info2 {
-                display: none;
-            }
-        }
+    .imagesApartment img {
+      width: 100%;
+      height: max-content;
     }
+  }
+
+  main .main .container .bud-images .imagesApartment {
+    margin-bottom: 15px;
+  }
 }
 
