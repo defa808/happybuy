@@ -513,6 +513,9 @@ main .new-houses .building:hover .discription-build {
   animation: open-description-building 1s ease;
   animation-fill-mode: forwards;
 }
+.container {
+  height: 80vh;
+}
 @keyframes open-description-building {
   100% {
     top: 83px;

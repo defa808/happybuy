@@ -28,21 +28,22 @@ class AccountController extends Controller
         if (isset($data['do_signin'])) {
 
             if (trim($data['login']) == '') {
-                $errors[] = "Input login";
+                $errors[] = "Введіть логін";
             }
 
             if (trim($data['password']) == '') {
-                $errors[] = "Input password";
+                $errors[] = "Введіть пароль";
             }
 
             $user = $this->signInUser($data);
 
             if ($user == null) {
-                $errors[] = "Wrong login or password";
+                $errors[] = "Невірний пароль або логін";
             }
 
             if (empty($errors)) {
                 $_SESSION['authorize'] = $user;
+
                 $userCurrent = Account::findId($user["Id"]);
                 $role = $userCurrent->include(new RoleUser())->roleUser;
                 if (strcmp($role, "Admin") == 0)
@@ -89,7 +90,7 @@ class AccountController extends Controller
             $vars = ['data' => $data, 'errors' => $errors];
         }
         $this->view->layout = null;
-        $this->view->render("Регістрація", $vars);
+        $this->view->render("Реєстрація", $vars);
 
     }
 
@@ -100,7 +101,8 @@ class AccountController extends Controller
         }
 
         $this->model->activate($this->route['token']);
-        $this->view->render('Email подтвержден');
+        $this->view->layout = null;
+        $this->view->render('Email підтверджено');
     }
 
     // Восстановление пароля
@@ -119,9 +121,10 @@ class AccountController extends Controller
                     $this->view->message('success', 'Запрос на восстановление пароля отправлен на E-mail');
                 }
             }
+//            $this->view->redirect("/login");
         }
         $this->view->layout = null;
-        $this->view->render('Восстановление пароля');
+        $this->view->render('Відновлення пароля');
     }
 
     public function resetAction()
@@ -135,7 +138,7 @@ class AccountController extends Controller
                 'password' => $password,
             ];
             $this->view->layout = null;
-            $this->view->render('Пароль сброшен', $vars);
+            $this->view->render('Пароль зкинуто', $vars);
         }
     }
 

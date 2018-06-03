@@ -30,9 +30,8 @@ class Account extends ORM
         $user->password = password_hash($data['password'], PASSWORD_BCRYPT);
         $user->email = $data['email'];
         $user->token = $token;
-        $user->status = 0;
-        $this->roleUser_Id = 1;
-
+        $user->status = false;
+        $user->roleUser_Id = 1;
         Account::create($user);
 
         mail($data['email'], 'Register', 'Confirm: http://localhost:808/account/confirm/' . $token);
@@ -61,10 +60,7 @@ class Account extends ORM
 
     public function __set($property, $value)
     {
-        if (property_exists($this, $property))
-            return $this->$property = $value;
-        return null;
-
+        return $this->$property = $value;
     }
 
     public function validate($input, &$post, &$errors)
@@ -202,14 +198,14 @@ class Account extends ORM
         mail($this->email, 'Recovery', 'Confirm: ' . $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/account/reset/' . $this->token);
     }
 
-    public function reset($post)
+    public function reset($token)
     {
         $newPassword = $this->createToken();
+        $user = Account::findByToken($token);
+        $user->password = password_hash($newPassword, PASSWORD_BCRYPT);
+        $user->token = "";
 
-        $this->password = password_hash($newPassword, PASSWORD_BCRYPT);
-        $this->token = "";
-
-        Account::update($this);
+        Account::update($user);
         return $newPassword;
     }
 
@@ -256,7 +252,7 @@ class Account extends ORM
                         <?php foreach ($rolesUsers as $rolesUser) { ?>
                             <option
                                 <?= $this->roleUser_Id == $rolesUser->Id ? "selected = 'selected'" : '' ?>
-                                value="<?= $rolesUser->Id ?>"><?= $rolesUser ?></option>
+                                    value="<?= $rolesUser->Id ?>"><?= $rolesUser ?></option>
                             <?php
                         } ?>
                     </select>
@@ -293,7 +289,6 @@ class Account extends ORM
 
         <?php
     }
-
 
 
     static function getNameInDatabase()

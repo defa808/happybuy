@@ -15,87 +15,91 @@
 <link href="../../Content/buyhome.css" rel="stylesheet"/>
 
 <?php
-if(isset($apartment)){
-?>
-<main>
-    <div class="options">
-        <div class="all-home"><a href="main"> <img src="../../images/bud_arrow-left.png"/> Всі квартири </a></div>
+if (isset($apartment)) {
 
-        <div class="container">
-            <div class="items">
-                <div class="item">
-                    <div class="opt_header">Загальна площа</div>
-                    <div class="opt_value"><strong><?= $apartment->areaGeneral ?> м<sup>2</sup></strong></div>
-                </div>
-                <div class="item">
-                    <div class="opt_header">Житлова площа</div>
-                    <div class="opt_value"><strong><?= $apartment->areaLiving ?> м<sup>2</sup></strong></div>
-                </div>
-                <div class="item">
+    ?>
+    <main>
+        <div class="options">
+            <div class="all-home"><a href="main"> <img src="../../images/bud_arrow-left.png"/> Всі квартири </a></div>
 
-                    <div class="opt_header">Кімната</div>
-                    <div class="opt_value"><strong>17.2 м<sup>2</sup></strong></div>
-                </div>
-                <div class="item">
+            <div class="container">
+                <div class="items">
+                    <div class="item">
+                        <div class="opt_header">Загальна площа</div>
+                        <div class="opt_value"><strong><?= $apartment->areaGeneral ?> м<sup>2</sup></strong></div>
+                    </div>
+                    <div class="item">
+                        <div class="opt_header">Житлова площа</div>
+                        <div class="opt_value"><strong><?= $apartment->areaLiving ?> м<sup>2</sup></strong></div>
+                    </div>
+                    <div class="item">
 
-                    <div class="opt_header">Кухня</div>
-                    <div class="opt_value"><strong><?= $apartment->areaKitchen ?> м<sup>2</sup></strong></div>
+                        <div class="opt_header">Кухня</div>
+                        <div class="opt_value"><strong><?= $apartment->areaKitchen ?> м<sup>2</sup></strong></div>
+                    </div>
+
+                    <div class="item">
+                        <div class="opt_header">Станція метро</div>
+                        <div class="opt_value"><b><?= $apartment->metro ?></b></div>
+                    </div>
+                    <div class="item">
+                        <div class="opt_header">Кількість кімнат</div>
+                        <div class="opt_value"><b><?= $apartment->room ?></b></div>
+                    </div>
+
+                    <div class="item">
+                        <div class="opt_header">Район</div>
+                        <div class="opt_value"><b><?= $apartment->areaLocation ?></b></div>
+                    </div>
+
                 </div>
 
-                <div class="item">
-                    <div class="opt_header">Ванна кімната</div>
-                    <div class="opt_value"><strong>4.16 м<sup>2</sup></strong></div>
+                <div class="bud_count" href="#">від <span><?= $apartment->price * $apartment->areaGeneral ?></span> грн
                 </div>
-
-                <div class="item">
-                    <div class="opt_header">Коридор</div>
-                    <div class="opt_value"><strong>4.05 м<sup>2</sup></strong></div>
-                </div>
-
+                <button>УТОЧНИТИ ВАРТІСТЬ</button>
             </div>
 
-            <div class="bud_count" href="#">від <span><?= $apartment->price ?></span> грн</div>
-            <button>УТОЧНИТИ ВАРТІСТЬ</button>
+
         </div>
 
 
-    </div>
+        <div class="main">
+            <h1><strong>Квартири в Києві</strong></h1>
+            <h2><?= $apartment->room ?></h2>
+            <div class="container">
+                <div class="next-switch-room"><img src="../../images/img-next.png" alt="Previous Room"/></div>
+                <div class="bud-images">
+                    <div class="bud-col smallImages">
+                        <?php
+                        $i = 0;
+                        foreach ($apartmentImages as $image) {
+
+                            $image->ToHTML();
+
+                            $i++;
+                            if ($i % 4 == 0 )
+                                echo "</div><div class=\"bud-col smallImages\">";
+                            if($i % 3 == 0)
+                                echo "</div><div class=\"bud-col bigImages\">";
 
 
-    <div class="main">
-        <h1><strong>Квартири в Києві</strong></h1>
-        <h2>Однокімнатна</h2>
-        <div class="container">
-            <div class="next-switch-room"><img src="../../images/img-next.png" alt="Previous Room"/></div>
-            <div class="bud-images">
-                <div class="bud-col">
-                    <img src="../../images/img-sm-1.png" alt="Кухня"/>
-                    <img src="../../images/img-sm-2.png" alt="Гостиниця"/>
-                    <img src="../../images/img-sm-1.png" alt="Гостиниця"/>
-                </div>
-                <div class="bud-col">
-                    <img src="../../images/img-lg-1.png" alt="Планування"/>
-                </div>
-                <div class="bud-col">
-                    <img src="../../images/img-sm-1.png" alt="Гостиниця"/>
-                    <img src="../../images/img-sm-2.png" alt="Кухня"/>
+                        } ?>
+                        <div class="more-photo"><a href="#">Більше фото</a></div>
+                    </div>
 
-                    <div class="more-photo"><a href="#">Більше фото</a></div>
                 </div>
+                <div class="dop-info">
+                    <div><img src="../../images/bud-location.png" alt="mark"/> Доступна в будинках</div>
+                    <div><img src="../../images/bud-adobe.png" alt="png"/> Планування квартири</div>
+
+                </div>
+                <div class="next-switch-room"><img src="../../images/img-next-reverse.png" alt="Next Room"/></div>
+
             </div>
-            <div class="dop-info">
-                <div><img src="../../images/bud-location.png" alt="mark"/> Доступна в будинках</div>
-                <div><img src="../../images/bud-adobe.png" alt="png"/> Планування квартири</div>
-
-            </div>
-            <div class="next-switch-room"><img src="../../images/img-next-reverse.png" alt="Next Room"/></div>
 
         </div>
-
-    </div>
-</main>
-<?php }
-else{
+    </main>
+<?php } else {
     echo "<h2>Something go wrong!</h2>";
     echo $message;
 }

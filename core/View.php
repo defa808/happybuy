@@ -25,27 +25,30 @@ class View
                 $content = ob_get_clean();
                 require 'Views/Shared/' . $this->layout . '.php';
             }
-        }else{
-            require 'Views/'.$this->path.'.php';
+        } else {
+            require 'Views/' . $this->path . '.php';
         }
 
     }
 
-    public static function errorCode($code){
+    public static function errorCode($code)
+    {
         http_response_code($code);
-        $path = 'Views/Errors/'.$code.'.php';
+        $path = 'Views/Errors/' . $code . '.php';
         if (file_exists($path)) {
             require $path;
         }
         exit;
     }
 
-    public function message($status, $message) {
-        exit(json_encode(['status' => $status, 'message' => $message]));
+    public function message($status, $message)
+    {
+        echo "<script type='text/javascript'>alert('$status: '+ '$message' );</script>";
     }
 
-    public function redirect($url) {
-        header('location: '.$url);
+    public function redirect($url)
+    {
+        header('location: ' . $url);
         exit;
     }
 }

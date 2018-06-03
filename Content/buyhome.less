@@ -127,15 +127,37 @@ main {
             .bud-images {
                 display: flex;
                 flex-direction: row;
+                flex-wrap: wrap;
                 justify-content: space-between;
-                width: 450px;
+                width: max-content;
+
+                .bigImages{
+                    .imagesApartment {
+                        img {
+                            width: 300px;
+                            height: 350px;
+                        }
+                    }
+                }
+
+                .smallImages{
+                    .imagesApartment {
+                        img {
+                            width: 100px;
+                            height: 100px;
+                        }
+                    }
+                }
 
                 .bud-col {
+                    margin-right:15px;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
                     font-family: Lato-Regular;
                     font-size: 12px;
+
+
 
                     a {
                         text-decoration: none;

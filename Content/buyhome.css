@@ -104,10 +104,20 @@ main .main .container .next-switch-room {
 main .main .container .bud-images {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
-  width: 450px;
+  width: max-content;
+}
+main .main .container .bud-images .bigImages .imagesApartment img {
+  width: 300px;
+  height: 350px;
+}
+main .main .container .bud-images .smallImages .imagesApartment img {
+  width: 100px;
+  height: 100px;
 }
 main .main .container .bud-images .bud-col {
+  margin-right: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

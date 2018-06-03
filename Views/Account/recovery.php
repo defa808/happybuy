@@ -2,7 +2,7 @@
 
 
 <div class="container">
-    <h1 class="mt-4 mb-3">Восстановление пароля</h1>
+    <h1 class="mt-4 mb-3">Відновлення пароля</h1>
     <div class="row">
         <div class="col-lg-8 mb-4">
             <form action="/account/recovery" method="post">
@@ -13,7 +13,7 @@
                         <p class="help-block"></p>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Восстановить пароль</button>
+                <button type="submit" class="btn btn-primary">Відновити пароль</button>
             </form>
         </div>
     </div>

@@ -15,6 +15,7 @@ use Exception;
 use lib\Pagination;
 use Model\Account;
 use Model\Apartment;
+use Model\ApartmentImages;
 use Model\AreaLocation;
 use Model\Metro;
 use Model\Room;
@@ -57,9 +58,12 @@ class HomeController extends Controller
     {
         if (isset($_GET['Id'])) {
             $Id = $_GET['Id'];
-            $apartment = Apartment::findId($Id);
+            $apartment = Apartment::findId($Id)->include(new Room())->include(new AreaLocation())->include(new Metro());
+
+            $apartmentImageList = ApartmentImages::findByApartmentId($apartment->Id);
             $vars = [
-                'apartment' => $apartment
+                'apartment' => $apartment,
+                'apartmentImages' => $apartmentImageList
             ];
             $this->view->render('Ваш вибір квартири', $vars);
         } else {
