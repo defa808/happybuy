@@ -13,10 +13,11 @@ $user = $_SESSION["authorize"];
 <head>
     <title><?= $title ?></title>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script src="/Scripts/MainAnimation.js"></script>
     <link rel="stylesheet" href="/Content/main.css">
-    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css">
     <link href="/Content/media.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css">
     <link href="/Content/grid.css" rel="stylesheet"/>
     <meta name="description"
           content="Квартира дешево в Києві. Найновітніший район з дитячим майданчиком. Теплий будинок за новітнішими технологіями. "/>

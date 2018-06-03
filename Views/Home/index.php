@@ -1,5 +1,4 @@
-﻿<link href="../Content/media.css" rel="stylesheet"/>
-
+﻿
 
 <main>
     <div class="leftPanel">

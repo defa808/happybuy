@@ -7,6 +7,7 @@
  */
 ?>
 <main class="favouriteMain">
+
     <div class="main">
         <h1>Обрані</h1>
 
@@ -55,5 +56,9 @@
     function ActiveLink() {
         $('.favourite').addClass("active");
     }
-    ActiveLink
+    ActiveLink();
+
+
+
+
 </script>

@@ -134,3 +134,12 @@
     clear: left;
   }
 }
+@media (max-width: 370px) {
+  header .wrap_logo {
+    display: none;
+  }
+  header .welcome {
+    margin-right: 0px;
+    width: 100%;
+  }
+}
