@@ -135,7 +135,7 @@ class Apartment extends ORM implements IToHtml
     public function ToHtmlWithButton()
     {
         ?>
-        <div class="col-xsm-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="col-xsm-12 col-sm-6  col-lg-4">
             <div class="content-item">
                 <div class="readmore">
                     <a href="#">Подробніше</a>
@@ -177,7 +177,7 @@ class Apartment extends ORM implements IToHtml
                 </form>
             </div>
 
-            <button type="button" class="btn btn-block btn-lg" onclick="removeFromFavourite('<?=$this->Id?>')">Видалити</button>
+            <button type="button" style="width:222px" class="btn btn-block btn-lg" onclick="removeFromFavourite('<?=$this->Id?>')">Видалити</button>
         </div>
 
         <?php
