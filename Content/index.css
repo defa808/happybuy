@@ -15,26 +15,25 @@
   font-size: 0;
 }
 body {
+  max-width: 2000px;
   position: relative;
   padding: 0px;
   margin: 0px;
+  overflow-x: hidden;
+  min-width: 350px;
 }
 img {
   margin: 0px;
 }
 header {
   position: relative;
-  width: 100vw;
   background-color: #0080CE;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-header .header {
+  padding: 0 25%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  width: 759px;
   height: 65px;
-  margin: auto;
 }
 header .logo {
   margin-top: 15px;
@@ -85,20 +84,13 @@ header .enter-user .button-header {
 }
 .image1 {
   position: relative;
-  width: 100%;
-  padding: 0;
+  padding: 100px 0;
   margin: 0;
-}
-.image1 #img1 {
-  min-width: 1280px;
-  width: 100vw;
-  padding: 0px;
+  background: url("../images/img1.png") no-repeat center;
+  background-size: cover;
+  height: max-content;
 }
 .image1 .content {
-  position: absolute;
-  height: 100%;
-  top: 0px;
-  padding: 60px 60px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -112,17 +104,23 @@ header .enter-user .button-header {
   font-size: 21.75px;
   color: white;
   text-align: center;
+  margin-bottom: 100px;
 }
 .sign_up {
   position: relative;
-  background-image: url(../images/obl_enter.png);
-  max-width: 453.041px;
-  width: max-content;
+  background: url(../images/obl_enter.png);
+  background-repeat: repeat-y;
+  background-size: 100%;
   padding: 15px;
+}
+.sign_up .row {
+  padding: 5px;
+}
+.sign_up .row .col {
+  margin-bottom: 10px;
 }
 .sign_up input[type="text"] {
   padding: 6px;
-  margin-right: 10px;
   color: gray;
   border-radius: 6px;
   border: 0px;
@@ -130,17 +128,18 @@ header .enter-user .button-header {
   font-size: 15.03px;
 }
 .sign_up .usrFirstName {
-  width: 115.181px;
+  min-width: 115.181px;
   height: 28.84px;
 }
 .sign_up .usrSecondName {
-  width: 164.708px;
+  width: 100%;
+  min-width: 160px;
   height: 29.375px;
 }
 .sign_up .button-enter {
   font-family: Lato-Light;
   font-size: 12px;
-  width: 105.284px;
+  padding: 0px 8px;
   height: 29.375px;
   background-color: #0A9D0A;
   color: white;
@@ -154,20 +153,14 @@ header .enter-user .button-header {
 }
 .image2 {
   position: relative;
-  width: 100vw;
-  height: 100%;
-}
-.image2 #img2 {
-  width: 100vw;
-  min-width: 1280px;
-}
-.image2 .noactive {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  min-width: 1280px;
-  opacity: 0.65;
+  background: url("../images/img2white.png") no-repeat center;
+  background-size: cover;
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 100px 25%;
 }
 .image2 .img2Logo {
   height: 47px;
@@ -180,136 +173,131 @@ header .enter-user .button-header {
   left: 66px;
   font-size: 22.99px;
 }
-.image2 .obertka-img2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-  width: 758.999px;
-  height: max-content;
-}
-.image2 .obertka-img2 .img2Posit {
-  float: left;
+.image2 .img2Posit {
   width: 424.965px;
+  min-width: 250px;
   height: 436.792px;
   background-image: url(../images/fordiv.png);
   border-radius: 6px;
   border: 0px;
   padding: 17px 20px;
+  margin-bottom: 50px;
 }
-.image2 .obertka-img2 .img2Posit .img2Content {
+.image2 .img2Posit .img2Content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 320px;
   margin-top: 20px;
 }
-.image2 .obertka-img2 .img2Posit .img2Content .items {
+.image2 .img2Posit .img2Content .items {
   height: max-content;
 }
-.image2 .obertka-img2 .img2Posit .img2Content .items img {
+.image2 .img2Posit .img2Content .items img {
   float: left;
 }
-.image2 .obertka-img2 .img2Posit .img2Content .items .img2Posit-header {
+.image2 .img2Posit .img2Content .items .img2Posit-header {
   font-family: Lato-Regular;
   font-size: 26.82px;
   color: #D59916;
   margin-left: 66px;
 }
-.image2 .obertka-img2 .img2Posit .img2Content .items .img2Posit-discription {
+.image2 .img2Posit .img2Content .items .img2Posit-discription {
   font-family: Lato-Regular;
   font-size: 10.22px;
   color: black;
   margin-left: 66px;
   margin-top: 5px;
 }
-.image2 .obertka-img2 .img2Fact {
-  float: left;
+.image2 .img2Fact {
+  min-width: 250px;
   width: 310.11px;
   height: 436.792px;
   background-image: url(../images/fordiv.png);
   border-radius: 6px;
   border: 0px;
   padding: 17px 20px;
-  margin-left: 15px;
 }
-.image2 .obertka-img2 .img2Fact .img2Content {
+.image2 .img2Fact .img2Content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 320px;
   margin-top: 20px;
 }
-.image2 .obertka-img2 .img2Fact .img2Content hr {
+.image2 .img2Fact .img2Content hr {
   display: block;
   height: 1px;
   background-color: black;
   width: 100%;
 }
-.image2 .obertka-img2 .img2Fact .img2Content .items {
+.image2 .img2Fact .img2Content .items {
   height: 75px;
 }
-.image2 .obertka-img2 .img2Fact .img2Content .items img {
+.image2 .img2Fact .img2Content .items img {
   float: right;
 }
-.image2 .obertka-img2 .img2Fact .img2Content .items .img2Fact-header {
+.image2 .img2Fact .img2Content .items .img2Fact-header {
   font-family: Lato-Regular;
   font-size: 22.99px;
   color: #3ABAA5;
 }
-.image2 .obertka-img2 .img2Fact .img2Content .items .img2Fact-discription {
+.image2 .img2Fact .img2Content .items .img2Fact-discription {
   font-family: Lato-Light;
   font-size: 12.77px;
   margin-top: 5px;
   margin-left: 25px;
 }
-.image2 .obertka-img2 .img2Fact .logo-text {
+.image2 .img2Fact .logo-text {
   color: #E89900;
 }
 .sign_up2 {
-  margin-top: -4px;
-  width: 100vw;
-  height: 91.956px;
+  width: 100%;
   background-color: #166FB2;
-  padding: 10px;
+  padding: 0px 25%;
 }
 .sign_up2 .sign_up {
   position: relative;
-  top: 0px;
-  left: 0px;
   background: none;
   margin: auto;
 }
 .image3 {
   position: relative;
-  padding: 0px;
-  margin-top: -1px;
-  width: 100%;
-  height: 100%;
-}
-.image3 #img1 {
-  width: 100vw;
-  min-width: 1280px;
+  background: url("../images/img3white.png") no-repeat center;
+  background-size: cover;
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 100px 25%;
 }
 .image3 .obertka-formula {
-  position: absolute;
-  left: 0;
-  top: 0px;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  width: 759px;
-  height: 218px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
   font-family: Lato-Regular;
   font-size: 20.82px;
   color: white;
+}
+.image3 .obertka-formula .plus {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 5;
+  width: 0px;
+}
+.image3 .obertka-formula .plus div {
+  margin-left: -25px;
 }
 .image3 .obertka-formula .header {
   height: 53px;
   margin: auto;
   width: max-content;
+}
+.image3 .obertka-formula .header strong {
+  font-size: 21px;
 }
 .image3 .obertka-formula .signs {
   position: absolute;
@@ -322,11 +310,11 @@ header .enter-user .button-header {
 }
 .image3 .obertka-formula .formula1 {
   position: relative;
-  float: left;
   background-color: #F6A843;
-  width: 25%;
   height: 218.396px;
-  padding: 20px;
+  padding: 25px;
+  min-width: 180px;
+  flex-grow: 2;
 }
 .image3 .obertka-formula .formula1 #img3_1 {
   position: absolute;
@@ -340,11 +328,11 @@ header .enter-user .button-header {
 }
 .image3 .obertka-formula .formula2 {
   position: relative;
-  float: left;
   background-color: #E66DF4;
-  width: 25%;
   height: 218.396px;
-  padding: 20px;
+  padding: 25px;
+  min-width: 180px;
+  flex-grow: 2;
 }
 .image3 .obertka-formula .formula2 #img3_3 {
   position: absolute;
@@ -353,11 +341,11 @@ header .enter-user .button-header {
 }
 .image3 .obertka-formula .formula3 {
   position: relative;
-  float: left;
   background-color: #26C644;
-  width: 25%;
   height: 218.396px;
-  padding: 20px;
+  padding: 25px;
+  min-width: 180px;
+  flex-grow: 2;
 }
 .image3 .obertka-formula .formula3 #img3_4 {
   position: absolute;
@@ -366,11 +354,11 @@ header .enter-user .button-header {
 }
 .image3 .obertka-formula .formula4 {
   position: relative;
-  float: left;
   background-color: #82ACF6;
-  width: 25%;
   height: 218.396px;
-  padding: 20px;
+  padding: 25px;
+  min-width: 180px;
+  flex-grow: 2;
 }
 .image3 .obertka-formula .formula4 #img3_5 {
   position: absolute;
@@ -378,168 +366,130 @@ header .enter-user .button-header {
   top: 90px;
 }
 .quest {
-  margin-top: -4px;
   font-family: Lato-Regular;
   font-size: 26.85px;
-  height: 109.169px;
-  width: 100vw;
+  width: 100%;
   text-overflow: ellipsis;
-  line-height: 109.169px;
   text-align: center;
   background-color: #0C4B81;
   color: white;
-  white-space: nowrap;
+  padding: 50px 25%;
 }
 .image4 {
   position: relative;
-  width: 100vw;
-  font-family: Lato-Regular;
-  font-size: 22.99px;
-}
-.image4 .noactive {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  min-width: 1280px;
-  opacity: 0.65;
-}
-.image4 #img4 {
-  min-width: 1280px;
-  width: 100vw;
-}
-.image4 .content {
-  width: max-content;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0px;
-  padding: 60px;
+  background: url("../images/img4white.png") no-repeat center;
+  background-size: cover;
+  height: max-content;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
+  padding: 100px 25%;
 }
-.image4 .content .info {
+.image4 .info {
   width: max-content;
+  margin-bottom: 100px;
 }
-.image4 .content .info .line {
+.image4 .info .line {
   margin-bottom: 10px;
   width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-content: center;
 }
-.image4 .content .info .line:nth-child(2n) {
+.image4 .info .line:nth-child(2n) {
   justify-content: flex-end;
 }
-.image4 .content .info .line span {
+.image4 .info .line span {
   font-size: 20px;
 }
-.image4 .content .info .line .img1 {
+.image4 .info .line .img1 {
   height: 202px;
 }
-.image4 .content .info .line .img1 img {
+.image4 .info .line .img1 img {
   margin-left: 61px;
 }
-.image4 .content .info .line .arrow {
+.image4 .info .line .arrow {
   margin-left: 95px;
   margin-top: 64px;
   transform: rotate(-90deg);
 }
-.image4 .content .info .line .arrow2 {
+.image4 .info .line .arrow2 {
   margin-top: 22px;
   margin-right: 100px;
 }
-.image4 .content .info .line .arrow3 {
+.image4 .info .line .arrow3 {
   margin-top: 64px;
   margin-right: 50px;
   transform: rotate(90deg);
 }
-.image4 .content .info .line .img2 {
+.image4 .info .line .img2 {
   margin-left: 26px;
 }
-.image4 .content .info .line .img2 img {
+.image4 .info .line .img2 img {
   margin-left: 54px;
 }
-.image4 .content .info .line .img3 {
+.image4 .info .line .img3 {
   clear: right;
   float: right;
   margin-right: 100px;
 }
-.image4 .content .info .line .img3 img {
+.image4 .info .line .img3 img {
   margin-left: 61px;
 }
-.image4 .content .info .line .img4 img {
+.image4 .info .line .img4 img {
   margin-left: 61px;
 }
 .image5 {
   background-color: #D0D0D0;
-  width: 100vw;
-  height: 284.809px;
+  padding: 100px 25%;
+}
+.image5 .col {
+  margin-bottom: 10px;
+}
+.image5 .items {
   display: flex;
-  flex-flow: row wrap;
   justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
-.image5 .container {
-  margin: auto;
-  width: 759px;
-}
-.image5 .container .items {
-  width: 378px;
-  height: max-content;
-  float: left;
-}
-.image5 .container .items .header {
+.image5 .items .header {
   font-family: Lato-Regular;
   font-size: 22px;
 }
-.image5 .container .items .content {
+.image5 .items .content {
   font-family: Lato-Regular;
   font-size: 15.88px;
-  height: 50px;
 }
-.image5 .container .items .img {
-  margin-right: 17px;
-  float: left;
-  height: 100px;
+.image5 .items .img {
+  margin-right: 20px;
 }
 .image6 {
   font-family: Lato-Regular;
   font-size: 26px;
-  padding-top: 24px;
+  padding: 50px 25%;
   text-align: center;
-  height: 250.325px;
-  width: 100vw;
   background-color: #315368;
   color: #FF9C00;
 }
-.image6 div {
-  margin: auto;
-  margin-top: 24px;
-  width: 759px;
-  height: 131px;
+.image6 .content {
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
   justify-content: space-between;
+}
+.image6 .content img {
+  margin: 25px;
 }
 footer {
   position: relative;
   background-color: #004A83;
-  min-height: 133px;
-  height: max-content;
-  width: 100vw;
-}
-footer .conteiner {
-  margin: auto;
-  margin-bottom: 20px;
-  width: 759px;
-  height: max-content;
   display: flex;
   flex-flow: row wrap;
-  white-space: nowrap;
   justify-content: space-between;
+  padding: 50px 25%;
 }
 footer .logo {
   margin-top: 19px;
@@ -560,7 +510,6 @@ footer .logo #copyright {
 }
 footer .map {
   font-family: Lato-Regular;
-  font-size: 12px;
   height: 133px;
   width: 100px;
   margin: auto;
@@ -583,6 +532,9 @@ footer .map ul {
 footer .map ul li {
   list-style-type: none;
   margin-bottom: 9px;
+}
+footer .map ul li a {
+  font-size: 12px;
 }
 footer .map ul li:first-child {
   font-size: 12px;
@@ -629,11 +581,63 @@ footer .year {
   font-size: 12px;
   margin-top: 100px;
 }
-@media (max-width: 760px) {
-  .image5 {
-    height: 500px;
+@media (max-width: 1200px) {
+  .image5 .row {
+    margin: 0 auto;
   }
-  .image5 .container {
-    width: 400px;
+}
+@media (max-width: 1000px) {
+  .obertka-mobile {
+    display: none;
+  }
+  .image4 {
+    align-items: center;
+  }
+  .image4 .info {
+    margin-bottom: 100px;
+  }
+  .image4 .info .line {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .image4 .info .line .img2 {
+    margin: 10px 0;
+  }
+  .image4 .info .line .img3 {
+    margin: 0;
+  }
+  .image4 .info .line .arrow {
+    margin: 0;
+    width: max-content;
+  }
+  .image4 .info .line .arrow img {
+    transform: rotate(90deg);
+  }
+  .image4 .info .line .arrow2 {
+    margin: 10px 0;
+  }
+  .image4 .info .line .arrow3 {
+    margin: 0px;
+    width: max-content;
+  }
+  .image4 .info .line .arrow3 img {
+    transform: rotate(-90deg);
+  }
+}
+@media (max-width: 700px) {
+  .logo {
+    display: none;
+  }
+  .image3 .obertka-formula {
+    flex-direction: column;
+  }
+  .image3 .obertka-formula .plus {
+    height: 0px;
+    width: 100%;
+    flex-direction: row;
+  }
+  .image3 .obertka-formula .plus div {
+    margin: -25px 0px 0px 0px;
   }
 }
