@@ -71,20 +71,35 @@ class AccountController extends Controller
     {
         $vars = [];
         if (!empty($_POST)) {
+            $capture = $_POST['g-recaptcha-response'];
+            unset($_POST['g-recaptcha-response']);
             $data = $_POST;
-
             $errors = array();
             if ($this->model->validate(['login', 'email', 'password', 'password2'], $data, $errors)) {
-                try {
+                if(isset($capture)) {
+                    $url_to_google_api = "https://www.google.com/recaptcha/api/siteverify";
 
-                    $this->model->register($data);
-                    $user = Account::findByLogin($data['login']);
-                    $_SESSION["authorize"] = (array)$user;
-                    header('Refresh: 0; URL=main');
+                    $secret_key = '6LfqIF0UAAAAAN0pV3SdkhuL-VSvo3tgQNRJOTJg';
 
-                } catch (PDOException $e) {
-                    echo "<p style='color:red' >Something go wrong. Call your young hacker.</p>";
-                    exit();
+                    $query = $url_to_google_api . '?secret=' . $secret_key . '&response=' . $capture . '&remoteip=' . $_SERVER['REMOTE_ADDR'];
+
+                    $res = json_decode(file_get_contents($query));
+                    if ($res->success) {
+                        try {
+                            $this->model->register($data);
+                            $user = Account::findByLogin($data['login']);
+                            $_SESSION["authorize"] = (array)$user;
+                            header('Refresh: 0; URL=main');
+
+                        } catch (PDOException $e) {
+                            echo "<p style='color:red' >Something go wrong. Call your young hacker.</p>";
+                            exit();
+                        }
+                    }else {
+                        $errors['capture'] = "Capture uncorrected";
+                    }
+                }else {
+                    $errors['capture'] = "Capture uncorrected";
                 }
             }
             $vars = ['data' => $data, 'errors' => $errors];
