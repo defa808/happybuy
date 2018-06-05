@@ -24,7 +24,6 @@ class HomeController extends Controller
 {
     public function IndexAction()
     {
-        $_SESSION["favourite"] = null;
         $this->route['action'] = "main";
         $pagination = new Pagination($this->route, Apartment::takeAllCount());
         $items = $this->initModelForOnePage();
